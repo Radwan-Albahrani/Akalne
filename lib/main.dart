@@ -1,6 +1,7 @@
 import 'package:akalne/theme/palette.dart';
 import 'package:flutter/material.dart';
 import "package:firebase_core/firebase_core.dart";
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'firebase_options.dart';
 import './core/features/auth/screens/login_screen.dart';
 
@@ -17,10 +18,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: Palette.lightModeAppTheme,
-      home: const LoginScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: Palette.lightModeAppTheme,
+          debugShowCheckedModeBanner: false,
+          home: const LoginScreen(),
+        );
+      },
     );
   }
 }
