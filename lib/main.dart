@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Akalne',
           theme: Palette.lightModeAppTheme,
           debugShowCheckedModeBanner: false,
           home: const LoginScreen(),
