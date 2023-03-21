@@ -15,8 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-
-  void navgaiteToSignUpScreen(BuildContext context) {
+  void navigateToSignUpScreen(BuildContext context) {
     Navigator.of(context).pushNamed(AppRoutes.signUpScreen);
   }
 
@@ -90,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           TextButton(
-                            onPressed: () => navgaiteToSignUpScreen(context),
+                            onPressed: () => navigateToSignUpScreen(context),
                             child: Text(
                               "Sign Up",
                               style: Theme.of(context).textTheme.labelMedium,

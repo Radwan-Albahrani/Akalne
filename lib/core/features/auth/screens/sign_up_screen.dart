@@ -17,11 +17,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
 
-
-
-  void navgaiteToLoginScreen(BuildContext context) {
+  void navigateToLoginScreen(BuildContext context) {
     Navigator.of(context).pop();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           TextButton(
-                            onPressed: () => navgaiteToLoginScreen(context),
+                            onPressed: () => navigateToLoginScreen(context),
                             child: Text(
                               "Sign In",
                               style: Theme.of(context).textTheme.labelMedium,
