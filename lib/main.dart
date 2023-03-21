@@ -1,8 +1,14 @@
-import 'package:akalne/common/features/auth/screens/user_signin_screen.dart';
+import 'package:akalne/core/features/auth/screens/sign_in_screen.dart';
 import 'package:akalne/theme/palette.dart';
 import 'package:flutter/material.dart';
+import "package:firebase_core/firebase_core.dart";
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -12,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: Palette.lightModeAppTheme,
-      home: const UserSignInScreen(),
+      home: const LoginScreen(),
     );
   }
 }
