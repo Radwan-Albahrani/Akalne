@@ -1,10 +1,9 @@
-import 'package:akalne/features/auth/screens/user_signin_screen.dart';
+import 'package:akalne/common/features/auth/screens/user_signin_screen.dart';
+import 'package:akalne/theme/palette.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -12,9 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: Palette.lightModeAppTheme,
       home: const UserSignInScreen(),
     );
   }
