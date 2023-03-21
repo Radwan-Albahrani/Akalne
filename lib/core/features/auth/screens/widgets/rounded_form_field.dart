@@ -17,11 +17,13 @@ class RoundedFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
         border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
-        ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+            borderSide: BorderSide.none),
         hintText: hintText,
       ),
     );
