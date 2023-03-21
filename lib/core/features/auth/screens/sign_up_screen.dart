@@ -42,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "Sign In to your Account",
+                  "Create your Account",
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),

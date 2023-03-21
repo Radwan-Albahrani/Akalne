@@ -31,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Lottie.asset(
                 "assets/lottieIcons/LoginIcon.json",
-                height: 200.h,
-                width: 200.w,
+                height: 250.h,
+                width: 250.w,
               ),
               SizedBox(
                 height: 20.h,
