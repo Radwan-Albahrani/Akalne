@@ -1,14 +1,21 @@
+import 'package:akalne/features/auth/screens/user_signin_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:akalne/pages/initial.dart';
 
-const APP_NAME = "Akalne";
 
 void main() {
-  runApp(MaterialApp(
-    title: APP_NAME,
-    theme: ThemeData(
-      primarySwatch: Colors.deepOrange,
-    ),
-    home: const InitialPage(title: APP_NAME),
-  ));
+  runApp(MyApp());
+
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const UserSignInScreen(),
+    );
+  }
 }
