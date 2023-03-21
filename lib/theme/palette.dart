@@ -6,11 +6,11 @@ import "./app_colors.dart";
 class Palette {
   static final lightModeAppTheme = ThemeData(
     fontFamily: DesignConstants.fontFamily,
-    scaffoldBackgroundColor: AppColors.light['primary'],
+    scaffoldBackgroundColor: AppColors.light['background'],
     primaryColor: AppColors.light['primary'],
     canvasColor: Colors.transparent,
     colorScheme: ColorScheme.light(
-      primary: Colors.indigo,
+      primary: AppColors.light['primary'],
       onPrimary: AppColors.light['string1'],
       secondary: AppColors.light['secondary'],
       onSecondary: AppColors.light['string2'],

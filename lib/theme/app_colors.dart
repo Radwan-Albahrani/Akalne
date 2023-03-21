@@ -6,7 +6,8 @@ class AppColors {
     'primary': Color(0xFF32906C),
     'string1': Color(0xFF1A0700),
     'secondary': Color(0xFFEE6C52),
-    'string2': Color(0x3B3B3B),
+    'string2': Color(0xFF3B3B3B),
+    "background": Color(0xFFE5E5E5),
   };
 
   static const Map dark = {
