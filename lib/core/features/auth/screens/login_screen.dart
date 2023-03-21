@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../constants/app_routes.dart';
 import 'widgets/rounded_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,6 +15,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+
+  void navgaiteToSignUpScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(AppRoutes.signUpScreen);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
+            children: [
               Lottie.asset(
                 "assets/lottieIcons/LoginIcon.json",
-                height: 250.h,
-                width: 250.w,
+                height: 200.h,
+                width: 200.w,
               ),
               SizedBox(
                 height: 20.h,
@@ -84,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () => navgaiteToSignUpScreen(context),
                             child: Text(
                               "Sign Up",
                               style: Theme.of(context).textTheme.labelMedium,
