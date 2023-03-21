@@ -19,7 +19,7 @@ class Palette {
     textTheme: TextTheme(
       headlineLarge: TextStyle(
         color: AppColors.light['string1'],
-        fontSize: 46.sp,
+        fontSize: 35.sp,
         fontWeight: FontWeight.bold,
       ),
       headlineMedium: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
