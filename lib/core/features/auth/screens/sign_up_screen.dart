@@ -1,17 +1,18 @@
 import 'package:akalne/core/constants/app_routes.dart';
+import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/features/auth/screens/widgets/rounded_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
-
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
@@ -19,6 +20,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void navigateToLoginScreen(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  final formKey = GlobalKey<FormState>();
+
+  void signUpWithEmail(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      ref.read(authControllerProvider.notifier).signUpWithEmail(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+          name: nameController.text.trim(),
+          phoneNumber: phoneController.text.trim(),
+          context: context);
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
   }
 
   @override
@@ -47,6 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               Form(
+                key: formKey,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -55,7 +79,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       RoundedFormField(
                         controller: nameController,
                         hintText: "Your name",
-                        obscureText: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your name";
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -63,7 +92,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       RoundedFormField(
                         controller: phoneController,
                         hintText: "phone number",
-                        obscureText: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your phone number";
+                          } else if (value.length < 10) {
+                            return "Please enter a valid phone number";
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -71,6 +107,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       RoundedFormField(
                         controller: emailController,
                         hintText: "Email",
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your email";
+                          }
+                          final RegExp emailRegExp =
+                              RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                          if (!emailRegExp.hasMatch(value)) {
+                            return "Please enter a valid email";
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -79,6 +126,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         controller: passwordController,
                         hintText: "Password",
                         obscureText: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your password";
+                          } else if (value.length < 6) {
+                            return "Password must be at least 6 characters";
+                          }
+                          return null;
+                        },
                       ),
                       SizedBox(
                         height: 20.h,
@@ -94,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () => signUpWithEmail(context),
                           child: Text("Login",
                               style: Theme.of(context).textTheme.labelLarge),
                         ),
