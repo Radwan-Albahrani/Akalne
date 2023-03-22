@@ -52,7 +52,6 @@ class AuthController extends StateNotifier<bool> {
       required String password,
       required String name,
       required String phoneNumber,
-      required File? image,
       required BuildContext context}) async {
     state = true;
 

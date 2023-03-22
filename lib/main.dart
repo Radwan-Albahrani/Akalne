@@ -1,6 +1,7 @@
 import 'package:akalne/theme/palette.dart';
 import 'package:flutter/material.dart';
 import "package:firebase_core/firebase_core.dart";
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/constants/app_routes.dart';
 import 'core/features/auth/screens/sign_up_screen.dart';
@@ -12,7 +13,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()) );
 }
 
 class MyApp extends StatelessWidget {

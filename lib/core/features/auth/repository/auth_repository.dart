@@ -49,6 +49,9 @@ class AuthRepository {
           phoneNumber: phoneNumber,
           profilePictureUrl: AppConstants.defaultProfile);
 
+      await _users.doc(userId).set(userModel.toMap());
+
+      print(userModel.toMap());
       return Right(userModel);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));

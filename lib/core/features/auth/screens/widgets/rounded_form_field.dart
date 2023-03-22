@@ -6,15 +6,18 @@ class RoundedFormField extends StatelessWidget {
     required this.controller,
     this.obscureText = false,
     required this.hintText,
+    this.validator,
   });
 
   final TextEditingController controller;
   final bool obscureText;
   final String hintText;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       controller: controller,
       decoration: InputDecoration(
         filled: true,
@@ -26,6 +29,8 @@ class RoundedFormField extends StatelessWidget {
             borderSide: BorderSide.none),
         hintText: hintText,
       ),
+      obscureText: obscureText,
+      validator: validator
     );
   }
 }
