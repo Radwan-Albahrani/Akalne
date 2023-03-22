@@ -1,5 +1,7 @@
 import 'package:akalne/recipient/features/feature/home/screens/home_screen.dart';
+import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:akalne/recipient/models/user_model.dart';
+import 'package:akalne/restuarant/features/feature/home/screens/home_screen.dart';
 import 'package:akalne/theme/palette.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +31,14 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
+  RestaurantModel? restaurantModel;
   UserModel? userModel;
-
   void getData(WidgetRef ref, User data) async {
-    userModel = await ref
-        .watch(authControllerProvider.notifier)
-        .getUserData(data.uid)
-        .first;
-    ref.read(userProvider.notifier).update((state) => userModel);
+    setState(() {
+      restaurantModel = null;
+      userModel = null;
+    });
+    await ref.watch(authControllerProvider.notifier).getUserData(data.uid);
   }
 
   @override
@@ -54,7 +56,16 @@ class _MyAppState extends ConsumerState<MyApp> {
                   data: (data) {
                     if (data != null) {
                       getData(ref, data);
-                      return const HomeScreen();
+                      restaurantModel = ref.watch(restaurantProvider);
+                      userModel = ref.watch(userProvider);
+                      if (restaurantModel != null) {
+                        print("Restaurant");
+                        return const RestaurantHomeScreen();
+                      }
+                      if (userModel != null) {
+                        print("User");
+                        return const UserHomeScreen();
+                      }
                     }
                     return const LoginScreen();
                   },

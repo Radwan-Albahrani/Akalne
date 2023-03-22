@@ -3,13 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/features/auth/controller/auth_controller.dart';
 
-class UserHomeScreen extends ConsumerStatefulWidget {
-  const UserHomeScreen({super.key});
+class RestaurantHomeScreen extends ConsumerStatefulWidget {
+  const RestaurantHomeScreen({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends ConsumerState<UserHomeScreen> {
+class _HomeScreenState extends ConsumerState<RestaurantHomeScreen> {
   void logout() {
     ref.read(authControllerProvider.notifier).logout();
   }
@@ -18,7 +18,7 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User Home'),
+        title: const Text('Restaurant Home'),
       ),
       body: Center(
         child: TextButton(onPressed: logout, child: Text('logout')),

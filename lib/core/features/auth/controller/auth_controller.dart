@@ -3,13 +3,16 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 
+import '../../../../recipient/models/restaurant_model.dart';
 import '../../../../recipient/models/user_model.dart';
 import '../../../providers/storage_repository_provider.dart';
 import '../../../utils.dart';
 import '../repository/auth_repository.dart';
 
 final userProvider = StateProvider<UserModel?>((ref) => null);
+final restaurantProvider = StateProvider<RestaurantModel?>((ref) => null);
 
 final authControllerProvider = StateNotifierProvider<AuthController, bool>(
   (ref) => AuthController(
@@ -18,10 +21,6 @@ final authControllerProvider = StateNotifierProvider<AuthController, bool>(
     storageRepository: ref.watch(storageRepositoryProvider),
   ),
 );
-final getUserDataProvider = StreamProvider.family((ref, String uid) {
-  final authController = ref.watch(authControllerProvider.notifier);
-  return authController.getUserData(uid);
-});
 
 final authStateChangeProvider = StreamProvider((ref) {
   final authController = ref.watch(authControllerProvider.notifier);
@@ -43,8 +42,16 @@ class AuthController extends StateNotifier<bool> {
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
 
-  Stream<UserModel> getUserData(String uid) {
-    return _authRepository.getUserData(uid);
+  Future<void> getUserData(String uid) async {
+    var data = await _authRepository.getUserData(uid);
+    data.fold(
+      (l) => print(l),
+      (r) => r.fold(
+        (user) => _ref.read(userProvider.notifier).state = user,
+        (restaurant) =>
+            _ref.read(restaurantProvider.notifier).state = restaurant,
+      ),
+    );
   }
 
   void signUpWithEmail(
@@ -79,16 +86,24 @@ class AuthController extends StateNotifier<bool> {
 
     state = false;
     user.fold(
-        (l) => showSnackBar(
-              context,
-              l.message,
-            ),
-        (userModel) =>
-            _ref.read(userProvider.notifier).update((state) => userModel));
+      (l) => showSnackBar(
+        context,
+        l.message,
+      ),
+      (userModel) {
+        userModel.fold(
+          (restaurant) =>
+              _ref.read(userProvider.notifier).update((state) => restaurant),
+          (user) =>
+              _ref.read(restaurantProvider.notifier).update((state) => user),
+        );
+      },
+    );
   }
 
   void logout() {
-    _authRepository.logout();
     _ref.read(userProvider.notifier).update((state) => null);
+    _ref.read(restaurantProvider.notifier).update((state) => null);
+    _authRepository.logout();
   }
 }

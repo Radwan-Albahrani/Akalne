@@ -1,4 +1,5 @@
 import 'package:akalne/core/constants/app_constants.dart';
+import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +29,10 @@ class AuthRepository {
 
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
+  CollectionReference get _userType =>
+      _firestore.collection(FirebaseConstants.userTypeCollection);
+  CollectionReference get _restaurants =>
+      _firestore.collection(FirebaseConstants.restaurantsCollection);
 
   Stream<User?> get authStateChange => _auth.authStateChanges();
 
@@ -50,6 +55,7 @@ class AuthRepository {
           profilePictureUrl: AppConstants.defaultProfile);
 
       await _users.doc(userId).set(userModel.toMap());
+      await _userType.doc(userId).set({'type': 'user'});
 
       print(userModel.toMap());
       return Right(userModel);
@@ -60,16 +66,26 @@ class AuthRepository {
     }
   }
 
-  FutureEither<UserModel> signInWithEmail(
+  FutureEither<Either<UserModel, RestaurantModel>> signInWithEmail(
       {required String email, required String password}) async {
     try {
       UserCredential authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       final userId = authResult.user!.uid;
 
-      UserModel userModel = await getUserData(userId).first;
-
-      return Right(userModel);
+      String type = await getUserType(userId).first;
+      var userInfo = await getUserData(userId);
+      RestaurantModel? restaurantModel;
+      UserModel? userModel;
+      userInfo.fold(
+          (l) => print(l),
+          (userData) => userData.fold((user) => userModel = user,
+              (restaurant) => restaurantModel = restaurant));
+      if (userModel != null) {
+        return Right(Left(userModel!));
+      } else {
+        return Right(Right(restaurantModel!));
+      }
     } on FirebaseAuthException catch (e) {
       return Left(Failure(e.toString()));
     } catch (e) {
@@ -77,9 +93,28 @@ class AuthRepository {
     }
   }
 
-  Stream<UserModel> getUserData(String uid) {
-    return _users.doc(uid).snapshots().map((event) {
-      return UserModel.fromMap(event.data() as Map<String, dynamic>);
+  FutureEither<Either<UserModel, RestaurantModel>> getUserData(
+      String uid) async {
+    try {
+      var type = await getUserType(uid).first;
+      if (type == "user") {
+        var event = await _users.doc(uid).get();
+        return Right(
+            Left(UserModel.fromMap(event.data() as Map<String, dynamic>)));
+      } else {
+        var event = await _restaurants.doc(uid).get();
+        return Right(Right(
+            RestaurantModel.fromJson(event.data() as Map<String, dynamic>)));
+      }
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  Stream<String> getUserType(String uid) {
+    return _userType.doc(uid).snapshots().map((event) {
+      var userType = event.data() as Map<String, dynamic>;
+      return userType['type'];
     });
   }
 
