@@ -33,12 +33,15 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   RestaurantModel? restaurantModel;
   UserModel? userModel;
-  void getData(WidgetRef ref, User data) async {
-    setState(() {
-      restaurantModel = null;
-      userModel = null;
-    });
-    await ref.watch(authControllerProvider.notifier).getUserData(data.uid);
+  Future<void> getData(WidgetRef ref, User data) async {
+    // setState(() {
+    //   restaurantModel = null;
+    //   userModel = null;
+    // });
+    var authController = ref.read(authControllerProvider.notifier);
+    await authController.getUserData(data.uid);
+    restaurantModel = ref.read(restaurantProvider);
+    userModel = ref.read(userProvider);
   }
 
   @override
@@ -53,25 +56,28 @@ class _MyAppState extends ConsumerState<MyApp> {
             theme: Palette.lightModeAppTheme,
             debugShowCheckedModeBanner: false,
             home: ref.watch(authStateChangeProvider).when(
-                  data: (data) {
-                    if (data != null) {
-                      getData(ref, data);
-                      restaurantModel = ref.watch(restaurantProvider);
-                      userModel = ref.watch(userProvider);
-                      if (restaurantModel != null) {
-                        print("Restaurant");
-                        return const RestaurantHomeScreen();
-                      }
-                      if (userModel != null) {
-                        print("User");
-                        return const UserHomeScreen();
-                      }
-                    }
-                    return const LoginScreen();
-                  },
+                  data: (data) => data != null
+                      ? FutureBuilder(
+                          future: getData(ref, data),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (restaurantModel != null) {
+                                return const RestaurantHomeScreen();
+                              }
+                              if (userModel != null) {
+                                return const UserHomeScreen();
+                              }
+                            }
+                            return const LoginScreen();
+                          },
+                        )
+                      : const LoginScreen(),
                   error: (error, stackTrace) =>
                       ErrorText(error: error.toString()),
-                  loading: () => const Loader(),
+                  loading: () {
+                    return const Loader();
+                  },
                 ),
             routes: {
               AppRoutes.loginScreen: (context) => const LoginScreen(),

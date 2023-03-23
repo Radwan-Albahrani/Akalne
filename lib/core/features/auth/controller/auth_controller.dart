@@ -47,9 +47,12 @@ class AuthController extends StateNotifier<bool> {
     data.fold(
       (l) => print(l),
       (r) => r.fold(
-        (user) => _ref.read(userProvider.notifier).state = user,
-        (restaurant) =>
-            _ref.read(restaurantProvider.notifier).state = restaurant,
+        (user) {
+          _ref.read(userProvider.notifier).update((state) => user);
+        },
+        (restaurant) => _ref
+            .read(restaurantProvider.notifier)
+            .update((state) => restaurant),
       ),
     );
   }
