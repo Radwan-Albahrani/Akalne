@@ -13,10 +13,30 @@ class SignUpScreen extends ConsumerStatefulWidget {
 }
 
 class _SignUpScreenState extends ConsumerState<SignUpScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final nameController = TextEditingController();
-  final phoneController = TextEditingController();
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+  late final TextEditingController nameController;
+  late final TextEditingController phoneController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    nameController = TextEditingController();
+    phoneController = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+
+    super.dispose();
+  }
 
   void navigateToLoginScreen(BuildContext context) {
     Navigator.of(context).pop();
@@ -33,15 +53,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           phoneNumber: phoneController.text.trim(),
           context: context);
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    nameController.dispose();
-    phoneController.dispose();
   }
 
   @override

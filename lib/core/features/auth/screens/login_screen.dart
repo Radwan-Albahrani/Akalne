@@ -13,8 +13,24 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
 
   void navigateToSignUpScreen(BuildContext context) {
     Navigator.of(context).pushNamed(AppRoutes.signUpScreen);
@@ -29,13 +45,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           password: passwordController.text.trim(),
           context: context);
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
   }
 
   @override
