@@ -79,6 +79,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       RoundedFormField(
                         controller: nameController,
                         hintText: "Your name",
+                        keyboardType: TextInputType.name,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Please enter your name";
@@ -92,6 +93,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       RoundedFormField(
                         controller: phoneController,
                         hintText: "phone number",
+                        keyboardType: TextInputType.phone,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Please enter your phone number";
@@ -107,6 +109,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       RoundedFormField(
                         controller: emailController,
                         hintText: "Email",
+                        keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Please enter your email";
@@ -125,7 +128,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       RoundedFormField(
                         controller: passwordController,
                         hintText: "Password",
-                        obscureText: true,
+                        isSecret: true,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Please enter your password";

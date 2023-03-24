@@ -6,12 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/app_routes.dart';
 import 'widgets/rounded_form_field.dart';
 
-
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
+
 class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   final emailController = TextEditingController();
@@ -22,7 +22,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   final formKey = GlobalKey<FormState>();
-
 
   void signInWithEmail(BuildContext context) {
     if (formKey.currentState!.validate()) {
@@ -75,8 +74,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       RoundedFormField(
                         controller: emailController,
                         hintText: "Email",
-                        validator: (value){
-                          if(value!.isEmpty){
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return "Please enter your email";
                           }
                           final RegExp emailRegExp =
@@ -93,9 +93,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       RoundedFormField(
                         controller: passwordController,
                         hintText: "Password",
-                        obscureText: true,
-                        validator: (value){
-                          if(value!.isEmpty){
+                        isSecret: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
                             return "Please enter your password";
                           }
                           return null;
@@ -144,6 +144,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           ),
         ),
       ),
-    );;
+    );
+    ;
   }
 }
+

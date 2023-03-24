@@ -4,20 +4,22 @@ class RoundedFormField extends StatelessWidget {
   const RoundedFormField({
     super.key,
     required this.controller,
-    this.obscureText = false,
+    this.isSecret = false,
+    this.keyboardType = TextInputType.text,
     required this.hintText,
     this.validator,
   });
 
   final TextEditingController controller;
-  final bool obscureText;
+  final bool isSecret;
+  final TextInputType keyboardType;
   final String hintText;
   final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
+
       controller: controller,
       decoration: InputDecoration(
         filled: true,
@@ -29,7 +31,10 @@ class RoundedFormField extends StatelessWidget {
             borderSide: BorderSide.none),
         hintText: hintText,
       ),
-      obscureText: obscureText,
+      keyboardType: keyboardType,
+      obscureText: isSecret,
+      autocorrect: !isSecret,
+      enableSuggestions: !isSecret,
       validator: validator
     );
   }
