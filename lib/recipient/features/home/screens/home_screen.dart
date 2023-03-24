@@ -1,9 +1,8 @@
+import 'package:akalne/recipient/features/Profile/screens/profile_screen.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
-import '../../../../core/features/auth/controller/auth_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../homeMenu/screens/home_recipient.dart';
@@ -15,23 +14,19 @@ class UserHomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<UserHomeScreen> {
-  void logout() {
-    ref.read(authControllerProvider.notifier).logout();
-  }
-
   var _selectedIndex = 0;
 
-  var Screens = [
+  var screens = [
     const HomeRecipient(),
     const Center(child: Text("Favorite")),
     const Center(child: Text("Cart")),
-    const Center(child: Text("Profile")),
+    const ProfileScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Screens[_selectedIndex],
+      body: screens[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,

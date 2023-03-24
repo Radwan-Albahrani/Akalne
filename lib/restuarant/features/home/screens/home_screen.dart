@@ -51,6 +51,5 @@ class _HomeScreenState extends ConsumerState<RestaurantHomeScreen> {
         },
       ),
     );
-    ;
   }
 }
