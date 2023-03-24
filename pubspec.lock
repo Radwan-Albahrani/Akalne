@@ -914,6 +914,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  switch_up:
+    dependency: "direct main"
+    description:
+      name: switch_up
+      sha256: "28b7b5dbfec6104f185352de8d0d4690a1dc0082ca06792940d6f9c9c4a3315e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2+1"
   term_glyph:
     dependency: transitive
     description:

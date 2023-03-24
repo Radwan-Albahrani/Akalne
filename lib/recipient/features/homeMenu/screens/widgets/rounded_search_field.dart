@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-class RoundedFormField extends StatelessWidget {
-  const RoundedFormField({
+class RoundedSearchField extends StatelessWidget {
+  const RoundedSearchField({
     super.key,
     required this.controller,
-    this.isSecret = false,
-    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
     required this.hintText,
     this.validator,
   });
 
   final TextEditingController controller;
-  final bool isSecret;
-  final TextInputType keyboardType;
+  final bool obscureText;
   final String hintText;
   final String? Function(String?)? validator;
 
@@ -21,6 +19,8 @@ class RoundedFormField extends StatelessWidget {
     return TextFormField(
         controller: controller,
         decoration: InputDecoration(
+          constraints: const BoxConstraints(maxHeight: 50),
+          prefixIcon: const Icon(Icons.search),
           filled: true,
           fillColor: Colors.white,
           border: const OutlineInputBorder(
@@ -30,7 +30,7 @@ class RoundedFormField extends StatelessWidget {
               borderSide: BorderSide.none),
           hintText: hintText,
         ),
-        obscureText: isSecret,
+        obscureText: obscureText,
         validator: validator);
   }
 }

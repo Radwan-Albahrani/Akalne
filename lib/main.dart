@@ -1,7 +1,7 @@
-import 'package:akalne/recipient/features/feature/home/screens/home_screen.dart';
+import 'package:akalne/recipient/features/home/screens/home_screen.dart';
 import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:akalne/recipient/models/user_model.dart';
-import 'package:akalne/restuarant/features/feature/home/screens/home_screen.dart';
+import 'package:akalne/restuarant/features/home/screens/home_screen.dart';
 import 'package:akalne/theme/palette.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
