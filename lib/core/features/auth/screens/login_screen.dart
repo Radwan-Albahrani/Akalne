@@ -1,3 +1,4 @@
+import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,6 +50,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -124,7 +126,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
                           ),
                           onPressed: () => signInWithEmail(context),
-                          child: Text("Login",
+                          child: isLoading
+                                ? const Loader()
+                                : Text("Login",
                               style: Theme.of(context).textTheme.labelLarge),
                         ),
                       ),
@@ -137,10 +141,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                           TextButton(
                             onPressed: () => navigateToSignUpScreen(context),
-                            child: Text(
-                              "Sign Up",
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ),
+                            child:  Text(
+                                    "Sign Up",
+                                    style:
+                                        Theme.of(context).textTheme.labelMedium,
+                                  ),
                           ),
                         ],
                       ),

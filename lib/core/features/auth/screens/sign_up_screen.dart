@@ -1,3 +1,4 @@
+import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/constants/app_routes.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/features/auth/screens/widgets/rounded_form_field.dart';
@@ -57,6 +58,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -164,8 +166,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                             ),
                           ),
                           onPressed: () => signUpWithEmail(context),
-                          child: Text("Login",
-                              style: Theme.of(context).textTheme.labelLarge),
+                          child: isLoading
+                              ? const Loader()
+                              : Text("Sign Up",
+                                  style:
+                                      Theme.of(context).textTheme.labelLarge),
                         ),
                       ),
                       Row(
