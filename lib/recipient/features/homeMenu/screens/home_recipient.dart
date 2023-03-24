@@ -87,7 +87,8 @@ class _HomeRecipientState extends State<HomeRecipient> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 32, right: 32, top: 24),
+            padding:
+                const EdgeInsets.only(left: 32, right: 32, top: 24, bottom: 10),
             child: Column(
               children: [
                 const SizedBox(
