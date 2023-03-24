@@ -58,6 +58,7 @@ class AuthRepository {
       await _userType.doc(userId).set({'type': 'user'});
 
       print(userModel.toMap());
+      Future.delayed(const Duration(seconds: 1));
       return Right(userModel);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
@@ -73,7 +74,7 @@ class AuthRepository {
           email: email, password: password);
       final userId = authResult.user!.uid;
 
-      String type = await getUserType(userId).first;
+      String type = await getUserType(userId);
       var userInfo = await getUserData(userId);
       RestaurantModel? restaurantModel;
       UserModel? userModel;
@@ -96,9 +97,12 @@ class AuthRepository {
   FutureEither<Either<UserModel, RestaurantModel>> getUserData(
       String uid) async {
     try {
-      var type = await getUserType(uid).first;
+      print("here");
+      var type = await getUserType(uid);
+      print(type);
       if (type == "user") {
         var event = await _users.doc(uid).get();
+        print(event.data());
         return Right(
             Left(UserModel.fromMap(event.data() as Map<String, dynamic>)));
       } else {
@@ -111,11 +115,14 @@ class AuthRepository {
     }
   }
 
-  Stream<String> getUserType(String uid) {
-    return _userType.doc(uid).snapshots().map((event) {
-      var userType = event.data() as Map<String, dynamic>;
-      return userType['type'];
-    });
+  Future<String> getUserType(String uid) {
+    return _userType.doc(uid).get().then((value) {
+      if(value.data() == null) {
+        return "user";
+      }
+      final data = value.data() as Map<String, dynamic>;
+      return data['type'];
+    } );
   }
 
   void logout() async {

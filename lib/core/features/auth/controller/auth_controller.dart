@@ -42,10 +42,10 @@ class AuthController extends StateNotifier<bool> {
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
 
-  Future<void> getUserData(String uid) async {
+  Future<void> getUserData(String uid , BuildContext context) async {
     var data = await _authRepository.getUserData(uid);
     data.fold(
-      (l) => print(l),
+      (l)  => print(l.message),
       (r) => r.fold(
         (user) {
           _ref.read(userProvider.notifier).update((state) => user);
@@ -75,6 +75,7 @@ class AuthController extends StateNotifier<bool> {
               l.message,
             ), (userModel) {
       _ref.read(userProvider.notifier).update((state) => userModel);
+      print(userModel);
       Navigator.pop(context);
     });
   }
@@ -105,8 +106,8 @@ class AuthController extends StateNotifier<bool> {
   }
 
   void logout() {
+    _authRepository.logout();
     _ref.read(userProvider.notifier).update((state) => null);
     _ref.read(restaurantProvider.notifier).update((state) => null);
-    _authRepository.logout();
   }
 }
