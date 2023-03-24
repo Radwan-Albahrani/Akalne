@@ -1,16 +1,15 @@
-# akalne
+<div align = center>
 
-A new Flutter project.
+<h1>Akalne | أكِّلنِي</h1>
 
-## Getting Started
+Mobile application that connect individuals and businesses with surplus food to those who are in need. It aims to reduce food waste and help alleviate hunger and poverty.
 
-This project is a starting point for a Flutter application.
+</div>
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Todo...
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+
+Todo...
