@@ -13,7 +13,6 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -145,7 +144,5 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
-    ;
   }
 }
-

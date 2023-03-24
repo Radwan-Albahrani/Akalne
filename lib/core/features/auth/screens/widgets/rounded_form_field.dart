@@ -30,7 +30,10 @@ class RoundedFormField extends StatelessWidget {
               borderSide: BorderSide.none),
           hintText: hintText,
         ),
+        keyboardType: keyboardType,
         obscureText: isSecret,
+        autocorrect: !isSecret,
+        enableSuggestions: !isSecret,
         validator: validator);
   }
 }
