@@ -44,10 +44,10 @@ class FoodItemCard extends StatelessWidget {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    // image: DecorationImage(
-                    //   image: AssetImage(foodImage),
-                    //   fit: BoxFit.cover,
-                    // ),
+                    image: DecorationImage(
+                      image: AssetImage(foodImage),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10),

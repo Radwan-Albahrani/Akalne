@@ -128,7 +128,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           onPressed: () => signInWithEmail(context),
                           child: isLoading
                                 ? const Loader()
-                                : Text("Login",
+                                :  Text("Login",
                               style: Theme.of(context).textTheme.labelLarge),
                         ),
                       ),
@@ -141,7 +141,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                           TextButton(
                             onPressed: () => navigateToSignUpScreen(context),
-                            child:  Text(
+                            child: Text(
                                     "Sign Up",
                                     style:
                                         Theme.of(context).textTheme.labelMedium,

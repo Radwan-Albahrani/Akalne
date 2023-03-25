@@ -33,13 +33,13 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   RestaurantModel? restaurantModel;
   UserModel? userModel;
-  Future<void> getData(WidgetRef ref, User data) async {
+  Future<void> getData(WidgetRef ref, User data , BuildContext context) async {
     // setState(() {
     //   restaurantModel = null;
     //   userModel = null;
     // });
     var authController = ref.read(authControllerProvider.notifier);
-    await authController.getUserData(data.uid);
+    await authController.getUserData(data.uid , context);
     restaurantModel = ref.read(restaurantProvider);
     userModel = ref.read(userProvider);
   }
@@ -58,7 +58,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             home: ref.watch(authStateChangeProvider).when(
                   data: (data) => data != null
                       ? FutureBuilder(
-                          future: getData(ref, data),
+                          future: getData(ref, data, context),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.done) {
