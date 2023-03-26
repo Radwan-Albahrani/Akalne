@@ -22,6 +22,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -29,6 +32,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -36,6 +42,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -43,6 +52,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -50,6 +62,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -57,6 +72,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -64,6 +82,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -71,6 +92,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     },
     {
       "foodName": "Chicken",
@@ -78,6 +102,9 @@ class _HomeRecipientState extends State<HomeRecipient> {
       "restaurantName": "McDonalds",
       "timeAgo": "5 mins ago",
       "distance": "1.2 km",
+      "description": "Chicken slices with a side of fries and a drink",
+      "dateAdded": "2021-09-01 12:00:00",
+      "maximumOrder": "5",
     }
   ];
 
@@ -147,11 +174,7 @@ class _HomeRecipientState extends State<HomeRecipient> {
               itemCount: dummyData.length,
               itemBuilder: (context, index) {
                 return FoodItemCard(
-                  foodName: dummyData[index]["foodName"]!,
-                  foodImage: dummyData[index]["foodImage"]!,
-                  restaurantName: dummyData[index]["restaurantName"]!,
-                  timeAgo: dummyData[index]["timeAgo"]!,
-                  distance: dummyData[index]["distance"]!,
+                  foodDetails: dummyData[index],
                 );
               },
             ),
