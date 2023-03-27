@@ -1,5 +1,6 @@
 import 'package:akalne/recipient/features/Profile/screens/profile_screen.dart';
 import 'package:akalne/restuarant/features/food/screens/published_meals_screen.dart';
+import 'package:akalne/restuarant/features/orders/screens/restuarant_orders_screen.dart';
 import 'package:akalne/restuarant/features/profile/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,9 +23,7 @@ class _HomeScreenState extends ConsumerState<RestaurantHomeScreen> {
   var screens = [
     const PublishedMealsScreen(),
     const RestuarantMenuScreen(),
-    const Center(
-      child: Text('Cart'),
-    ),
+    const RestuarantOrdersScreen(),
     const RestuarantProfileScreen(),
   ];
   void logout() {
