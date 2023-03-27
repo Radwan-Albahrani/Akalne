@@ -1,3 +1,4 @@
+import 'package:akalne/core/common/splash_screen.dart';
 import 'package:akalne/recipient/features/home/screens/home_screen.dart';
 import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:akalne/recipient/models/user_model.dart';
@@ -69,7 +70,7 @@ class _MyAppState extends ConsumerState<MyApp> {
                                 return const UserHomeScreen();
                               }
                             }
-                            return const LoginScreen();
+                            return const SplashScreen();
                           },
                         )
                       : const LoginScreen(),
