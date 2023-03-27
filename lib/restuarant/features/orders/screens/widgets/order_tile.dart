@@ -111,7 +111,7 @@ class OrderTile extends StatelessWidget {
                       child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
-                          Icons.add,
+                          Icons.check,
                           color: Colors.white,
                         ),
                       ),
@@ -127,7 +127,7 @@ class OrderTile extends StatelessWidget {
                       child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
-                          Icons.delete_outline_rounded,
+                          Icons.close,
                           color: Colors.white,
                         ),
                       ),
