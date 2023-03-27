@@ -62,11 +62,11 @@ class _HomeScreenState extends ConsumerState<RestaurantHomeScreen> {
                 iconSize: 35,
               ),
               GButton(
-                icon: Icons.favorite_border_outlined,
+                icon: Icons.restaurant_menu_sharp,
                 iconSize: 35,
               ),
               GButton(
-                icon: Icons.shopping_cart_outlined,
+                icon: Icons.shopping_basket_outlined,
                 iconSize: 35,
               ),
               GButton(
