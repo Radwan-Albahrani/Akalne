@@ -4,21 +4,41 @@ import 'package:flutter/material.dart';
 import '../food_details.dart';
 
 class FoodItemCard extends StatelessWidget {
-  const FoodItemCard({super.key, required this.foodDetails});
+  const FoodItemCard({
+    super.key,
+    required this.foodDetails,
+    required this.restaurantDetails,
+    this.isReplace = false,
+  });
 
   final Map<String, dynamic> foodDetails;
+  final Map<String, dynamic> restaurantDetails;
+  final bool isReplace;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => FoodDetails(
-              foodDetails: foodDetails,
+        if (!isReplace) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => FoodDetails(
+                foodDetails: foodDetails,
+                restaurantDetails: restaurantDetails,
+              ),
             ),
-          ),
-        );
+          );
+        } else {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => FoodDetails(
+                foodDetails: foodDetails,
+                restaurantDetails: restaurantDetails,
+                isReplace: isReplace,
+              ),
+            ),
+          );
+        }
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 10),
@@ -67,7 +87,7 @@ class FoodItemCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        foodDetails["restaurantName"],
+                        restaurantDetails["restaurantName"],
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -109,7 +129,7 @@ class FoodItemCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            foodDetails["distance"],
+                            restaurantDetails["distance"],
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,

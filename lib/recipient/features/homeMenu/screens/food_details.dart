@@ -1,3 +1,7 @@
+import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
+import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
+import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_Image_favorite.dart';
+import 'package:akalne/recipient/features/homeMenu/screens/widgets/restaurant_logo.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -5,9 +9,15 @@ class FoodDetails extends StatefulWidget {
   const FoodDetails({
     super.key,
     required this.foodDetails,
+    required this.restaurantDetails,
+    this.isFavorite = false,
+    this.isReplace = false,
   });
 
   final Map<String, dynamic> foodDetails;
+  final Map<String, dynamic> restaurantDetails;
+  final bool isFavorite;
+  final bool isReplace;
 
   @override
   State<FoodDetails> createState() => _FoodDetailsState();
@@ -20,80 +30,20 @@ class _FoodDetailsState extends State<FoodDetails> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric( horizontal: 32),
+          padding: const EdgeInsets.only(left: 32, right: 32, top: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.light["primaryTransparent"],
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                      ),
-                      elevation: 0.0,
-                      shadowColor: Colors.transparent,
-                    ),
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      color: AppColors.light["primary"],
-                      size: 25,
-                    ),
-                  ),
-                ),
-              ),
+              const CustomBackButton(),
               const SizedBox(height: 20),
               Column(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: AssetImage(widget.foodDetails['foodImage']),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                              AppColors.light["primaryTransparent"],
-                            ),
-                            shape: MaterialStateProperty.all(
-                              CircleBorder(
-                                side: BorderSide(
-                                  color: AppColors.light["primary"],
-                                ),
-                              ),
-                            ),
-                            minimumSize: MaterialStateProperty.all(
-                              const Size(40, 40),
-                            ),
-                          ),
-                          child: const Icon(
-                            Icons.favorite,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                  FoodImageFavorite(
+                    foodImage: widget.foodDetails['foodImage'],
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 5),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -106,11 +56,42 @@ class _FoodDetailsState extends State<FoodDetails> {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        widget.foodDetails["restaurantName"],
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: () {
+                          if (!widget.isReplace) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => RestaurantPage(
+                                  restaurantDetails: widget.restaurantDetails,
+                                ),
+                              ),
+                            );
+                          } else {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => RestaurantPage(
+                                  restaurantDetails: widget.restaurantDetails,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RestaurantLogo(
+                              image: widget.restaurantDetails["restaurantLogo"],
+                              radius: 15,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              widget.restaurantDetails["restaurantName"],
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -175,18 +156,22 @@ class _FoodDetailsState extends State<FoodDetails> {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 20,
-                        child: Text(
-                          widget.foodDetails["description"],
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.foodDetails["foodDescription"],
+                              overflow: TextOverflow.visible,
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
+                      const SizedBox(height: 10),
                       Container(
                         width: double.infinity,
                         height: 50,
@@ -287,7 +272,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.foodDetails["distance"],
+                                widget.restaurantDetails["distance"],
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -312,13 +297,13 @@ class _FoodDetailsState extends State<FoodDetails> {
                           child: const Text(
                             "Reserve",
                             style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white
-                            ),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
                           ),
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 10),
                     ],
                   ),
                 ),
