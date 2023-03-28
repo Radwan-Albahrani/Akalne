@@ -1,4 +1,5 @@
 import 'package:akalne/recipient/features/Profile/screens/profile_screen.dart';
+import 'package:akalne/recipient/features/orders/screens/orders_screen.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,8 +20,8 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
   var screens = [
     const HomeRecipient(),
     const Center(child: Text("Favorite")),
-    const Center(child: Text("Cart")),
-    const ProfileScreen()
+    const OrdersPage(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -59,7 +60,7 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
                 iconSize: 35,
               ),
               GButton(
-                icon: Icons.shopping_cart_outlined,
+                icon: Icons.timelapse_outlined,
                 iconSize: 35,
               ),
               GButton(
