@@ -1,3 +1,5 @@
+import 'package:akalne/core/features/auth/controller/auth_controller.dart';
+import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:akalne/restuarant/features/food/screens/widgets/published_meal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,11 +17,12 @@ class PublishedMealsScreen extends ConsumerStatefulWidget {
 
 class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
   late final _searchController;
+  late final RestaurantModel? restaurantModel;
 
   @override
   void initState() {
     _searchController = TextEditingController();
-
+    restaurantModel = ref.read(restaurantProvider);
     super.initState();
   }
 
@@ -37,9 +40,9 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const Align(
+            Align(
                 alignment: Alignment.topLeft,
-                child: Text('Hey [Restaurant Name]')),
+                child: Text('Hey ${restaurantModel!.name}')),
             const SizedBox(
               height: 10,
             ),

@@ -132,7 +132,7 @@ class MenuItem extends StatelessWidget {
                 ],
               )),
           Container(
-            height: 30.h,
+            height: 28.h,
             width: double.infinity,
             decoration: BoxDecoration(
               color: AppColors.light["secondary"],

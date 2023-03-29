@@ -1,3 +1,5 @@
+import 'package:akalne/core/features/auth/controller/auth_controller.dart';
+import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:akalne/restuarant/features/menu/screens/widgets/menu_item.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +17,12 @@ class RestuarantMenuScreen extends ConsumerStatefulWidget {
 
 class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
   late final TextEditingController _searchController;
+  late final RestaurantModel? restaurantModel;
 
   @override
   void initState() {
     _searchController = TextEditingController();
+    restaurantModel = ref.read(restaurantProvider);
 
     super.initState();
   }
@@ -37,9 +41,9 @@ class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const Align(
+            Align(
                 alignment: Alignment.topLeft,
-                child: Text('Hey [Restaurant Name]')),
+                child: Text('Hey ${restaurantModel!.name}')),
             const SizedBox(
               height: 10,
             ),
@@ -72,7 +76,7 @@ class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     mainAxisExtent: 152.h,
