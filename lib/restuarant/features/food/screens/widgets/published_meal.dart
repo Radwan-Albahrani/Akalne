@@ -38,7 +38,7 @@ class PublishedMeal extends StatelessWidget {
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage('assets/images/food.png'),
                   fit: BoxFit.cover,
                 ),
@@ -139,7 +139,6 @@ class PublishedMeal extends StatelessWidget {
           ],
         ),
       ),
-      
     );
   }
 }

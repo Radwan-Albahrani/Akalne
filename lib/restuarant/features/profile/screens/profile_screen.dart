@@ -24,7 +24,7 @@ class _RestuarantProfileScreenState extends ConsumerState<RestuarantProfileScree
         width: double.infinity,
         child: Column(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 50,
               backgroundImage: AssetImage(AppConstants.defaultProfile),
