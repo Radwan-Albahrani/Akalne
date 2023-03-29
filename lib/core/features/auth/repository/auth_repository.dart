@@ -53,24 +53,24 @@ class AuthRepository {
           email: email,
           phoneNumber: phoneNumber,
           profilePictureUrl: AppConstants.defaultProfile);
-
+      bool failed = false;
       await _users
           .doc(userId)
           .set(userModel.toJson())
           .onError((error, stackTrace) {
-        print(error);
-        print("Could not add user to database");
         authResult.user!.delete();
-        throw Exception("Could not add user to database");
+        failed = true;
       });
       await _userType
           .doc(userId)
           .set({'type': 'user'}).onError((error, stackTrace) {
-        print(error);
-        print("Could not add user to database");
         authResult.user!.delete();
-        throw Exception("Could not add user to database");
+        failed = true;
       });
+
+      if (failed) {
+        return Left(Failure("Failed to create user"));
+      }
 
       print(userModel);
       Future.delayed(const Duration(seconds: 1));
