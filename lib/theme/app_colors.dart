@@ -10,6 +10,7 @@ class AppColors {
     'secondaryTransparent': Color(0x55EE6C52),
     'string2': Color(0xFF3B3B3B),
     "background": Color(0xFFE5E5E5),
+    "white": Color(0xFFFFFFFF),
   };
 
   static const Map dark = {

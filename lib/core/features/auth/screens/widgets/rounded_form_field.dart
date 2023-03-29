@@ -7,14 +7,18 @@ class RoundedFormField extends StatelessWidget {
     this.isSecret = false,
     this.keyboardType = TextInputType.text,
     required this.hintText,
+    this.label,
     this.validator,
+    this.maxLines,
   });
 
   final TextEditingController controller;
   final bool isSecret;
   final TextInputType keyboardType;
   final String hintText;
+  final String? label;
   final String? Function(String?)? validator;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,9 @@ class RoundedFormField extends StatelessWidget {
               ),
               borderSide: BorderSide.none),
           hintText: hintText,
+          labelText: label,
         ),
+        maxLines: maxLines,
         keyboardType: keyboardType,
         obscureText: isSecret,
         autocorrect: !isSecret,
