@@ -41,7 +41,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             const SizedBox(height: 12),
             Text(
               userModel!.name,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 12),
             Text(

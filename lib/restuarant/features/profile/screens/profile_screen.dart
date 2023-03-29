@@ -43,7 +43,7 @@ class _RestuarantProfileScreenState
             const SizedBox(height: 12),
             Text(
               restaurantModel!.name as String,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 12),
             Text(

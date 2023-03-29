@@ -22,7 +22,7 @@ class Palette {
         fontSize: 35.sp,
         fontWeight: FontWeight.bold,
       ),
-      headlineMedium: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+      headlineMedium: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
       headlineSmall: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
       bodySmall: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
       bodyMedium: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
