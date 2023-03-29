@@ -15,11 +15,7 @@ _$_MenuItemModel _$$_MenuItemModelFromJson(Map<String, dynamic> json) =>
       timeAgo: json['timeAgo'] as String,
       dateAdded: json['dateAdded'] as String,
       maximumOrder: json['maximumOrder'] as int,
-      restaurantName: json['restaurantName'] as String?,
-      address: json['address'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
-      restaurantImage: json['restaurantImage'] as String?,
-      restaurantLogo: json['restaurantLogo'] as String?,
+      restaurant: json['restaurant'],
     );
 
 Map<String, dynamic> _$$_MenuItemModelToJson(_$_MenuItemModel instance) =>
@@ -31,9 +27,5 @@ Map<String, dynamic> _$$_MenuItemModelToJson(_$_MenuItemModel instance) =>
       'timeAgo': instance.timeAgo,
       'dateAdded': instance.dateAdded,
       'maximumOrder': instance.maximumOrder,
-      'restaurantName': instance.restaurantName,
-      'address': instance.address,
-      'phoneNumber': instance.phoneNumber,
-      'restaurantImage': instance.restaurantImage,
-      'restaurantLogo': instance.restaurantLogo,
+      'restaurant': instance.restaurant,
     };

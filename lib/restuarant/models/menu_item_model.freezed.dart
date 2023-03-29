@@ -27,11 +27,7 @@ mixin _$MenuItemModel {
   String get timeAgo => throw _privateConstructorUsedError;
   String get dateAdded => throw _privateConstructorUsedError;
   int get maximumOrder => throw _privateConstructorUsedError;
-  String? get restaurantName => throw _privateConstructorUsedError;
-  String? get address => throw _privateConstructorUsedError;
-  String? get phoneNumber => throw _privateConstructorUsedError;
-  String? get restaurantImage => throw _privateConstructorUsedError;
-  String? get restaurantLogo => throw _privateConstructorUsedError;
+  RestaurantModel get restaurant => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,11 +49,7 @@ abstract class $MenuItemModelCopyWith<$Res> {
       String timeAgo,
       String dateAdded,
       int maximumOrder,
-      String? restaurantName,
-      String? address,
-      String? phoneNumber,
-      String? restaurantImage,
-      String? restaurantLogo});
+      RestaurantModel restaurant});
 }
 
 /// @nodoc
@@ -80,11 +72,7 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
     Object? timeAgo = null,
     Object? dateAdded = null,
     Object? maximumOrder = null,
-    Object? restaurantName = freezed,
-    Object? address = freezed,
-    Object? phoneNumber = freezed,
-    Object? restaurantImage = freezed,
-    Object? restaurantLogo = freezed,
+    Object? restaurant = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -115,26 +103,10 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.maximumOrder
           : maximumOrder // ignore: cast_nullable_to_non_nullable
               as int,
-      restaurantName: freezed == restaurantName
-          ? _value.restaurantName
-          : restaurantName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      restaurantImage: freezed == restaurantImage
-          ? _value.restaurantImage
-          : restaurantImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      restaurantLogo: freezed == restaurantLogo
-          ? _value.restaurantLogo
-          : restaurantLogo // ignore: cast_nullable_to_non_nullable
-              as String?,
+      restaurant: freezed == restaurant
+          ? _value.restaurant
+          : restaurant // ignore: cast_nullable_to_non_nullable
+              as RestaurantModel,
     ) as $Val);
   }
 }
@@ -155,11 +127,7 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
       String timeAgo,
       String dateAdded,
       int maximumOrder,
-      String? restaurantName,
-      String? address,
-      String? phoneNumber,
-      String? restaurantImage,
-      String? restaurantLogo});
+      RestaurantModel restaurant});
 }
 
 /// @nodoc
@@ -180,11 +148,7 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
     Object? timeAgo = null,
     Object? dateAdded = null,
     Object? maximumOrder = null,
-    Object? restaurantName = freezed,
-    Object? address = freezed,
-    Object? phoneNumber = freezed,
-    Object? restaurantImage = freezed,
-    Object? restaurantLogo = freezed,
+    Object? restaurant = freezed,
   }) {
     return _then(_$_MenuItemModel(
       id: null == id
@@ -215,26 +179,10 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value.maximumOrder
           : maximumOrder // ignore: cast_nullable_to_non_nullable
               as int,
-      restaurantName: freezed == restaurantName
-          ? _value.restaurantName
-          : restaurantName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      address: freezed == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      restaurantImage: freezed == restaurantImage
-          ? _value.restaurantImage
-          : restaurantImage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      restaurantLogo: freezed == restaurantLogo
-          ? _value.restaurantLogo
-          : restaurantLogo // ignore: cast_nullable_to_non_nullable
-              as String?,
+      restaurant: freezed == restaurant
+          ? _value.restaurant
+          : restaurant // ignore: cast_nullable_to_non_nullable
+              as RestaurantModel,
     ));
   }
 }
@@ -250,11 +198,7 @@ class _$_MenuItemModel implements _MenuItemModel {
       required this.timeAgo,
       required this.dateAdded,
       required this.maximumOrder,
-      required this.restaurantName,
-      required this.address,
-      required this.phoneNumber,
-      required this.restaurantImage,
-      required this.restaurantLogo});
+      required this.restaurant});
 
   factory _$_MenuItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_MenuItemModelFromJson(json);
@@ -274,19 +218,11 @@ class _$_MenuItemModel implements _MenuItemModel {
   @override
   final int maximumOrder;
   @override
-  final String? restaurantName;
-  @override
-  final String? address;
-  @override
-  final String? phoneNumber;
-  @override
-  final String? restaurantImage;
-  @override
-  final String? restaurantLogo;
+  final RestaurantModel restaurant;
 
   @override
   String toString() {
-    return 'MenuItemModel(id: $id, foodName: $foodName, description: $description, image: $image, timeAgo: $timeAgo, dateAdded: $dateAdded, maximumOrder: $maximumOrder, restaurantName: $restaurantName, address: $address, phoneNumber: $phoneNumber, restaurantImage: $restaurantImage, restaurantLogo: $restaurantLogo)';
+    return 'MenuItemModel(id: $id, foodName: $foodName, description: $description, image: $image, timeAgo: $timeAgo, dateAdded: $dateAdded, maximumOrder: $maximumOrder, restaurant: $restaurant)';
   }
 
   @override
@@ -305,15 +241,8 @@ class _$_MenuItemModel implements _MenuItemModel {
                 other.dateAdded == dateAdded) &&
             (identical(other.maximumOrder, maximumOrder) ||
                 other.maximumOrder == maximumOrder) &&
-            (identical(other.restaurantName, restaurantName) ||
-                other.restaurantName == restaurantName) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.restaurantImage, restaurantImage) ||
-                other.restaurantImage == restaurantImage) &&
-            (identical(other.restaurantLogo, restaurantLogo) ||
-                other.restaurantLogo == restaurantLogo));
+            const DeepCollectionEquality()
+                .equals(other.restaurant, restaurant));
   }
 
   @JsonKey(ignore: true)
@@ -327,11 +256,7 @@ class _$_MenuItemModel implements _MenuItemModel {
       timeAgo,
       dateAdded,
       maximumOrder,
-      restaurantName,
-      address,
-      phoneNumber,
-      restaurantImage,
-      restaurantLogo);
+      const DeepCollectionEquality().hash(restaurant));
 
   @JsonKey(ignore: true)
   @override
@@ -356,11 +281,7 @@ abstract class _MenuItemModel implements MenuItemModel {
       required final String timeAgo,
       required final String dateAdded,
       required final int maximumOrder,
-      required final String? restaurantName,
-      required final String? address,
-      required final String? phoneNumber,
-      required final String? restaurantImage,
-      required final String? restaurantLogo}) = _$_MenuItemModel;
+      required final RestaurantModel restaurant}) = _$_MenuItemModel;
 
   factory _MenuItemModel.fromJson(Map<String, dynamic> json) =
       _$_MenuItemModel.fromJson;
@@ -380,15 +301,7 @@ abstract class _MenuItemModel implements MenuItemModel {
   @override
   int get maximumOrder;
   @override
-  String? get restaurantName;
-  @override
-  String? get address;
-  @override
-  String? get phoneNumber;
-  @override
-  String? get restaurantImage;
-  @override
-  String? get restaurantLogo;
+  RestaurantModel get restaurant;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>

@@ -1,3 +1,4 @@
+import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'menu_item_model.freezed.dart';
@@ -13,11 +14,7 @@ class MenuItemModel with _$MenuItemModel {
     required String timeAgo,
     required String dateAdded,
     required int maximumOrder,
-    required String? restaurantName,
-    required String? address,
-    required String? phoneNumber,
-    required String? restaurantImage,
-    required String? restaurantLogo,
+    required RestaurantModel restaurant,
   }) = _MenuItemModel;
 
   factory MenuItemModel.fromJson(Map<String, dynamic> json) =>
