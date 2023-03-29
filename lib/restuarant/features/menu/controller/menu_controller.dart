@@ -72,7 +72,7 @@ class MenuController extends StateNotifier<bool> {
 
     print(menuItemModel);
     final result = await _menuRepository.addProduct(menuItemModel);
-
+    state = false;
     result.fold(
       (l) => showSnackBar(context, l.message),
       (r)  {

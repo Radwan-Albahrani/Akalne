@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/common/loader.dart';
 import '../../../../../core/features/auth/screens/widgets/rounded_form_field.dart';
 import '../../../../../core/utils.dart';
 import '../../../../../theme/app_colors.dart';
@@ -88,6 +89,7 @@ class _AddDialogState extends ConsumerState<AddDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(menuControllerProvider);
     return Dialog(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(30.0))),
@@ -174,7 +176,7 @@ class _AddDialogState extends ConsumerState<AddDialog> {
                     SizedBox(
                       height: 20.h,
                     ),
-                    Row(
+                   isLoading ? const Loader() :  Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
