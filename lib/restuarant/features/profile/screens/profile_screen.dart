@@ -1,6 +1,7 @@
 import 'package:akalne/core/constants/app_constants.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/recipient/features/Profile/screens/widgets/profile_tile.dart';
+import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,12 +9,22 @@ class RestuarantProfileScreen extends ConsumerStatefulWidget {
   const RestuarantProfileScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RestuarantProfileScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RestuarantProfileScreenState();
 }
 
-class _RestuarantProfileScreenState extends ConsumerState<RestuarantProfileScreen> {
+class _RestuarantProfileScreenState
+    extends ConsumerState<RestuarantProfileScreen> {
   void logout() {
     ref.read(authControllerProvider.notifier).logout();
+  }
+
+  late final RestaurantModel? restaurantModel;
+
+  @override
+  void initState() {
+    restaurantModel = ref.read(restaurantProvider);
+    super.initState();
   }
 
   @override
@@ -31,12 +42,12 @@ class _RestuarantProfileScreenState extends ConsumerState<RestuarantProfileScree
             ),
             const SizedBox(height: 12),
             Text(
-              'R1',
+              restaurantModel!.name as String,
               style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 12),
             Text(
-              'r1@Akalne.com',
+              restaurantModel!.email as String,
               style: TextStyle(
                 fontSize: 16,
                 color: Theme.of(context).colorScheme.secondary,
@@ -46,22 +57,22 @@ class _RestuarantProfileScreenState extends ConsumerState<RestuarantProfileScree
             ProfileTile(
               title: "Profile Information",
               icon: Icons.person,
-              onTap: (){},
+              onTap: () {},
             ),
             ProfileTile(
               title: "Notifications",
               icon: Icons.notifications,
-              onTap: (){},
+              onTap: () {},
             ),
             ProfileTile(
               title: "Settings",
               icon: Icons.settings,
-              onTap: (){},
+              onTap: () {},
             ),
             ProfileTile(
               title: "Contact Us",
               icon: Icons.contact_support,
-              onTap: (){},
+              onTap: () {},
             ),
             ProfileTile(
               title: "Log out",
@@ -74,4 +85,3 @@ class _RestuarantProfileScreenState extends ConsumerState<RestuarantProfileScree
     );
   }
 }
-

@@ -14,6 +14,7 @@ _$_RestaurantModel _$$_RestaurantModelFromJson(Map<String, dynamic> json) =>
       phoneNumber: json['phoneNumber'] as String?,
       restaurantImage: json['restaurantImage'] as String?,
       restaurantLogo: json['restaurantLogo'] as String?,
+      email: json['email'] as String?,
       firstTimeLogin: json['firstTimeLogin'] as bool,
     );
 
@@ -25,5 +26,6 @@ Map<String, dynamic> _$$_RestaurantModelToJson(_$_RestaurantModel instance) =>
       'phoneNumber': instance.phoneNumber,
       'restaurantImage': instance.restaurantImage,
       'restaurantLogo': instance.restaurantLogo,
+      'email': instance.email,
       'firstTimeLogin': instance.firstTimeLogin,
     };

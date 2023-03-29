@@ -26,6 +26,7 @@ mixin _$RestaurantModel {
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get restaurantImage => throw _privateConstructorUsedError;
   String? get restaurantLogo => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   bool get firstTimeLogin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $RestaurantModelCopyWith<$Res> {
       String? phoneNumber,
       String? restaurantImage,
       String? restaurantLogo,
+      String? email,
       bool firstTimeLogin});
 }
 
@@ -69,6 +71,7 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
     Object? phoneNumber = freezed,
     Object? restaurantImage = freezed,
     Object? restaurantLogo = freezed,
+    Object? email = freezed,
     Object? firstTimeLogin = null,
   }) {
     return _then(_value.copyWith(
@@ -96,6 +99,10 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
           ? _value.restaurantLogo
           : restaurantLogo // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstTimeLogin: null == firstTimeLogin
           ? _value.firstTimeLogin
           : firstTimeLogin // ignore: cast_nullable_to_non_nullable
@@ -119,6 +126,7 @@ abstract class _$$_RestaurantModelCopyWith<$Res>
       String? phoneNumber,
       String? restaurantImage,
       String? restaurantLogo,
+      String? email,
       bool firstTimeLogin});
 }
 
@@ -139,6 +147,7 @@ class __$$_RestaurantModelCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? restaurantImage = freezed,
     Object? restaurantLogo = freezed,
+    Object? email = freezed,
     Object? firstTimeLogin = null,
   }) {
     return _then(_$_RestaurantModel(
@@ -166,6 +175,10 @@ class __$$_RestaurantModelCopyWithImpl<$Res>
           ? _value.restaurantLogo
           : restaurantLogo // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       firstTimeLogin: null == firstTimeLogin
           ? _value.firstTimeLogin
           : firstTimeLogin // ignore: cast_nullable_to_non_nullable
@@ -184,6 +197,7 @@ class _$_RestaurantModel implements _RestaurantModel {
       required this.phoneNumber,
       required this.restaurantImage,
       required this.restaurantLogo,
+      required this.email,
       required this.firstTimeLogin});
 
   factory _$_RestaurantModel.fromJson(Map<String, dynamic> json) =>
@@ -202,11 +216,13 @@ class _$_RestaurantModel implements _RestaurantModel {
   @override
   final String? restaurantLogo;
   @override
+  final String? email;
+  @override
   final bool firstTimeLogin;
 
   @override
   String toString() {
-    return 'RestaurantModel(id: $id, name: $name, address: $address, phoneNumber: $phoneNumber, restaurantImage: $restaurantImage, restaurantLogo: $restaurantLogo, firstTimeLogin: $firstTimeLogin)';
+    return 'RestaurantModel(id: $id, name: $name, address: $address, phoneNumber: $phoneNumber, restaurantImage: $restaurantImage, restaurantLogo: $restaurantLogo, email: $email, firstTimeLogin: $firstTimeLogin)';
   }
 
   @override
@@ -223,6 +239,7 @@ class _$_RestaurantModel implements _RestaurantModel {
                 other.restaurantImage == restaurantImage) &&
             (identical(other.restaurantLogo, restaurantLogo) ||
                 other.restaurantLogo == restaurantLogo) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.firstTimeLogin, firstTimeLogin) ||
                 other.firstTimeLogin == firstTimeLogin));
   }
@@ -230,7 +247,7 @@ class _$_RestaurantModel implements _RestaurantModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, address, phoneNumber,
-      restaurantImage, restaurantLogo, firstTimeLogin);
+      restaurantImage, restaurantLogo, email, firstTimeLogin);
 
   @JsonKey(ignore: true)
   @override
@@ -254,6 +271,7 @@ abstract class _RestaurantModel implements RestaurantModel {
       required final String? phoneNumber,
       required final String? restaurantImage,
       required final String? restaurantLogo,
+      required final String? email,
       required final bool firstTimeLogin}) = _$_RestaurantModel;
 
   factory _RestaurantModel.fromJson(Map<String, dynamic> json) =
@@ -271,6 +289,8 @@ abstract class _RestaurantModel implements RestaurantModel {
   String? get restaurantImage;
   @override
   String? get restaurantLogo;
+  @override
+  String? get email;
   @override
   bool get firstTimeLogin;
   @override
