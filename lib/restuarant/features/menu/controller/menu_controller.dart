@@ -10,7 +10,6 @@ import '../../../../core/utils.dart';
 import '../../../../recipient/models/restaurant_model.dart';
 import '../repository/menu_repository.dart';
 
-
 final menuControllerProvider = StateNotifierProvider<MenuController, bool>(
   (ref) => MenuController(
     menuRepository: ref.watch(menuRepositoryProvider),
@@ -18,8 +17,6 @@ final menuControllerProvider = StateNotifierProvider<MenuController, bool>(
     storageRepository: ref.watch(storageRepositoryProvider),
   ),
 );
-
-
 
 class MenuController extends StateNotifier<bool> {
   final MenuRepository _menuRepository;
@@ -59,14 +56,13 @@ class MenuController extends StateNotifier<bool> {
     }
     RestaurantModel model = _ref.read(restaurantProvider)!;
 
-    MenuItemModel menuItemModel = new  MenuItemModel(
+    MenuItemModel menuItemModel = new MenuItemModel(
       id: uuid.v4(),
-      foodName: productName,
+      name: productName,
       maximumOrder: int.parse(ProductMaxQuantity),
       description: Description,
       image: imagePath,
       dateAdded: DateTime.now().toString(),
-      timeAgo: DateTime.now().toString(),
       restaurant: model,
     );
 
@@ -75,7 +71,7 @@ class MenuController extends StateNotifier<bool> {
     state = false;
     result.fold(
       (l) => showSnackBar(context, l.message),
-      (r)  {
+      (r) {
         Navigator.pop(context);
       },
     );

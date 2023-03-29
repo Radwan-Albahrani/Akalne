@@ -38,7 +38,7 @@ class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
         child: Column(
           children: [
             Align(

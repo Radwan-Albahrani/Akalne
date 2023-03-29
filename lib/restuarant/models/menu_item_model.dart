@@ -8,15 +8,15 @@ part 'menu_item_model.g.dart';
 
 @freezed
 class MenuItemModel with _$MenuItemModel {
+  @JsonSerializable(explicitToJson: true)
   factory MenuItemModel({
     required String id,
-    required String foodName,
+    required String name,
     required String description,
     required String image,
-    required String timeAgo,
     required String dateAdded,
     required int maximumOrder,
-    @JsonSerializable(explicitToJson: true) required RestaurantModel restaurant,
+    required RestaurantModel restaurant,
   }) = _MenuItemModel;
 
   factory MenuItemModel.fromJson(Map<String, dynamic> json) =>
