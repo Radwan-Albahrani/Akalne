@@ -27,6 +27,7 @@ mixin _$MenuItemModel {
   String get timeAgo => throw _privateConstructorUsedError;
   String get dateAdded => throw _privateConstructorUsedError;
   int get maximumOrder => throw _privateConstructorUsedError;
+  @JsonSerializable(explicitToJson: true)
   RestaurantModel get restaurant => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +50,9 @@ abstract class $MenuItemModelCopyWith<$Res> {
       String timeAgo,
       String dateAdded,
       int maximumOrder,
-      RestaurantModel restaurant});
+      @JsonSerializable(explicitToJson: true) RestaurantModel restaurant});
+
+  $RestaurantModelCopyWith<$Res> get restaurant;
 }
 
 /// @nodoc
@@ -72,7 +75,7 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
     Object? timeAgo = null,
     Object? dateAdded = null,
     Object? maximumOrder = null,
-    Object? restaurant = freezed,
+    Object? restaurant = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -103,11 +106,19 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.maximumOrder
           : maximumOrder // ignore: cast_nullable_to_non_nullable
               as int,
-      restaurant: freezed == restaurant
+      restaurant: null == restaurant
           ? _value.restaurant
           : restaurant // ignore: cast_nullable_to_non_nullable
               as RestaurantModel,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RestaurantModelCopyWith<$Res> get restaurant {
+    return $RestaurantModelCopyWith<$Res>(_value.restaurant, (value) {
+      return _then(_value.copyWith(restaurant: value) as $Val);
+    });
   }
 }
 
@@ -127,7 +138,10 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
       String timeAgo,
       String dateAdded,
       int maximumOrder,
-      RestaurantModel restaurant});
+      @JsonSerializable(explicitToJson: true) RestaurantModel restaurant});
+
+  @override
+  $RestaurantModelCopyWith<$Res> get restaurant;
 }
 
 /// @nodoc
@@ -148,7 +162,7 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
     Object? timeAgo = null,
     Object? dateAdded = null,
     Object? maximumOrder = null,
-    Object? restaurant = freezed,
+    Object? restaurant = null,
   }) {
     return _then(_$_MenuItemModel(
       id: null == id
@@ -179,7 +193,7 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value.maximumOrder
           : maximumOrder // ignore: cast_nullable_to_non_nullable
               as int,
-      restaurant: freezed == restaurant
+      restaurant: null == restaurant
           ? _value.restaurant
           : restaurant // ignore: cast_nullable_to_non_nullable
               as RestaurantModel,
@@ -198,7 +212,7 @@ class _$_MenuItemModel implements _MenuItemModel {
       required this.timeAgo,
       required this.dateAdded,
       required this.maximumOrder,
-      required this.restaurant});
+      @JsonSerializable(explicitToJson: true) required this.restaurant});
 
   factory _$_MenuItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_MenuItemModelFromJson(json);
@@ -218,6 +232,7 @@ class _$_MenuItemModel implements _MenuItemModel {
   @override
   final int maximumOrder;
   @override
+  @JsonSerializable(explicitToJson: true)
   final RestaurantModel restaurant;
 
   @override
@@ -241,22 +256,14 @@ class _$_MenuItemModel implements _MenuItemModel {
                 other.dateAdded == dateAdded) &&
             (identical(other.maximumOrder, maximumOrder) ||
                 other.maximumOrder == maximumOrder) &&
-            const DeepCollectionEquality()
-                .equals(other.restaurant, restaurant));
+            (identical(other.restaurant, restaurant) ||
+                other.restaurant == restaurant));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      foodName,
-      description,
-      image,
-      timeAgo,
-      dateAdded,
-      maximumOrder,
-      const DeepCollectionEquality().hash(restaurant));
+  int get hashCode => Object.hash(runtimeType, id, foodName, description, image,
+      timeAgo, dateAdded, maximumOrder, restaurant);
 
   @JsonKey(ignore: true)
   @override
@@ -281,7 +288,8 @@ abstract class _MenuItemModel implements MenuItemModel {
       required final String timeAgo,
       required final String dateAdded,
       required final int maximumOrder,
-      required final RestaurantModel restaurant}) = _$_MenuItemModel;
+      @JsonSerializable(explicitToJson: true)
+          required final RestaurantModel restaurant}) = _$_MenuItemModel;
 
   factory _MenuItemModel.fromJson(Map<String, dynamic> json) =
       _$_MenuItemModel.fromJson;
@@ -301,6 +309,7 @@ abstract class _MenuItemModel implements MenuItemModel {
   @override
   int get maximumOrder;
   @override
+  @JsonSerializable(explicitToJson: true)
   RestaurantModel get restaurant;
   @override
   @JsonKey(ignore: true)

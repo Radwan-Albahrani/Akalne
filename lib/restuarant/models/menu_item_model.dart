@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:akalne/recipient/models/restaurant_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,7 +16,7 @@ class MenuItemModel with _$MenuItemModel {
     required String timeAgo,
     required String dateAdded,
     required int maximumOrder,
-    required RestaurantModel restaurant,
+    @JsonSerializable(explicitToJson: true) required RestaurantModel restaurant,
   }) = _MenuItemModel;
 
   factory MenuItemModel.fromJson(Map<String, dynamic> json) =>

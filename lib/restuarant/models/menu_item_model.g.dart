@@ -15,7 +15,8 @@ _$_MenuItemModel _$$_MenuItemModelFromJson(Map<String, dynamic> json) =>
       timeAgo: json['timeAgo'] as String,
       dateAdded: json['dateAdded'] as String,
       maximumOrder: json['maximumOrder'] as int,
-      restaurant: json['restaurant'],
+      restaurant:
+          RestaurantModel.fromJson(json['restaurant'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MenuItemModelToJson(_$_MenuItemModel instance) =>
