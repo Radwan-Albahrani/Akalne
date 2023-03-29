@@ -29,19 +29,32 @@ class MenuRepository {
 
   FutureVoid addProduct(MenuItemModel menuItem) async {
     try {
-     print("adding product") ;
       await _menuItems.add(menuItem.toJson());
-      print("here");
+
+      // ignore: void_checks
       return Right(await _restaurants
           .doc(menuItem.restaurant.id)
           .collection(FirebaseConstants.menuCollection)
           .add(menuItem.toJson()));
     } on FirebaseException catch (e) {
-      print(e.message);
       return Left(Failure(e.toString()));
     } catch (e) {
-      print(e.toString());
       return Left(Failure(e.toString()));
     }
+  }
+
+  // Stream<Community> getCommunityByName(String name) {
+  //   return _communities.doc(name).snapshots().map((event) => Community.fromMap(event.data() as Map<String, dynamic>));
+  // }
+
+  Stream<List<MenuItemModel>> getRestaurantMenuItemsByID(String id) {
+    return _restaurants
+        .doc(id)
+        .collection(FirebaseConstants.menuCollection)
+        .snapshots()
+        .map((event) => event.docs
+            .map(
+                (e) => MenuItemModel.fromJson(e.data() as Map<String, dynamic>))
+            .toList());
   }
 }

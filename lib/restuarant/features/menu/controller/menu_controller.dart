@@ -18,6 +18,11 @@ final menuControllerProvider = StateNotifierProvider<MenuController, bool>(
   ),
 );
 
+final menuItemsProvider = StreamProvider((ref) {
+  final controller = ref.watch(menuControllerProvider.notifier);
+  return controller.getRestaurantMenuItemsByID();
+});
+
 class MenuController extends StateNotifier<bool> {
   final MenuRepository _menuRepository;
   final Ref _ref;
@@ -65,8 +70,6 @@ class MenuController extends StateNotifier<bool> {
       dateAdded: DateTime.now().toString(),
       restaurant: model,
     );
-
-    print(menuItemModel);
     final result = await _menuRepository.addProduct(menuItemModel);
     state = false;
     result.fold(
@@ -75,5 +78,10 @@ class MenuController extends StateNotifier<bool> {
         Navigator.pop(context);
       },
     );
+  }
+
+  Stream<List<MenuItemModel>> getRestaurantMenuItemsByID() {
+    final id = _ref.read(restaurantProvider)!.id ?? "";
+    return _menuRepository.getRestaurantMenuItemsByID(id);
   }
 }
