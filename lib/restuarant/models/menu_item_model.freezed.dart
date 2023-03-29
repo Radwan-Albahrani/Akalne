@@ -21,13 +21,17 @@ MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MenuItemModel {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get foodName => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get timeAgo => throw _privateConstructorUsedError;
   String get dateAdded => throw _privateConstructorUsedError;
   int get maximumOrder => throw _privateConstructorUsedError;
-  String get restaurantId => throw _privateConstructorUsedError;
+  String? get restaurantName => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get restaurantImage => throw _privateConstructorUsedError;
+  String? get restaurantLogo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,13 +47,17 @@ abstract class $MenuItemModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String name,
+      String foodName,
       String description,
       String image,
       String timeAgo,
       String dateAdded,
       int maximumOrder,
-      String restaurantId});
+      String? restaurantName,
+      String? address,
+      String? phoneNumber,
+      String? restaurantImage,
+      String? restaurantLogo});
 }
 
 /// @nodoc
@@ -66,22 +74,26 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? foodName = null,
     Object? description = null,
     Object? image = null,
     Object? timeAgo = null,
     Object? dateAdded = null,
     Object? maximumOrder = null,
-    Object? restaurantId = null,
+    Object? restaurantName = freezed,
+    Object? address = freezed,
+    Object? phoneNumber = freezed,
+    Object? restaurantImage = freezed,
+    Object? restaurantLogo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      foodName: null == foodName
+          ? _value.foodName
+          : foodName // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -103,10 +115,26 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.maximumOrder
           : maximumOrder // ignore: cast_nullable_to_non_nullable
               as int,
-      restaurantId: null == restaurantId
-          ? _value.restaurantId
-          : restaurantId // ignore: cast_nullable_to_non_nullable
-              as String,
+      restaurantName: freezed == restaurantName
+          ? _value.restaurantName
+          : restaurantName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurantImage: freezed == restaurantImage
+          ? _value.restaurantImage
+          : restaurantImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurantLogo: freezed == restaurantLogo
+          ? _value.restaurantLogo
+          : restaurantLogo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -121,13 +149,17 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String name,
+      String foodName,
       String description,
       String image,
       String timeAgo,
       String dateAdded,
       int maximumOrder,
-      String restaurantId});
+      String? restaurantName,
+      String? address,
+      String? phoneNumber,
+      String? restaurantImage,
+      String? restaurantLogo});
 }
 
 /// @nodoc
@@ -142,22 +174,26 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? foodName = null,
     Object? description = null,
     Object? image = null,
     Object? timeAgo = null,
     Object? dateAdded = null,
     Object? maximumOrder = null,
-    Object? restaurantId = null,
+    Object? restaurantName = freezed,
+    Object? address = freezed,
+    Object? phoneNumber = freezed,
+    Object? restaurantImage = freezed,
+    Object? restaurantLogo = freezed,
   }) {
     return _then(_$_MenuItemModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      foodName: null == foodName
+          ? _value.foodName
+          : foodName // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -179,10 +215,26 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value.maximumOrder
           : maximumOrder // ignore: cast_nullable_to_non_nullable
               as int,
-      restaurantId: null == restaurantId
-          ? _value.restaurantId
-          : restaurantId // ignore: cast_nullable_to_non_nullable
-              as String,
+      restaurantName: freezed == restaurantName
+          ? _value.restaurantName
+          : restaurantName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurantImage: freezed == restaurantImage
+          ? _value.restaurantImage
+          : restaurantImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurantLogo: freezed == restaurantLogo
+          ? _value.restaurantLogo
+          : restaurantLogo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -192,13 +244,17 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
 class _$_MenuItemModel implements _MenuItemModel {
   _$_MenuItemModel(
       {required this.id,
-      required this.name,
+      required this.foodName,
       required this.description,
       required this.image,
       required this.timeAgo,
       required this.dateAdded,
       required this.maximumOrder,
-      required this.restaurantId});
+      required this.restaurantName,
+      required this.address,
+      required this.phoneNumber,
+      required this.restaurantImage,
+      required this.restaurantLogo});
 
   factory _$_MenuItemModel.fromJson(Map<String, dynamic> json) =>
       _$$_MenuItemModelFromJson(json);
@@ -206,7 +262,7 @@ class _$_MenuItemModel implements _MenuItemModel {
   @override
   final String id;
   @override
-  final String name;
+  final String foodName;
   @override
   final String description;
   @override
@@ -218,11 +274,19 @@ class _$_MenuItemModel implements _MenuItemModel {
   @override
   final int maximumOrder;
   @override
-  final String restaurantId;
+  final String? restaurantName;
+  @override
+  final String? address;
+  @override
+  final String? phoneNumber;
+  @override
+  final String? restaurantImage;
+  @override
+  final String? restaurantLogo;
 
   @override
   String toString() {
-    return 'MenuItemModel(id: $id, name: $name, description: $description, image: $image, timeAgo: $timeAgo, dateAdded: $dateAdded, maximumOrder: $maximumOrder, restaurantId: $restaurantId)';
+    return 'MenuItemModel(id: $id, foodName: $foodName, description: $description, image: $image, timeAgo: $timeAgo, dateAdded: $dateAdded, maximumOrder: $maximumOrder, restaurantName: $restaurantName, address: $address, phoneNumber: $phoneNumber, restaurantImage: $restaurantImage, restaurantLogo: $restaurantLogo)';
   }
 
   @override
@@ -231,7 +295,8 @@ class _$_MenuItemModel implements _MenuItemModel {
         (other.runtimeType == runtimeType &&
             other is _$_MenuItemModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.foodName, foodName) ||
+                other.foodName == foodName) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.image, image) || other.image == image) &&
@@ -240,14 +305,33 @@ class _$_MenuItemModel implements _MenuItemModel {
                 other.dateAdded == dateAdded) &&
             (identical(other.maximumOrder, maximumOrder) ||
                 other.maximumOrder == maximumOrder) &&
-            (identical(other.restaurantId, restaurantId) ||
-                other.restaurantId == restaurantId));
+            (identical(other.restaurantName, restaurantName) ||
+                other.restaurantName == restaurantName) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.restaurantImage, restaurantImage) ||
+                other.restaurantImage == restaurantImage) &&
+            (identical(other.restaurantLogo, restaurantLogo) ||
+                other.restaurantLogo == restaurantLogo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, image,
-      timeAgo, dateAdded, maximumOrder, restaurantId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      foodName,
+      description,
+      image,
+      timeAgo,
+      dateAdded,
+      maximumOrder,
+      restaurantName,
+      address,
+      phoneNumber,
+      restaurantImage,
+      restaurantLogo);
 
   @JsonKey(ignore: true)
   @override
@@ -266,13 +350,17 @@ class _$_MenuItemModel implements _MenuItemModel {
 abstract class _MenuItemModel implements MenuItemModel {
   factory _MenuItemModel(
       {required final String id,
-      required final String name,
+      required final String foodName,
       required final String description,
       required final String image,
       required final String timeAgo,
       required final String dateAdded,
       required final int maximumOrder,
-      required final String restaurantId}) = _$_MenuItemModel;
+      required final String? restaurantName,
+      required final String? address,
+      required final String? phoneNumber,
+      required final String? restaurantImage,
+      required final String? restaurantLogo}) = _$_MenuItemModel;
 
   factory _MenuItemModel.fromJson(Map<String, dynamic> json) =
       _$_MenuItemModel.fromJson;
@@ -280,7 +368,7 @@ abstract class _MenuItemModel implements MenuItemModel {
   @override
   String get id;
   @override
-  String get name;
+  String get foodName;
   @override
   String get description;
   @override
@@ -292,7 +380,15 @@ abstract class _MenuItemModel implements MenuItemModel {
   @override
   int get maximumOrder;
   @override
-  String get restaurantId;
+  String? get restaurantName;
+  @override
+  String? get address;
+  @override
+  String? get phoneNumber;
+  @override
+  String? get restaurantImage;
+  @override
+  String? get restaurantLogo;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>

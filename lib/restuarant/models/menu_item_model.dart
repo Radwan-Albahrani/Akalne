@@ -7,13 +7,17 @@ part 'menu_item_model.g.dart';
 class MenuItemModel with _$MenuItemModel {
   factory MenuItemModel({
     required String id,
-    required String name,
+    required String foodName,
     required String description,
     required String image,
     required String timeAgo,
     required String dateAdded,
     required int maximumOrder,
-    required String restaurantId,
+    required String? restaurantName,
+    required String? address,
+    required String? phoneNumber,
+    required String? restaurantImage,
+    required String? restaurantLogo,
   }) = _MenuItemModel;
 
   factory MenuItemModel.fromJson(Map<String, dynamic> json) =>

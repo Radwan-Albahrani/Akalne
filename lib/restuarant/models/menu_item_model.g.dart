@@ -9,23 +9,31 @@ part of 'menu_item_model.dart';
 _$_MenuItemModel _$$_MenuItemModelFromJson(Map<String, dynamic> json) =>
     _$_MenuItemModel(
       id: json['id'] as String,
-      name: json['name'] as String,
+      foodName: json['foodName'] as String,
       description: json['description'] as String,
       image: json['image'] as String,
       timeAgo: json['timeAgo'] as String,
       dateAdded: json['dateAdded'] as String,
       maximumOrder: json['maximumOrder'] as int,
-      restaurantId: json['restaurantId'] as String,
+      restaurantName: json['restaurantName'] as String?,
+      address: json['address'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
+      restaurantImage: json['restaurantImage'] as String?,
+      restaurantLogo: json['restaurantLogo'] as String?,
     );
 
 Map<String, dynamic> _$$_MenuItemModelToJson(_$_MenuItemModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'foodName': instance.foodName,
       'description': instance.description,
       'image': instance.image,
       'timeAgo': instance.timeAgo,
       'dateAdded': instance.dateAdded,
       'maximumOrder': instance.maximumOrder,
-      'restaurantId': instance.restaurantId,
+      'restaurantName': instance.restaurantName,
+      'address': instance.address,
+      'phoneNumber': instance.phoneNumber,
+      'restaurantImage': instance.restaurantImage,
+      'restaurantLogo': instance.restaurantLogo,
     };

@@ -165,7 +165,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                               ),
                             ),
                           ),
-                          onPressed: () => signUpWithEmail(context),
+                          onPressed: () {
+                            if (!isLoading) {
+                              signUpWithEmail(context);
+                            }
+                          },
                           child: isLoading
                               ? const Loader()
                               : Text("Sign Up",

@@ -35,7 +35,7 @@ class RoundedFormField extends StatelessWidget {
           hintText: hintText,
           labelText: label,
         ),
-        maxLines: maxLines,
+        maxLines: isSecret ? 1 : maxLines,
         keyboardType: keyboardType,
         obscureText: isSecret,
         autocorrect: !isSecret,

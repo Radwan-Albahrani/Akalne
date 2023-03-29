@@ -54,10 +54,25 @@ class AuthRepository {
           phoneNumber: phoneNumber,
           profilePictureUrl: AppConstants.defaultProfile);
 
-      await _users.doc(userId).set(userModel.toMap());
-      await _userType.doc(userId).set({'type': 'user'});
+      await _users
+          .doc(userId)
+          .set(userModel.toJson())
+          .onError((error, stackTrace) {
+        print(error);
+        print("Could not add user to database");
+        authResult.user!.delete();
+        throw Exception("Could not add user to database");
+      });
+      await _userType
+          .doc(userId)
+          .set({'type': 'user'}).onError((error, stackTrace) {
+        print(error);
+        print("Could not add user to database");
+        authResult.user!.delete();
+        throw Exception("Could not add user to database");
+      });
 
-      print(userModel.toMap());
+      print(userModel);
       Future.delayed(const Duration(seconds: 1));
       return Right(userModel);
     } on FirebaseException catch (e) {
@@ -104,7 +119,7 @@ class AuthRepository {
         var event = await _users.doc(uid).get();
         print(event.data());
         return Right(
-            Left(UserModel.fromMap(event.data() as Map<String, dynamic>)));
+            Left(UserModel.fromJson(event.data() as Map<String, dynamic>)));
       } else {
         var event = await _restaurants.doc(uid).get();
         return Right(Right(
@@ -117,12 +132,12 @@ class AuthRepository {
 
   Future<String> getUserType(String uid) {
     return _userType.doc(uid).get().then((value) {
-      if(value.data() == null) {
+      if (value.data() == null) {
         return "user";
       }
       final data = value.data() as Map<String, dynamic>;
       return data['type'];
-    } );
+    });
   }
 
   void logout() async {

@@ -34,13 +34,9 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   RestaurantModel? restaurantModel;
   UserModel? userModel;
-  Future<void> getData(WidgetRef ref, User data , BuildContext context) async {
-    // setState(() {
-    //   restaurantModel = null;
-    //   userModel = null;
-    // });
+  Future<void> getData(WidgetRef ref, User data, BuildContext context) async {
     var authController = ref.read(authControllerProvider.notifier);
-    await authController.getUserData(data.uid , context);
+    await authController.getUserData(data.uid, context);
     restaurantModel = ref.read(restaurantProvider);
     userModel = ref.read(userProvider);
   }
