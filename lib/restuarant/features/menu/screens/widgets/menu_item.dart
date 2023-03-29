@@ -5,9 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinbox/material.dart';
 
 import '../../../../../theme/app_colors.dart';
+import '../../controller/menu_controller.dart';
 import 'add_published_meal_dialog.dart';
 
-class MenuItem extends StatelessWidget {
+class MenuItem extends ConsumerWidget {
   final MenuItemModel menuItemModel;
   const MenuItem({Key? key, required this.menuItemModel}) : super(key: key);
 
@@ -17,8 +18,14 @@ class MenuItem extends StatelessWidget {
         builder: (BuildContext context) => const AddPublishedMealDialog());
   }
 
+  void deleteProduct(WidgetRef ref, BuildContext context) {
+    ref
+        .read(menuControllerProvider.notifier)
+        .deleteProduct(id: menuItemModel.id, context: context);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -80,7 +87,7 @@ class MenuItem extends StatelessWidget {
                   Icons.delete,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () => deleteProduct(ref, context),
               ),
             ),
           ),

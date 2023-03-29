@@ -84,4 +84,17 @@ class MenuController extends StateNotifier<bool> {
     final id = _ref.read(restaurantProvider)!.id ?? "";
     return _menuRepository.getRestaurantMenuItemsByID(id);
   }
+
+  void deleteProduct({required String id, required BuildContext context}) async {
+    state = true;
+    final restaurantId = _ref.read(restaurantProvider)!.id ?? "";
+    final result = await _menuRepository.deleteProduct(id, restaurantId);
+    state = false;
+    result.fold(
+      (l) => showSnackBar(context, l.message),
+      (r) {
+        print("delete");
+      },
+    );
+  }
 }

@@ -29,23 +29,19 @@ class MenuRepository {
 
   FutureVoid addProduct(MenuItemModel menuItem) async {
     try {
-      await _menuItems.add(menuItem.toJson());
+      await _menuItems.doc(menuItem.id).set(menuItem.toJson());
 
       // ignore: void_checks
       return Right(await _restaurants
           .doc(menuItem.restaurant.id)
           .collection(FirebaseConstants.menuCollection)
-          .add(menuItem.toJson()));
+          .doc(menuItem.id).set(menuItem.toJson()));
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
     } catch (e) {
       return Left(Failure(e.toString()));
     }
   }
-
-  // Stream<Community> getCommunityByName(String name) {
-  //   return _communities.doc(name).snapshots().map((event) => Community.fromMap(event.data() as Map<String, dynamic>));
-  // }
 
   Stream<List<MenuItemModel>> getRestaurantMenuItemsByID(String id) {
     return _restaurants
@@ -56,5 +52,22 @@ class MenuRepository {
             .map(
                 (e) => MenuItemModel.fromJson(e.data() as Map<String, dynamic>))
             .toList());
+  }
+
+  FutureVoid deleteProduct(String id, String restuarantId) async {
+    try {
+      await _menuItems.doc(id).delete();
+      return Right(
+        _restaurants
+            .doc(restuarantId)
+            .collection(FirebaseConstants.menuCollection)
+            .doc(id)
+            .delete(),
+      );
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
   }
 }
