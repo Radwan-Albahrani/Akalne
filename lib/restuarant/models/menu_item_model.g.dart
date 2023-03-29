@@ -28,5 +28,5 @@ Map<String, dynamic> _$$_MenuItemModelToJson(_$_MenuItemModel instance) =>
       'timeAgo': instance.timeAgo,
       'dateAdded': instance.dateAdded,
       'maximumOrder': instance.maximumOrder,
-      'restaurant': instance.restaurant,
+      'restaurant': instance.restaurant.toJson(),
     };
