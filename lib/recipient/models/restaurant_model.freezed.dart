@@ -24,7 +24,8 @@ mixin _$RestaurantModel {
   String? get name => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
-  String? get profilePictureUrl => throw _privateConstructorUsedError;
+  String? get restaurantImage => throw _privateConstructorUsedError;
+  String? get restaurantLogo => throw _privateConstructorUsedError;
   bool get firstTimeLogin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +45,8 @@ abstract class $RestaurantModelCopyWith<$Res> {
       String? name,
       String? address,
       String? phoneNumber,
-      String? profilePictureUrl,
+      String? restaurantImage,
+      String? restaurantLogo,
       bool firstTimeLogin});
 }
 
@@ -65,7 +67,8 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
     Object? name = freezed,
     Object? address = freezed,
     Object? phoneNumber = freezed,
-    Object? profilePictureUrl = freezed,
+    Object? restaurantImage = freezed,
+    Object? restaurantLogo = freezed,
     Object? firstTimeLogin = null,
   }) {
     return _then(_value.copyWith(
@@ -85,9 +88,13 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      profilePictureUrl: freezed == profilePictureUrl
-          ? _value.profilePictureUrl
-          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+      restaurantImage: freezed == restaurantImage
+          ? _value.restaurantImage
+          : restaurantImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurantLogo: freezed == restaurantLogo
+          ? _value.restaurantLogo
+          : restaurantLogo // ignore: cast_nullable_to_non_nullable
               as String?,
       firstTimeLogin: null == firstTimeLogin
           ? _value.firstTimeLogin
@@ -110,7 +117,8 @@ abstract class _$$_RestaurantModelCopyWith<$Res>
       String? name,
       String? address,
       String? phoneNumber,
-      String? profilePictureUrl,
+      String? restaurantImage,
+      String? restaurantLogo,
       bool firstTimeLogin});
 }
 
@@ -129,7 +137,8 @@ class __$$_RestaurantModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? address = freezed,
     Object? phoneNumber = freezed,
-    Object? profilePictureUrl = freezed,
+    Object? restaurantImage = freezed,
+    Object? restaurantLogo = freezed,
     Object? firstTimeLogin = null,
   }) {
     return _then(_$_RestaurantModel(
@@ -149,9 +158,13 @@ class __$$_RestaurantModelCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
-      profilePictureUrl: freezed == profilePictureUrl
-          ? _value.profilePictureUrl
-          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+      restaurantImage: freezed == restaurantImage
+          ? _value.restaurantImage
+          : restaurantImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restaurantLogo: freezed == restaurantLogo
+          ? _value.restaurantLogo
+          : restaurantLogo // ignore: cast_nullable_to_non_nullable
               as String?,
       firstTimeLogin: null == firstTimeLogin
           ? _value.firstTimeLogin
@@ -169,7 +182,8 @@ class _$_RestaurantModel implements _RestaurantModel {
       required this.name,
       required this.address,
       required this.phoneNumber,
-      required this.profilePictureUrl,
+      required this.restaurantImage,
+      required this.restaurantLogo,
       required this.firstTimeLogin});
 
   factory _$_RestaurantModel.fromJson(Map<String, dynamic> json) =>
@@ -184,13 +198,15 @@ class _$_RestaurantModel implements _RestaurantModel {
   @override
   final String? phoneNumber;
   @override
-  final String? profilePictureUrl;
+  final String? restaurantImage;
+  @override
+  final String? restaurantLogo;
   @override
   final bool firstTimeLogin;
 
   @override
   String toString() {
-    return 'RestaurantModel(id: $id, name: $name, address: $address, phoneNumber: $phoneNumber, profilePictureUrl: $profilePictureUrl, firstTimeLogin: $firstTimeLogin)';
+    return 'RestaurantModel(id: $id, name: $name, address: $address, phoneNumber: $phoneNumber, restaurantImage: $restaurantImage, restaurantLogo: $restaurantLogo, firstTimeLogin: $firstTimeLogin)';
   }
 
   @override
@@ -203,8 +219,10 @@ class _$_RestaurantModel implements _RestaurantModel {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.profilePictureUrl, profilePictureUrl) ||
-                other.profilePictureUrl == profilePictureUrl) &&
+            (identical(other.restaurantImage, restaurantImage) ||
+                other.restaurantImage == restaurantImage) &&
+            (identical(other.restaurantLogo, restaurantLogo) ||
+                other.restaurantLogo == restaurantLogo) &&
             (identical(other.firstTimeLogin, firstTimeLogin) ||
                 other.firstTimeLogin == firstTimeLogin));
   }
@@ -212,7 +230,7 @@ class _$_RestaurantModel implements _RestaurantModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, address, phoneNumber,
-      profilePictureUrl, firstTimeLogin);
+      restaurantImage, restaurantLogo, firstTimeLogin);
 
   @JsonKey(ignore: true)
   @override
@@ -234,7 +252,8 @@ abstract class _RestaurantModel implements RestaurantModel {
       required final String? name,
       required final String? address,
       required final String? phoneNumber,
-      required final String? profilePictureUrl,
+      required final String? restaurantImage,
+      required final String? restaurantLogo,
       required final bool firstTimeLogin}) = _$_RestaurantModel;
 
   factory _RestaurantModel.fromJson(Map<String, dynamic> json) =
@@ -249,7 +268,9 @@ abstract class _RestaurantModel implements RestaurantModel {
   @override
   String? get phoneNumber;
   @override
-  String? get profilePictureUrl;
+  String? get restaurantImage;
+  @override
+  String? get restaurantLogo;
   @override
   bool get firstTimeLogin;
   @override

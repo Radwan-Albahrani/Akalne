@@ -10,7 +10,8 @@ class RestaurantModel with _$RestaurantModel {
     required String? name,
     required String? address,
     required String? phoneNumber,
-    required String? profilePictureUrl,
+    required String? restaurantImage,
+    required String? restaurantLogo,
     required bool firstTimeLogin,
   }) = _RestaurantModel;
 
