@@ -14,12 +14,20 @@ class RestuarantMenuScreen extends ConsumerStatefulWidget {
 }
 
 class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
-  final _searchController = TextEditingController();
+  late final TextEditingController _searchController;
+
+  @override
+  void initState() {
+    _searchController = TextEditingController();
+
+    super.initState();
+  }
 
   @override
   void dispose() {
-    super.dispose();
     _searchController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -67,7 +75,7 @@ class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
                 padding: const EdgeInsets.all(20.0),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisExtent: 140.h,
+                    mainAxisExtent: 152.h,
                     childAspectRatio: 1,
                     crossAxisCount: 2,
                     mainAxisSpacing: 20,
@@ -77,7 +85,7 @@ class _RestuarantMenuScreenState extends ConsumerState<RestuarantMenuScreen> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return SizedBox(
-                        width: 120.w, height: 140.h, child: MenuItem());
+                        width: 120.w, height: 152.h, child: MenuItem());
                   },
                 ),
               ),
