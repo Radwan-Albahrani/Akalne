@@ -171,6 +171,7 @@ class _HomeScreenState extends ConsumerState<RestaurantHomeScreen> {
                                     controller: addProductProductDescription,
                                     hintText: "Spacy fresh crab",
                                     label: "Product Description",
+                                    keyboardType: TextInputType.multiline,
                                     maxLines: 3,
                                   ),
                                   SizedBox(
