@@ -21,16 +21,18 @@ class HomeMenuRepository {
       _firestore.collection(FirebaseConstants.restaurantsCollection);
 
   Stream<List<PublishedMealModel>> getMenuItems() {
-    return _menu.snapshots().map((event) => event.docs
-        .map((e) =>
-            PublishedMealModel.fromJson(e.data() as Map<String, Object?>))
-        .toList());
+    return _menu.orderBy("createdAt", descending: true).snapshots().map(
+        (event) => event.docs
+            .map((e) =>
+                PublishedMealModel.fromJson(e.data() as Map<String, dynamic>))
+            .toList());
   }
 
   Future<List<PublishedMealModel>> getMenuItemsByID(String id) async {
     return _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
+        .orderBy("createdAt", descending: true)
         .get()
         .then((value) => value.docs
             .map((e) => PublishedMealModel.fromJson(e.data()))
