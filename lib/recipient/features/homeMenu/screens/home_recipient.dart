@@ -1,4 +1,3 @@
-import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_item_card.dart';
@@ -20,7 +19,6 @@ class HomeRecipient extends ConsumerStatefulWidget {
 
 class _HomeRecipientState extends ConsumerState<HomeRecipient> {
   UserModel? userModel;
-  List<MenuItemModel> menuItems = [];
 
   @override
   void initState() {
@@ -29,89 +27,6 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
   }
 
   final _searchController = TextEditingController();
-
-  var dummyData = [
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +94,8 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           return FoodItemCard(
-                            menuItemModel: data[index],
+                            menuItemModel: data[index].menuItem,
+                            createdAt: data[index].createdAt,
                           );
                         },
                       ),

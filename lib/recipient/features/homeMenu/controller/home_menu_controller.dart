@@ -1,4 +1,5 @@
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/recipient/features/homeMenu/repository/home_menu_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,11 +24,11 @@ class HomeMenuController extends StateNotifier<bool> {
         _homeMenuRepository = homeMenuRepository,
         super(false);
 
-  Stream<List<MenuItemModel>> getMenuItems() {
+  Stream<List<PublishedMealModel>> getMenuItems() {
     return _homeMenuRepository.getMenuItems();
   }
 
-  Future<List<MenuItemModel>> getMenuItemsByID(String id) async {
+  Future<List<PublishedMealModel>> getMenuItemsByID(String id) async {
     return _homeMenuRepository.getMenuItemsByID(id);
   }
 }

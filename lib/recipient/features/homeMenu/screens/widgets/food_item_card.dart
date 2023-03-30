@@ -8,11 +8,13 @@ class FoodItemCard extends StatelessWidget {
   const FoodItemCard({
     super.key,
     required this.menuItemModel,
+    required this.createdAt,
     this.isReplace = false,
   });
 
   final MenuItemModel menuItemModel;
   final bool isReplace;
+  final String createdAt;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +105,7 @@ class FoodItemCard extends StatelessWidget {
                         child: Center(
                           child: Text(
                             () {
-                              final date = menuItemModel.dateAdded;
+                              final date = createdAt;
                               DateTime now = DateTime.now();
                               DateTime dateAdded = DateTime.parse(date);
                               final difference = now.difference(dateAdded);

@@ -1,5 +1,5 @@
 import 'package:akalne/core/common/loader.dart';
-import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
@@ -22,7 +22,7 @@ class RestaurantPage extends ConsumerStatefulWidget {
 
 class _RestaurantPageState extends ConsumerState<RestaurantPage> {
   late HomeMenuController _controller;
-  late List<MenuItemModel> _menuItems;
+  late List<PublishedMealModel> _menuItems;
   bool isLoading = true;
   @override
   void initState() {
@@ -82,7 +82,8 @@ class _RestaurantPageState extends ConsumerState<RestaurantPage> {
                       itemCount: _menuItems.length,
                       itemBuilder: (context, index) {
                         return FoodItemCard(
-                          menuItemModel: _menuItems[index],
+                          menuItemModel: _menuItems[index].menuItem,
+                          createdAt: _menuItems[index].createdAt,
                           isReplace: true,
                         );
                       },
