@@ -56,24 +56,25 @@ class HomeMenuController extends StateNotifier<bool> {
     final userID = _ref.read(userProvider)!.id;
     final orderResults = await _homeMenuRepository.getLatestOrder(userID);
     OrderModel? latestOrder;
-    orderResults.fold(
-        (l) => showSnackBar(
-              context,
-              l.message,
-            ),
-        (r) => latestOrder = r);
+    orderResults.fold((l) {
+      if (l.message != "No orders found") {
+        showSnackBar(context, l.message);
+      }
+    }, (r) => latestOrder = r);
 
-    if (DateTime.now()
-            .difference(DateTime.parse(latestOrder!.dateCreated))
-            .inHours <
-        24) {
-      Future.delayed(Duration.zero, () {
-        showSnackBar(
-          context,
-          "You can only reserve a meal once every 24 hours",
-        );
-      });
-      return;
+    if (latestOrder != null) {
+      if (DateTime.now()
+              .difference(DateTime.parse(latestOrder?.dateCreated as String))
+              .inHours <
+          24) {
+        Future.delayed(Duration.zero, () {
+          showSnackBar(
+            context,
+            "You can only reserve a meal once every 24 hours",
+          );
+        });
+        return;
+      }
     }
     UserModel? user = _ref.read(userProvider);
     final resultID = await _homeMenuRepository.getOrdersCount();

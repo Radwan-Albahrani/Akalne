@@ -60,13 +60,19 @@ class HomeMenuRepository {
 
   FutureEither<OrderModel> getLatestOrder(String id) async {
     try {
-      return Right(await _users
+      final doc = await _users
           .doc(id)
           .collection(FirebaseConstants.ordersCollection)
           .orderBy("dateCreated", descending: true)
           .limit(1)
-          .get()
-          .then((value) => OrderModel.fromJson(value.docs.first.data())));
+          .get();
+
+      if (doc.docs.isEmpty) {
+        return Left(Failure("No orders found"));
+      } else {
+        final order = OrderModel.fromJson(doc.docs.first.data());
+        return Right(order);
+      }
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
     } catch (e) {
