@@ -9,89 +9,6 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> {
-  var dummyData = [
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-    [
-      {
-        "foodName": "Chicken",
-        "foodImage": "assets/images/chicken.jpg",
-        "timeAgo": "5 mins ago",
-        "foodDescription": "Chicken slices with a side of fries and a drink",
-        "dateAdded": "2021-09-01 12:00:00",
-        "maximumOrder": "5",
-      },
-      {
-        "restaurantName": "McDonald's",
-        "restaurantImage": "assets/images/chicken.jpg",
-        "restaurantLogo": "assets/images/McDonald's Logo.png",
-        "distance": "1.2 km",
-      },
-    ],
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,12 +37,9 @@ class _OrdersPageState extends State<OrdersPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: dummyData.length,
+                itemCount: 2,
                 itemBuilder: (context, index) {
-                  return OrderItemCard(
-                    foodDetails: dummyData[index][0],
-                    restaurantDetails: dummyData[index][1],
-                  );
+                  return const OrderItemCard();
                 },
               ),
             ),
