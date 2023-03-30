@@ -72,7 +72,7 @@ class FoodController extends StateNotifier<bool> {
     res.fold(
         (l) => showSnackBar(context, l.message),
         (r) => {
-              showSuccesSnackBar(context, "Meal updated successfully"),
+              showSuccessSnackBar(context, "Meal updated successfully"),
               Navigator.pop(context),
             });
   }
@@ -87,7 +87,7 @@ class FoodController extends StateNotifier<bool> {
     res.fold(
         (l) => showSnackBar(context, l.message),
         (r) => {
-              showSuccesSnackBar(context, "Meal deleted successfully"),
+              showSuccessSnackBar(context, "Meal deleted successfully"),
             });
   }
 }
