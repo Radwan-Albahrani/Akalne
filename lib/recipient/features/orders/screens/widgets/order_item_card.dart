@@ -179,6 +179,7 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
                       color: Colors.white,
                     ),
                   ),
+                  const SizedBox()
                 ],
               ),
             ),

@@ -19,11 +19,6 @@ class _OrdersPageState extends ConsumerState<OrdersPage> {
   Widget build(BuildContext context) {
     return ref.watch(ordersProvider).when(data: (data) {
       Color color;
-      if (data.isEmpty) {
-        return const Center(
-          child: Text("No orders yet"),
-        );
-      }
       return Scaffold(
         body: SafeArea(
           child: Column(
@@ -48,30 +43,47 @@ class _OrdersPageState extends ConsumerState<OrdersPage> {
                   ],
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    OrderModel currentOrder = data[index];
-                    if (currentOrder.status == "Sent to Restaurant") {
-                      color = Colors.yellow.shade700;
-                    } else if (currentOrder.status == "Accepted") {
-                      color = AppColors.light["primary"];
-                    } else if (currentOrder.status == "Rejected") {
-                      color = AppColors.light["secondary"];
-                    } else {
-                      color = Colors.grey;
-                    }
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OrderItemCard(
-                        orderModel: data[index],
-                        color: color,
+              data.isEmpty
+                  ? Column(
+                      children: const [
+                        SizedBox(
+                          height: 100,
+                        ),
+                        Center(
+                          child: Text(
+                            "No Orders yet",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          OrderModel currentOrder = data[index];
+                          if (currentOrder.status == "Sent to Restaurant") {
+                            color = Colors.yellow.shade700;
+                          } else if (currentOrder.status == "Accepted") {
+                            color = AppColors.light["primary"];
+                          } else if (currentOrder.status == "Rejected") {
+                            color = AppColors.light["secondary"];
+                          } else {
+                            color = Colors.grey;
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: OrderItemCard(
+                              orderModel: data[index],
+                              color: color,
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
             ],
           ),
         ),

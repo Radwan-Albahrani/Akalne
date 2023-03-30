@@ -89,17 +89,19 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          return FoodItemCard(
-                            menuItemModel: data[index].menuItem,
-                            createdAt: data[index].createdAt,
-                          );
-                        },
-                      ),
-                    ),
+                    data.isEmpty
+                        ? const ErrorText(error: "No data")
+                        : Expanded(
+                            child: ListView.builder(
+                              itemCount: data.length,
+                              itemBuilder: (context, index) {
+                                return FoodItemCard(
+                                  menuItemModel: data[index].menuItem,
+                                  createdAt: data[index].createdAt,
+                                );
+                              },
+                            ),
+                          ),
                   ],
                 ),
               ),
