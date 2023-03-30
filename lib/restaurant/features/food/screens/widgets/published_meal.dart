@@ -34,10 +34,11 @@ class PublishedMeal extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+          
           children: [
             Container(
-              width: 100,
-              height: 100,
+              width: 85.w,
+              height: 85.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
@@ -46,7 +47,6 @@ class PublishedMeal extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 10),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,14 +54,14 @@ class PublishedMeal extends StatelessWidget {
                 Text(
                   meal.menuItem.name,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Container(
                   width: 150.w,
-                  height: 20,
+                  height: 15.h,
                   decoration: BoxDecoration(
                     color: AppColors.light["primaryTransparent"],
                     borderRadius: BorderRadius.circular(5),
@@ -77,10 +77,10 @@ class PublishedMeal extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 5.h),
                 Container(
                   width: 150.w,
-                  height: 20,
+                  height: 15.h,
                   decoration: BoxDecoration(
                     color: AppColors.light["secondaryTransparent"],
                     borderRadius: BorderRadius.circular(5),
@@ -98,42 +98,45 @@ class PublishedMeal extends StatelessWidget {
                 ),
               ],
             ),
-            const Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: AppColors.light["primary"],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
+            
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 35.w,
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.light["primary"],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: AppColors.light["secondary"],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.delete_outline_rounded,
-                      color: Colors.white,
+                  SizedBox(height: 5.h),
+                  Container(
+                    width: 35.w,
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.light["secondary"],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.delete_outline_rounded,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
