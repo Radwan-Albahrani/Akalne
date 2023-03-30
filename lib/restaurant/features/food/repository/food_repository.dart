@@ -40,4 +40,15 @@ class FoodRepository {
       return Left(Failure(e.toString()));
     }
   }
+
+
+  Stream<List<PublishedMealModel>> getPublishedMealsByRestaurantID(String id) {
+    return _restaurants
+        .doc(id)
+        .collection(FirebaseConstants.publishedMealsCollection)
+        .snapshots()
+        .map((event) => event.docs
+            .map((e) => PublishedMealModel.fromMap(e.data()))
+            .toList());
+  }
 }

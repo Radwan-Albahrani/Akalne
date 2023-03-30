@@ -5,10 +5,9 @@ import 'menu_item_model.dart';
 
 class PublishedMealModel {
   final String id;
-  final DateTime createdAt;
+  final String createdAt;
   final int quantity;
   final MenuItemModel menuItem;
-
   PublishedMealModel({
     required this.id,
     required this.createdAt,
@@ -16,9 +15,11 @@ class PublishedMealModel {
     required this.menuItem,
   });
 
+  
+
   PublishedMealModel copyWith({
     String? id,
-    DateTime? createdAt,
+    String? createdAt,
     int? quantity,
     MenuItemModel? menuItem,
   }) {
@@ -33,7 +34,7 @@ class PublishedMealModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'createdAt': createdAt.millisecondsSinceEpoch,
+      'createdAt': createdAt,
       'quantity': quantity,
       'menuItem': menuItem.toJson(),
     };
@@ -42,7 +43,7 @@ class PublishedMealModel {
   factory PublishedMealModel.fromMap(Map<String, dynamic> map) {
     return PublishedMealModel(
       id: map['id'] as String,
-      createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int),
+      createdAt: map['createdAt'] as String,
       quantity: map['quantity'] as int,
       menuItem: MenuItemModel.fromJson(map['menuItem'] as Map<String,dynamic>),
     );

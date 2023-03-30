@@ -2,6 +2,7 @@ import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
+import '../../../../core/features/auth/controller/auth_controller.dart';
 import '../../../../core/models/published_meal_model.dart';
 
 import '../../../../core/utils.dart';
@@ -13,6 +14,11 @@ final foodControllerProvider = StateNotifierProvider<FoodController, bool>(
     ref: ref,
   ),
 );
+
+final publishedMealsProvider = StreamProvider((ref) {
+  final controller = ref.watch(foodControllerProvider.notifier);
+  return controller.getPublishedMealsByRestaurantID();
+});
 
 class FoodController extends StateNotifier<bool> {
   final FoodRepository _foodRepository;
@@ -36,7 +42,7 @@ class FoodController extends StateNotifier<bool> {
       id: uuid.v4(),
       menuItem: menuItem,
       quantity: quantity,
-      createdAt: DateTime.now(),
+      createdAt: DateTime.now().toString(),
     );
 
     final res = await _foodRepository.addPublishedMeal(meal);
@@ -48,5 +54,10 @@ class FoodController extends StateNotifier<bool> {
               showSnackBar(context, "Meal added successfully"),
               Navigator.pop(context),
             });
+  }
+
+  Stream<List<PublishedMealModel>> getPublishedMealsByRestaurantID() {
+    final id = _ref.read(restaurantProvider)!.id ?? "";
+    return _foodRepository.getPublishedMealsByRestaurantID(id);
   }
 }
