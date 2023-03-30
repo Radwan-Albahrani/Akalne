@@ -61,6 +61,20 @@ class FoodRepository {
     }
   }
 
+  FutureVoid deletePublishedMeal(String mealId, String restaurantID) async {
+    try {
+      await _restaurants
+          .doc(restaurantID)
+          .collection(FirebaseConstants.publishedMealsCollection)
+          .doc(mealId).delete();
+      return Right(await _publishedMeals.doc(mealId).delete());
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
   Stream<List<PublishedMealModel>> getPublishedMealsByRestaurantID(String id) {
     return _restaurants
         .doc(id)

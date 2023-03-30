@@ -76,4 +76,18 @@ class FoodController extends StateNotifier<bool> {
               Navigator.pop(context),
             });
   }
+
+  void deletePublishedMeal(
+      {required PublishedMealModel meal, required BuildContext context}) async {
+    state = true;
+    final res = await _foodRepository.deletePublishedMeal(
+        meal.id, meal.menuItem.restaurant.id!);
+    state = false;
+
+    res.fold(
+        (l) => showSnackBar(context, l.message),
+        (r) => {
+              showSuccesSnackBar(context, "Meal deleted successfully"),
+            });
+  }
 }
