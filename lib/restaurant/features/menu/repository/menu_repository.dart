@@ -29,9 +29,6 @@ class MenuRepository {
 
   FutureVoid addProduct(MenuItemModel menuItem) async {
     try {
-      await _menuItems.doc(menuItem.id).set(menuItem.toJson());
-
-      // ignore: void_checks
       return Right(await _restaurants
           .doc(menuItem.restaurant.id)
           .collection(FirebaseConstants.menuCollection)
