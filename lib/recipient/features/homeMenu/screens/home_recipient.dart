@@ -7,6 +7,8 @@ import 'package:akalne/recipient/features/homeMenu/screens/widgets/toggle_switch
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/common/error.text.dart';
+import '../../../../core/common/loader.dart';
 import '../../../../core/features/auth/controller/auth_controller.dart';
 
 class HomeRecipient extends ConsumerStatefulWidget {
@@ -113,80 +115,82 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
 
   @override
   Widget build(BuildContext context) {
-    return ref.watch(menuItemsProvider).when(data: (data) {
-      return Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 32, right: 32, bottom: 10),
+    return ref.watch(menuItemsProvider).when(
+          data: (data) {
+            return Scaffold(
+              body: SafeArea(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 25,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 32, right: 32, bottom: 10),
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Hey ${userModel!.name}!",
+                                style: const TextStyle(
+                                    fontSize: 14, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          RoundedSearchField(
+                            hintText: "Search",
+                            obscureText: false,
+                            controller: _searchController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            children: const [
+                              Text(
+                                "Available Meals",
+                                style:
+                                    TextStyle(fontSize: 14, color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ToggleSwitch(
+                            items: const ["Near Me", "Recent"],
+                            onChanged: (value) {
+                              print('switched to: $value');
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          "Hey ${userModel!.name}!",
-                          style:
-                              const TextStyle(fontSize: 14, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    RoundedSearchField(
-                      hintText: "Search",
-                      obscureText: false,
-                      controller: _searchController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      children: const [
-                        Text(
-                          "Available Meals",
-                          style: TextStyle(fontSize: 14, color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ToggleSwitch(
-                      items: const ["Near Me", "Recent"],
-                      onChanged: (value) {
-                        print('switched to: $value');
-                      },
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (context, index) {
+                          return FoodItemCard(
+                            menuItemModel: data[index],
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    return FoodItemCard(
-                      menuItemModel: data[index],
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }, loading: () {
-      return const Center(child: CircularProgressIndicator());
-    }, error: (error, stack) {
-      return const Center(child: Text('Something went wrong'));
-    });
+            );
+          },
+          loading: () => const Loader(),
+          error: (error, stack) => ErrorText(error: error.toString()),
+        );
   }
 }
