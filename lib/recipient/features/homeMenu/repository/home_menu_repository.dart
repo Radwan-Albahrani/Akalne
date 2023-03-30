@@ -26,6 +26,9 @@ class HomeMenuRepository {
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
 
+  CollectionReference get _orderCount =>
+      _firestore.collection(FirebaseConstants.orderCountCollection);
+
   Stream<List<PublishedMealModel>> getMenuItems() {
     return _menu.orderBy("createdAt", descending: true).snapshots().map(
         (event) => event.docs
@@ -51,14 +54,38 @@ class HomeMenuRepository {
       await _users
           .doc(order.user.id)
           .collection(FirebaseConstants.ordersCollection)
-          .doc(order.id)
+          .doc(order.id.toString())
           .set(order.toJson());
       // 2. Add order to restaurant's orders collection
       await _restaurants
           .doc(order.restaurantID)
           .collection(FirebaseConstants.ordersCollection)
-          .doc(order.id)
+          .doc(order.id.toString())
           .set(order.toJson());
+      return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  FutureEither<int> getOrdersCount() async {
+    try {
+      return Right(await _orderCount.doc("orderCount").get().then((value) {
+        final data = value.data() as Map<String, dynamic>;
+        return data["count"] as int;
+      }));
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  FutureVoid increaseOrderCount(int count) async {
+    try {
+      await _orderCount.doc("orderCount").update({"count": count + 1});
       return const Right(null);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));

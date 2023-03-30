@@ -20,7 +20,7 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OrderModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get dateCreated => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $OrderModelCopyWith<$Res> {
       _$OrderModelCopyWithImpl<$Res, OrderModel>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String status,
       String dateCreated,
       int quantity,
@@ -78,7 +78,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -132,7 +132,7 @@ abstract class _$$_OrderModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String status,
       String dateCreated,
       int quantity,
@@ -169,7 +169,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -215,7 +215,7 @@ class _$_OrderModel implements _OrderModel {
       _$$_OrderModelFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String status;
   @override
@@ -272,7 +272,7 @@ class _$_OrderModel implements _OrderModel {
 
 abstract class _OrderModel implements OrderModel {
   factory _OrderModel(
-      {required final String id,
+      {required final int id,
       required final String status,
       required final String dateCreated,
       required final int quantity,
@@ -284,7 +284,7 @@ abstract class _OrderModel implements OrderModel {
       _$_OrderModel.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get status;
   @override

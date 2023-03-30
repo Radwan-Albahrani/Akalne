@@ -9,7 +9,7 @@ part 'order_model.g.dart';
 class OrderModel with _$OrderModel {
   @JsonSerializable(explicitToJson: true)
   factory OrderModel({
-    required String id,
+    required int id,
     required String status,
     required String dateCreated,
     required int quantity,

@@ -6,4 +6,5 @@ class FirebaseConstants {
   static const menuCollection = "menu";
   static const menuItemsCollection = "menuItems";
   static const publishedMealsCollection = "publishedMeals";
+  static const orderCountCollection = "orderCount";
 }

@@ -8,7 +8,7 @@ part of 'order_model.dart';
 
 _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
     _$_OrderModel(
-      id: json['id'] as String,
+      id: json['id'] as int,
       status: json['status'] as String,
       dateCreated: json['dateCreated'] as String,
       quantity: json['quantity'] as int,

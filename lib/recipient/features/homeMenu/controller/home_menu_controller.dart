@@ -43,9 +43,9 @@ class HomeMenuController extends StateNotifier<bool> {
       MenuItemModel meal, int quantity, BuildContext context) async {
     state = true;
     UserModel? user = _ref.read(userProvider);
-    // UUID 5 characters
-    const uuid = Uuid();
-    String id = uuid.v4().substring(0, 5);
+    final resultID = await _homeMenuRepository.getOrdersCount();
+    int id = 0;
+    resultID.fold((l) => showSnackBar(context, l.message), (r) => id = r);
     OrderModel order = OrderModel(
       id: id,
       status: "Sent to Restaurant",
@@ -58,7 +58,10 @@ class HomeMenuController extends StateNotifier<bool> {
     var result = await _homeMenuRepository.reserveMeal(order);
     result.fold(
       (l) => showSnackBar(context, l.message),
-      (r) => showSuccessSnackBar(context, "Order reserved successfully"),
+      (r) {
+        showSuccessSnackBar(context, "Order reserved successfully");
+        _homeMenuRepository.increaseOrderCount(id);
+      },
     );
   }
 }
