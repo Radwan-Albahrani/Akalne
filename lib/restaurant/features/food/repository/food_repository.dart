@@ -26,14 +26,14 @@ class FoodRepository {
 
   FutureVoid addPublishedMeal(PublishedMealModel meal) async {
     try {
-      await _publishedMeals.doc(meal.id).set(meal.toMap());
+      await _publishedMeals.doc(meal.id).set(meal.toJson());
 
       // ignore: void_checks
       return Right(await _restaurants
           .doc(meal.menuItem.restaurant.id)
           .collection(FirebaseConstants.publishedMealsCollection)
           .doc(meal.id)
-          .set(meal.toMap()));
+          .set(meal.toJson()));
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
     } catch (e) {
@@ -41,14 +41,13 @@ class FoodRepository {
     }
   }
 
-
   Stream<List<PublishedMealModel>> getPublishedMealsByRestaurantID(String id) {
     return _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
         .snapshots()
         .map((event) => event.docs
-            .map((e) => PublishedMealModel.fromMap(e.data()))
+            .map((e) => PublishedMealModel.fromJson(e.data()))
             .toList());
   }
 }
