@@ -21,7 +21,7 @@ PublishedMealModel _$PublishedMealModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PublishedMealModel {
   String get createdAt => throw _privateConstructorUsedError;
-  String get quantity => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   MenuItemModel get menuItem => throw _privateConstructorUsedError;
 
@@ -38,7 +38,7 @@ abstract class $PublishedMealModelCopyWith<$Res> {
       _$PublishedMealModelCopyWithImpl<$Res, PublishedMealModel>;
   @useResult
   $Res call(
-      {String createdAt, String quantity, String id, MenuItemModel menuItem});
+      {String createdAt, int quantity, String id, MenuItemModel menuItem});
 
   $MenuItemModelCopyWith<$Res> get menuItem;
 }
@@ -69,7 +69,7 @@ class _$PublishedMealModelCopyWithImpl<$Res, $Val extends PublishedMealModel>
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ abstract class _$$_PublishedMealModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String createdAt, String quantity, String id, MenuItemModel menuItem});
+      {String createdAt, int quantity, String id, MenuItemModel menuItem});
 
   @override
   $MenuItemModelCopyWith<$Res> get menuItem;
@@ -129,7 +129,7 @@ class __$$_PublishedMealModelCopyWithImpl<$Res>
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ class _$_PublishedMealModel implements _PublishedMealModel {
   @override
   final String createdAt;
   @override
-  final String quantity;
+  final int quantity;
   @override
   final String id;
   @override
@@ -206,7 +206,7 @@ class _$_PublishedMealModel implements _PublishedMealModel {
 abstract class _PublishedMealModel implements PublishedMealModel {
   factory _PublishedMealModel(
       {required final String createdAt,
-      required final String quantity,
+      required final int quantity,
       required final String id,
       required final MenuItemModel menuItem}) = _$_PublishedMealModel;
 
@@ -216,7 +216,7 @@ abstract class _PublishedMealModel implements PublishedMealModel {
   @override
   String get createdAt;
   @override
-  String get quantity;
+  int get quantity;
   @override
   String get id;
   @override

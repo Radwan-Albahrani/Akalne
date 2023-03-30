@@ -10,7 +10,7 @@ _$_PublishedMealModel _$$_PublishedMealModelFromJson(
         Map<String, dynamic> json) =>
     _$_PublishedMealModel(
       createdAt: json['createdAt'] as String,
-      quantity: json['quantity'] as String,
+      quantity: json['quantity'] as int,
       id: json['id'] as String,
       menuItem:
           MenuItemModel.fromJson(json['menuItem'] as Map<String, dynamic>),

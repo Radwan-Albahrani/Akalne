@@ -9,7 +9,7 @@ class PublishedMealModel with _$PublishedMealModel {
   @JsonSerializable(explicitToJson: true)
   factory PublishedMealModel({
     required String createdAt,
-    required String quantity,
+    required int quantity,
     required String id,
     required MenuItemModel menuItem,
   }) = _PublishedMealModel;
