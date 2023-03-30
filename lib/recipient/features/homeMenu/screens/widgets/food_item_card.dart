@@ -25,6 +25,7 @@ class FoodItemCard extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => FoodDetails(
                 menuItemModel: menuItemModel,
+                dateCreated: createdAt,
                 isReplace: isReplace,
               ),
             ),
@@ -34,6 +35,7 @@ class FoodItemCard extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => FoodDetails(
                 menuItemModel: menuItemModel,
+                dateCreated: createdAt,
                 isReplace: isReplace,
               ),
             ),

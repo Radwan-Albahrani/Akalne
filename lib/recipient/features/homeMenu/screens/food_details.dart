@@ -1,16 +1,19 @@
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_image_favorite.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/restaurant_logo.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class FoodDetails extends StatefulWidget {
+class FoodDetails extends ConsumerStatefulWidget {
   const FoodDetails({
     super.key,
     required this.menuItemModel,
+    required this.dateCreated,
     this.isFavorite = false,
     this.isReplace = false,
   });
@@ -18,12 +21,24 @@ class FoodDetails extends StatefulWidget {
   final MenuItemModel menuItemModel;
   final bool isFavorite;
   final bool isReplace;
+  final String dateCreated;
 
   @override
-  State<FoodDetails> createState() => _FoodDetailsState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FoodDetailsState();
 }
 
-class _FoodDetailsState extends State<FoodDetails> {
+class _FoodDetailsState extends ConsumerState<FoodDetails> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void addMeal() {
+    ref
+        .read(homeMenuControllerProvider.notifier)
+        .reserveMeal(widget.menuItemModel, count, context);
+  }
+
   int count = 1;
   @override
   Widget build(BuildContext context) {
@@ -137,7 +152,9 @@ class _FoodDetailsState extends State<FoodDetails> {
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                count++;
+                                if (count < widget.menuItemModel.maximumOrder) {
+                                  count++;
+                                }
                               });
                             },
                             style: ElevatedButton.styleFrom(
@@ -202,7 +219,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                               ),
                               Text(
                                 () {
-                                  final date = widget.menuItemModel.dateAdded;
+                                  final date = widget.dateCreated;
                                   DateTime dateAdded = DateTime.parse(date);
                                   final formattedDate = DateFormat.yMEd()
                                       .add_jms()
@@ -297,7 +314,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: addMeal,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.light["primary"],
                             shape: RoundedRectangleBorder(

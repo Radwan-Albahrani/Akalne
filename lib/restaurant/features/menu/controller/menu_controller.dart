@@ -75,7 +75,7 @@ class MenuController extends StateNotifier<bool> {
     result.fold(
       (l) => showSnackBar(context, l.message),
       (r) {
-        showSuccesSnackBar(context, "Product added successfully");
+        showSuccessSnackBar(context, "Product added successfully");
         Navigator.pop(context);
       },
     );
@@ -95,7 +95,7 @@ class MenuController extends StateNotifier<bool> {
     result.fold(
       (l) => showSnackBar(context, l.message),
       (r) {
-        showSuccesSnackBar(context, "Product deleted successfully");
+        showSuccessSnackBar(context, "Product deleted successfully");
       },
     );
   }

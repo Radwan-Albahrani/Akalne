@@ -20,7 +20,8 @@ void showSnackBar(BuildContext context, String message) {
     ..hideCurrentSnackBar()
     ..showSnackBar(snackBar);
 }
-void showSuccesSnackBar(BuildContext context, String message) {
+
+void showSuccessSnackBar(BuildContext context, String message) {
   final snackBar = SnackBar(
     elevation: 0,
     behavior: SnackBarBehavior.floating,
@@ -45,7 +46,6 @@ Future<FilePickerResult?> pickImage() async {
 
   return image;
 }
-
 
 String timeAgoSinceDate(String dateString, {bool numericDates = true}) {
   DateTime notificationDate = DateTime.parse(dateString);
