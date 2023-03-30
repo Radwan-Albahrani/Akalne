@@ -40,7 +40,8 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
         ),
         height: 70.h,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding:
+              const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 32, right: 32),
           child: GNav(
             gap: 16,
             activeColor: AppColors.light['primary'],
@@ -54,7 +55,6 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
                 icon: Icons.home_outlined,
                 iconSize: 35,
               ),
-
               GButton(
                 icon: Icons.access_time_rounded,
                 iconSize: 35,
