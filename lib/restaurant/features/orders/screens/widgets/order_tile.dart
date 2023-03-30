@@ -28,9 +28,9 @@ class _OrderTileState extends ConsumerState<OrderTile> {
     super.initState();
     if (widget.order.status == "Sent to Restaurant") {
       color = Colors.yellow.shade700;
-    } else if (widget.order.status == "accepted") {
+    } else if (widget.order.status == "Accepted") {
       color = AppColors.light["primary"];
-    } else if (widget.order.status == "rejected") {
+    } else if (widget.order.status == "Rejected") {
       color = AppColors.light["secondary"];
     }
   }
@@ -42,11 +42,11 @@ class _OrderTileState extends ConsumerState<OrderTile> {
       status: status,
       context: context,
     );
-    if (status == "accepted") {
+    if (status == "Accepted") {
       setState(() {
         color = AppColors.light["primary"];
       });
-    } else if (status == "rejected") {
+    } else if (status == "Rejected") {
       setState(() {
         color = AppColors.light["secondary"];
       });
@@ -154,7 +154,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: IconButton(
-                        onPressed: () => changeOrderStatus("accepted"),
+                        onPressed: () => changeOrderStatus("Accepted"),
                         icon: const Icon(
                           Icons.check,
                           color: Colors.white,
@@ -170,7 +170,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: IconButton(
-                        onPressed: () => changeOrderStatus("rejected"),
+                        onPressed: () => changeOrderStatus("Rejected"),
                         icon: const Icon(
                           Icons.close,
                           color: Colors.white,
