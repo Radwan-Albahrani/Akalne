@@ -6,9 +6,9 @@ import '../../../../../core/utils.dart';
 import '../../../../../theme/app_colors.dart';
 
 class PublishedMeal extends StatelessWidget {
-  PublishedMealModel meal;
+  final PublishedMealModel meal;
 
-  PublishedMeal({super.key, required this.meal});
+  const PublishedMeal({super.key, required this.meal});
 
   @override
   Widget build(BuildContext context) {
