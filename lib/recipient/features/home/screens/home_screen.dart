@@ -60,7 +60,7 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
                 iconSize: 35,
               ),
               GButton(
-                icon: Icons.timelapse_outlined,
+                icon: Icons.access_time_rounded,
                 iconSize: 35,
               ),
               GButton(
