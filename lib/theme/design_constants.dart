@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 // TODO: Properly set the actual values
 class DesignConstants {
   static const String fontFamily = 'Roboto';

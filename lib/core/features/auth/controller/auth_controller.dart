@@ -1,10 +1,9 @@
+import 'package:akalne/core/models/restaurant_model.dart';
+import 'package:akalne/core/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-import '../../../../recipient/models/restaurant_model.dart';
-import '../../../../recipient/models/user_model.dart';
 import '../../../providers/storage_repository_provider.dart';
 import '../../../utils.dart';
 import '../repository/auth_repository.dart';
@@ -40,10 +39,10 @@ class AuthController extends StateNotifier<bool> {
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
 
-  Future<void> getUserData(String uid , BuildContext context) async {
+  Future<void> getUserData(String uid, BuildContext context) async {
     var data = await _authRepository.getUserData(uid);
     data.fold(
-      (l)  => print(l.message),
+      (l) => print(l.message),
       (r) => r.fold(
         (user) {
           _ref.read(userProvider.notifier).update((state) => user);

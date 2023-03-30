@@ -1,6 +1,6 @@
 import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
-import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_Image_favorite.dart';
+import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_image_favorite.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/restaurant_logo.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';

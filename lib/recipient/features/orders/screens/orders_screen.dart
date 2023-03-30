@@ -1,4 +1,3 @@
-import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
 import 'package:akalne/recipient/features/orders/screens/widgets/order_item_card.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,7 @@ class _OrdersPageState extends State<OrdersPage> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -37,7 +36,7 @@ class _OrdersPageState extends State<OrdersPage> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -53,7 +52,7 @@ class _OrdersPageState extends State<OrdersPage> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -69,7 +68,7 @@ class _OrdersPageState extends State<OrdersPage> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -85,7 +84,7 @@ class _OrdersPageState extends State<OrdersPage> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",

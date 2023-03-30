@@ -1,11 +1,11 @@
 import 'package:akalne/core/constants/app_constants.dart';
-import 'package:akalne/recipient/models/restaurant_model.dart';
+import 'package:akalne/core/models/restaurant_model.dart';
+import 'package:akalne/core/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
-import '../../../../recipient/models/user_model.dart';
 import '../../../constants/firebase_constants.dart';
 import '../../../failure.dart';
 import '../../../providers/firebase_providers.dart';
@@ -89,7 +89,6 @@ class AuthRepository {
           email: email, password: password);
       final userId = authResult.user!.uid;
 
-      String type = await getUserType(userId);
       var userInfo = await getUserData(userId);
       RestaurantModel? restaurantModel;
       UserModel? userModel;

@@ -1,11 +1,9 @@
+import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_item_card.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/rounded_search_field.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/toggle_switch.dart';
-import 'package:akalne/recipient/models/user_model.dart';
-import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:switch_up/switch_up.dart';
 
 import '../../../../core/features/auth/controller/auth_controller.dart';
 
@@ -38,7 +36,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -54,7 +52,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -70,7 +68,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -86,7 +84,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",
@@ -102,7 +100,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
         "maximumOrder": "5",
       },
       {
-        "restaurantName": "McDonalds",
+        "restaurantName": "McDonald's",
         "restaurantImage": "assets/images/chicken.jpg",
         "restaurantLogo": "assets/images/McDonald's Logo.png",
         "distance": "1.2 km",

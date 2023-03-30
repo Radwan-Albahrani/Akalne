@@ -1,27 +1,29 @@
 import 'package:akalne/core/constants/app_constants.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
-import 'package:akalne/core/models/user_model.dart';
+import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/recipient/features/Profile/screens/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileScreen extends ConsumerStatefulWidget {
-  const ProfileScreen({super.key});
+class RestaurantProfileScreen extends ConsumerStatefulWidget {
+  const RestaurantProfileScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _ProfileScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RestaurantProfileScreenState();
 }
 
-class _ProfileScreenState extends ConsumerState<ProfileScreen> {
+class _RestaurantProfileScreenState
+    extends ConsumerState<RestaurantProfileScreen> {
   void logout() {
     ref.read(authControllerProvider.notifier).logout();
   }
 
-  late final UserModel? userModel;
+  late final RestaurantModel? restaurantModel;
 
   @override
   void initState() {
-    userModel = ref.read(userProvider);
+    restaurantModel = ref.read(restaurantProvider);
     super.initState();
   }
 
@@ -40,12 +42,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              userModel!.name,
+              restaurantModel!.name as String,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 12),
             Text(
-              userModel!.email,
+              restaurantModel!.email as String,
               style: TextStyle(
                 fontSize: 16,
                 color: Theme.of(context).colorScheme.secondary,

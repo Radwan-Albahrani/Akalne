@@ -1,5 +1,4 @@
 import 'package:akalne/core/common/loader.dart';
-import 'package:akalne/core/constants/app_routes.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/features/auth/screens/widgets/rounded_form_field.dart';
 import 'package:flutter/material.dart';
