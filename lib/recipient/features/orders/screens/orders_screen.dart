@@ -39,7 +39,10 @@ class _OrdersPageState extends State<OrdersPage> {
               child: ListView.builder(
                 itemCount: 2,
                 itemBuilder: (context, index) {
-                  return const OrderItemCard();
+                  return const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: OrderItemCard(),
+                  );
                 },
               ),
             ),
