@@ -5,4 +5,5 @@ class FirebaseConstants {
   static const userTypeCollection = "userType";
   static const menuCollection = "menu";
   static const menuItemsCollection = "menuItems";
+  static const publishedMealsCollection = "publishedMeals";
 }
