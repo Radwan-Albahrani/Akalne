@@ -1,3 +1,4 @@
+import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
@@ -42,6 +43,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
   int count = 1;
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(homeMenuControllerProvider);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -314,20 +316,22 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: addMeal,
+                          onPressed: isLoading ? null : addMeal,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.light["primary"],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          child: const Text(
-                            "Reserve",
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
+                          child: isLoading
+                              ? const Loader()
+                              : const Text(
+                                  "Reserve",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
                         ),
                       ),
                       const SizedBox(height: 10),
