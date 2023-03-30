@@ -1,79 +1,19 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
+import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'menu_item_model.dart';
+part 'published_meal_model.freezed.dart';
+part 'published_meal_model.g.dart';
 
-class PublishedMealModel {
-  final String id;
-  final String createdAt;
-  final int quantity;
-  final MenuItemModel menuItem;
-  PublishedMealModel({
-    required this.id,
-    required this.createdAt,
-    required this.quantity,
-    required this.menuItem,
-  });
+@freezed
+class PublishedMealModel with _$PublishedMealModel {
+  @JsonSerializable(explicitToJson: true)
+  factory PublishedMealModel({
+    required String createdAt,
+    required String quantity,
+    required String id,
+    required MenuItemModel menuItem,
+  }) = _PublishedMealModel;
 
-  
-
-  PublishedMealModel copyWith({
-    String? id,
-    String? createdAt,
-    int? quantity,
-    MenuItemModel? menuItem,
-  }) {
-    return PublishedMealModel(
-      id: id ?? this.id,
-      createdAt: createdAt ?? this.createdAt,
-      quantity: quantity ?? this.quantity,
-      menuItem: menuItem ?? this.menuItem,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'createdAt': createdAt,
-      'quantity': quantity,
-      'menuItem': menuItem.toJson(),
-    };
-  }
-
-  factory PublishedMealModel.fromMap(Map<String, dynamic> map) {
-    return PublishedMealModel(
-      id: map['id'] as String,
-      createdAt: map['createdAt'] as String,
-      quantity: map['quantity'] as int,
-      menuItem: MenuItemModel.fromJson(map['menuItem'] as Map<String,dynamic>),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory PublishedMealModel.fromJson(String source) => PublishedMealModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'PublishedMealModel(id: $id, createdAt: $createdAt, quantity: $quantity, menuItem: $menuItem)';
-  }
-
-  @override
-  bool operator ==(covariant PublishedMealModel other) {
-    if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.createdAt == createdAt &&
-      other.quantity == quantity &&
-      other.menuItem == menuItem;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      createdAt.hashCode ^
-      quantity.hashCode ^
-      menuItem.hashCode;
-  }
+  factory PublishedMealModel.fromJson(Map<String, dynamic> json) =>
+      _$PublishedMealModelFromJson(json);
 }
