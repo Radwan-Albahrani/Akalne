@@ -1,10 +1,14 @@
+import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/models/restaurant_model.dart';
+import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/restaurant/features/orders/screens/widgets/order_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/common/error.text.dart';
 import '../../../../recipient/features/homeMenu/screens/widgets/rounded_search_field.dart';
+import '../controller/orders_controller.dart';
 
 class RestaurantOrdersScreen extends ConsumerStatefulWidget {
   const RestaurantOrdersScreen({super.key});
@@ -70,7 +74,26 @@ class _RestaurantOrdersScreenState
             const SizedBox(
               height: 10,
             ),
-            const OrderTile()
+            ref.watch(restaurantOrdersProvider).when(
+                  data: (data) => data.isEmpty
+                      ? const Center(
+                          child: Text('No orders yet'),
+                        )
+                      : Expanded(
+                          child: ListView.builder(
+                            itemCount: data.length,
+                            itemBuilder: (context, index) {
+                              return OrderTile(
+                                order: data[index],
+                              );
+                            },
+                          ),
+                        ),
+                  loading: () => const Loader(),
+                  error: (error, stack) => ErrorText(
+                    error: error.toString(),
+                  ),
+                ),
           ],
         ),
       ),

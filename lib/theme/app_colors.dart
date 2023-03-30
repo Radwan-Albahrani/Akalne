@@ -7,6 +7,7 @@ class AppColors {
     'string1': Color(0xFF1A0700),
     'primaryTransparent': Color(0x5528B17B),
     'secondary': Color(0xFFEE6C52),
+    
     'secondaryTransparent': Color(0x55EE6C52),
     'string2': Color(0xFF3B3B3B),
     "background": Color(0xFFE5E5E5),
