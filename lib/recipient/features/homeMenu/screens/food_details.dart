@@ -1,21 +1,21 @@
+import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_image_favorite.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/restaurant_logo.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class FoodDetails extends StatefulWidget {
   const FoodDetails({
     super.key,
-    required this.foodDetails,
-    required this.restaurantDetails,
+    required this.menuItemModel,
     this.isFavorite = false,
     this.isReplace = false,
   });
 
-  final Map<String, dynamic> foodDetails;
-  final Map<String, dynamic> restaurantDetails;
+  final MenuItemModel menuItemModel;
   final bool isFavorite;
   final bool isReplace;
 
@@ -39,7 +39,7 @@ class _FoodDetailsState extends State<FoodDetails> {
               Column(
                 children: [
                   FoodImageFavorite(
-                    foodImage: widget.foodDetails['foodImage'],
+                    foodImage: widget.menuItemModel.image,
                   ),
                 ],
               ),
@@ -49,7 +49,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                   child: Column(
                     children: [
                       Text(
-                        widget.foodDetails['foodName'],
+                        widget.menuItemModel.name,
                         style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -62,7 +62,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => RestaurantPage(
-                                  restaurantDetails: widget.restaurantDetails,
+                                  restaurantDetails:
+                                      widget.menuItemModel.restaurant,
                                 ),
                               ),
                             );
@@ -70,7 +71,8 @@ class _FoodDetailsState extends State<FoodDetails> {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => RestaurantPage(
-                                  restaurantDetails: widget.restaurantDetails,
+                                  restaurantDetails:
+                                      widget.menuItemModel.restaurant,
                                 ),
                               ),
                             );
@@ -80,12 +82,13 @@ class _FoodDetailsState extends State<FoodDetails> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RestaurantLogo(
-                              image: widget.restaurantDetails["restaurantLogo"],
+                              image: widget.menuItemModel.restaurant
+                                  .restaurantLogo as String,
                               radius: 15,
                             ),
                             const SizedBox(width: 10),
                             Text(
-                              widget.restaurantDetails["restaurantName"],
+                              widget.menuItemModel.restaurant.name as String,
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -160,7 +163,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         children: [
                           Flexible(
                             child: Text(
-                              widget.foodDetails["foodDescription"],
+                              widget.menuItemModel.description,
                               overflow: TextOverflow.visible,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
@@ -198,7 +201,14 @@ class _FoodDetailsState extends State<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.foodDetails["dateAdded"],
+                                () {
+                                  final date = widget.menuItemModel.dateAdded;
+                                  DateTime dateAdded = DateTime.parse(date);
+                                  final formattedDate = DateFormat.yMEd()
+                                      .add_jms()
+                                      .format(dateAdded);
+                                  return formattedDate;
+                                }.call(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -235,7 +245,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.foodDetails["maximumOrder"],
+                                widget.menuItemModel.maximumOrder.toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -272,7 +282,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.restaurantDetails["distance"],
+                                widget.menuItemModel.restaurant.distance,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,

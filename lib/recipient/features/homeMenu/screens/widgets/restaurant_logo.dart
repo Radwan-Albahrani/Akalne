@@ -23,7 +23,7 @@ class _RestaurantLogoState extends State<RestaurantLogo> {
       child: Padding(
         padding: EdgeInsets.all(widget.radius / 3),
         child: Image(
-          image: AssetImage(
+          image: NetworkImage(
             widget.image,
           ),
         ),

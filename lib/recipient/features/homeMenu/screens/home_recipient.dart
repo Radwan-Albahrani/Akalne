@@ -1,4 +1,6 @@
+import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/user_model.dart';
+import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_item_card.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/rounded_search_field.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/toggle_switch.dart';
@@ -16,6 +18,7 @@ class HomeRecipient extends ConsumerStatefulWidget {
 
 class _HomeRecipientState extends ConsumerState<HomeRecipient> {
   UserModel? userModel;
+  List<MenuItemModel> menuItems = [];
 
   @override
   void initState() {
@@ -110,75 +113,80 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 32, right: 32, bottom: 10),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Hey ${userModel!.name}!",
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  RoundedSearchField(
-                    hintText: "Search",
-                    obscureText: false,
-                    controller: _searchController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        "Available Meals",
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ToggleSwitch(
-                    items: const ["Near Me", "Recent"],
-                    onChanged: (value) {
-                      print('switched to: $value');
-                    },
-                  ),
-                ],
+    return ref.watch(menuItemsProvider).when(data: (data) {
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 32, right: 32, bottom: 10),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Hey ${userModel!.name}!",
+                          style:
+                              const TextStyle(fontSize: 14, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    RoundedSearchField(
+                      hintText: "Search",
+                      obscureText: false,
+                      controller: _searchController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: const [
+                        Text(
+                          "Available Meals",
+                          style: TextStyle(fontSize: 14, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ToggleSwitch(
+                      items: const ["Near Me", "Recent"],
+                      onChanged: (value) {
+                        print('switched to: $value');
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: dummyData.length,
-                itemBuilder: (context, index) {
-                  return FoodItemCard(
-                    foodDetails: dummyData[index][0],
-                    restaurantDetails: dummyData[index][1],
-                  );
-                },
+              Expanded(
+                child: ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    return FoodItemCard(
+                      menuItemModel: data[index],
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }, loading: () {
+      return const Center(child: CircularProgressIndicator());
+    }, error: (error, stack) {
+      return const Center(child: Text('Something went wrong'));
+    });
   }
 }

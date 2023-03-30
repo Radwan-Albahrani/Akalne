@@ -1,3 +1,4 @@
+import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -6,13 +7,11 @@ import '../food_details.dart';
 class FoodItemCard extends StatelessWidget {
   const FoodItemCard({
     super.key,
-    required this.foodDetails,
-    required this.restaurantDetails,
+    required this.menuItemModel,
     this.isReplace = false,
   });
 
-  final Map<String, dynamic> foodDetails;
-  final Map<String, dynamic> restaurantDetails;
+  final MenuItemModel menuItemModel;
   final bool isReplace;
 
   @override
@@ -23,8 +22,8 @@ class FoodItemCard extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => FoodDetails(
-                foodDetails: foodDetails,
-                restaurantDetails: restaurantDetails,
+                menuItemModel: menuItemModel,
+                isReplace: isReplace,
               ),
             ),
           );
@@ -32,8 +31,7 @@ class FoodItemCard extends StatelessWidget {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => FoodDetails(
-                foodDetails: foodDetails,
-                restaurantDetails: restaurantDetails,
+                menuItemModel: menuItemModel,
                 isReplace: isReplace,
               ),
             ),
@@ -68,7 +66,7 @@ class FoodItemCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: AssetImage(foodDetails["foodImage"]),
+                        image: NetworkImage(menuItemModel.image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -79,7 +77,7 @@ class FoodItemCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        foodDetails["foodName"],
+                        menuItemModel.name,
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -87,7 +85,7 @@ class FoodItemCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        restaurantDetails["restaurantName"],
+                        menuItemModel.restaurant.name as String,
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -104,7 +102,22 @@ class FoodItemCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            foodDetails["timeAgo"],
+                            () {
+                              final date = menuItemModel.dateAdded;
+                              DateTime now = DateTime.now();
+                              DateTime dateAdded = DateTime.parse(date);
+                              final difference = now.difference(dateAdded);
+                              final minutes = difference.inMinutes;
+                              final hours = difference.inHours;
+                              final days = difference.inDays;
+                              if (minutes < 60) {
+                                return "$minutes minutes ago";
+                              } else if (hours < 24) {
+                                return "$hours hours ago";
+                              } else {
+                                return "$days days ago";
+                              }
+                            }.call(),
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
@@ -116,7 +129,7 @@ class FoodItemCard extends StatelessWidget {
                       const SizedBox(height: 10),
                     ],
                   ),
-                  const SizedBox(width: 45),
+                  const Spacer(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -129,7 +142,7 @@ class FoodItemCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            restaurantDetails["distance"],
+                            menuItemModel.restaurant.distance,
                             style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,

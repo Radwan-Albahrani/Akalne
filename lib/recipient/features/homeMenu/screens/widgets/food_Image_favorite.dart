@@ -23,7 +23,7 @@ class _FoodImageFavoriteState extends State<FoodImageFavorite> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
-          image: AssetImage(widget.foodImage),
+          image: NetworkImage(widget.foodImage),
           fit: BoxFit.cover,
         ),
       ),

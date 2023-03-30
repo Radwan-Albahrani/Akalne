@@ -14,6 +14,7 @@ class RestaurantModel with _$RestaurantModel {
     required String? restaurantLogo,
     required String? email,
     required bool firstTimeLogin,
+    required String distance,
   }) = _RestaurantModel;
 
   factory RestaurantModel.fromJson(Map<String, dynamic> json) =>
