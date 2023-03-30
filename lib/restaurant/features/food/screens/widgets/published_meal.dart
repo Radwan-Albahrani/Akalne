@@ -1,12 +1,14 @@
 import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils.dart';
 import '../../../../../theme/app_colors.dart';
 import '../../../menu/screens/widgets/add_published_meal_dialog.dart';
+import '../../controller/food_controller.dart';
 
-class PublishedMeal extends StatelessWidget {
+class PublishedMeal extends ConsumerWidget {
   final PublishedMealModel meal;
 
   const PublishedMeal({super.key, required this.meal});
@@ -22,8 +24,15 @@ class PublishedMeal extends StatelessWidget {
     );
   }
 
+  void deletePublishedMeal(BuildContext context, WidgetRef ref) {
+    ref.read(foodControllerProvider.notifier).deletePublishedMeal(
+          meal: meal,
+          context: context,
+        );
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: 5.h,
@@ -137,7 +146,7 @@ class PublishedMeal extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => deletePublishedMeal(context, ref),
                       icon: const Icon(
                         Icons.delete_outline_rounded,
                         color: Colors.white,
