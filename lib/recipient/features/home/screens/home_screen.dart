@@ -19,7 +19,6 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
 
   var screens = [
     const HomeRecipient(),
-    const Center(child: Text("Favorite")),
     const OrdersPage(),
     const ProfileScreen(),
   ];
@@ -55,10 +54,7 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
                 icon: Icons.home_outlined,
                 iconSize: 35,
               ),
-              GButton(
-                icon: Icons.favorite_border_outlined,
-                iconSize: 35,
-              ),
+
               GButton(
                 icon: Icons.access_time_rounded,
                 iconSize: 35,
