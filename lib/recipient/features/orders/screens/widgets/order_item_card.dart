@@ -1,3 +1,4 @@
+import 'package:akalne/core/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,7 +7,10 @@ import '../../../../../theme/app_colors.dart';
 class OrderItemCard extends StatelessWidget {
   const OrderItemCard({
     super.key,
+    required this.orderModel,
   });
+
+  final OrderModel orderModel;
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +58,8 @@ class OrderItemCard extends StatelessWidget {
                   height: 100,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/chicken.jpg'),
+                    image: DecorationImage(
+                      image: NetworkImage(orderModel.meal.image),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -65,10 +69,10 @@ class OrderItemCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      children: const [
+                      children: [
                         Text(
-                          "Spicy Chicken",
-                          style: TextStyle(
+                          orderModel.meal.name,
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
@@ -87,7 +91,7 @@ class OrderItemCard extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              "#123456",
+                              "#${orderModel.id.toString()}",
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
@@ -110,7 +114,21 @@ class OrderItemCard extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              "10 Minutes Ago",
+                              () {
+                                final date = orderModel.dateCreated;
+                                final now = DateTime.now();
+                                final parsedDate = DateTime.parse(date);
+                                final difference = now.difference(parsedDate);
+                                if (difference.inDays > 0) {
+                                  return "${difference.inDays} Days Ago";
+                                } else if (difference.inHours > 0) {
+                                  return "${difference.inHours} Hours Ago";
+                                } else if (difference.inMinutes > 0) {
+                                  return "${difference.inMinutes} Minutes Ago";
+                                } else {
+                                  return "Just Now";
+                                }
+                              }.call(),
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,

@@ -8,6 +8,7 @@ import 'package:akalne/core/utils.dart';
 import 'package:akalne/recipient/features/homeMenu/repository/home_menu_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
 final homeMenuControllerProvider =
@@ -19,6 +20,12 @@ final homeMenuControllerProvider =
 final menuItemsProvider = StreamProvider((ref) {
   final controller = ref.watch(homeMenuControllerProvider.notifier);
   return controller.getMenuItems();
+});
+
+final ordersProvider = StreamProvider((ref) {
+  final controller = ref.watch(homeMenuControllerProvider.notifier);
+  final user = ref.watch(userProvider);
+  return controller.getOrders(user!.id);
 });
 
 class HomeMenuController extends StateNotifier<bool> {
@@ -35,6 +42,10 @@ class HomeMenuController extends StateNotifier<bool> {
     return _homeMenuRepository.getMenuItems();
   }
 
+  Stream<List<OrderModel>> getOrders(String id) {
+    return _homeMenuRepository.getOrders(id);
+  }
+
   Future<List<PublishedMealModel>> getMenuItemsByID(String id) async {
     return _homeMenuRepository.getMenuItemsByID(id);
   }
@@ -42,6 +53,28 @@ class HomeMenuController extends StateNotifier<bool> {
   void reserveMeal(
       MenuItemModel meal, int quantity, BuildContext context) async {
     state = true;
+    final userID = _ref.read(userProvider)!.id;
+    final orderResults = await _homeMenuRepository.getLatestOrder(userID);
+    OrderModel? latestOrder;
+    orderResults.fold(
+        (l) => showSnackBar(
+              context,
+              l.message,
+            ),
+        (r) => latestOrder = r);
+
+    if (DateTime.now()
+            .difference(DateTime.parse(latestOrder!.dateCreated))
+            .inHours <
+        24) {
+      Future.delayed(Duration.zero, () {
+        showSnackBar(
+          context,
+          "You can only reserve a meal once every 24 hours",
+        );
+      });
+      return;
+    }
     UserModel? user = _ref.read(userProvider);
     final resultID = await _homeMenuRepository.getOrdersCount();
     int id = 0;

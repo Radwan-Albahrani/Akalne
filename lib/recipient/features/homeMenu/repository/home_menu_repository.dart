@@ -48,6 +48,32 @@ class HomeMenuRepository {
             .toList());
   }
 
+  Stream<List<OrderModel>> getOrders(String id) {
+    return _users
+        .doc(id)
+        .collection(FirebaseConstants.ordersCollection)
+        .orderBy("dateCreated", descending: true)
+        .snapshots()
+        .map((event) =>
+            event.docs.map((e) => OrderModel.fromJson(e.data())).toList());
+  }
+
+  FutureEither<OrderModel> getLatestOrder(String id) async {
+    try {
+      return Right(await _users
+          .doc(id)
+          .collection(FirebaseConstants.ordersCollection)
+          .orderBy("dateCreated", descending: true)
+          .limit(1)
+          .get()
+          .then((value) => OrderModel.fromJson(value.docs.first.data())));
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
   FutureVoid reserveMeal(OrderModel order) async {
     try {
       // 1. Add order to user's orders collection
