@@ -34,7 +34,6 @@ class PublishedMeal extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          
           children: [
             Container(
               width: 85.w,
@@ -98,11 +97,10 @@ class PublishedMeal extends StatelessWidget {
                 ),
               ],
             ),
-            
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: 35.w,
@@ -119,7 +117,6 @@ class PublishedMeal extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 5.h),
                   Container(
                     width: 35.w,
                     height: 35.h,
