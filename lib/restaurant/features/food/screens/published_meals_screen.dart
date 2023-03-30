@@ -83,7 +83,7 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
                           child: SizedBox(
                             width: 200.w,
                             child: Text(
-                              "Many People are waiting for you !",
+                              "Many People are waiting for you!",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,

@@ -5,6 +5,8 @@ import 'package:akalne/recipient/features/Profile/screens/widgets/profile_tile.d
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/constants/app_routes.dart';
+
 class RestaurantProfileScreen extends ConsumerStatefulWidget {
   const RestaurantProfileScreen({super.key});
 
@@ -25,6 +27,11 @@ class _RestaurantProfileScreenState
   void initState() {
     restaurantModel = ref.read(restaurantProvider);
     super.initState();
+  }
+
+  void navigateToEditProfile(BuildContext context) {
+    Navigator.of(context)
+        .pushNamed(AppRoutes.editResturantScreen, arguments: restaurantModel);
   }
 
   @override
@@ -57,7 +64,7 @@ class _RestaurantProfileScreenState
             ProfileTile(
               title: "Profile Information",
               icon: Icons.person,
-              onTap: () {},
+              onTap: () => navigateToEditProfile(context),
             ),
             ProfileTile(
               title: "Notifications",
