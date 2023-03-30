@@ -45,6 +45,7 @@ class FoodRepository {
     return _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
+        .orderBy('createdAt', descending: true)
         .snapshots()
         .map((event) => event.docs
             .map((e) => PublishedMealModel.fromJson(e.data()))
