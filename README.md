@@ -41,9 +41,9 @@ You should select an iOS or Android one, then run the application in it:
 flutter run --device-id <device id>
 ```
 
-> For more detiald tutorial for ArchLinux CLI usage: https://www.rockyourcode.com/how-to-get-flutter-and-android-working-on-arch-linux/
+> For more detailed tutorial for ArchLinux CLI usage: https://www.rockyourcode.com/how-to-get-flutter-and-android-working-on-arch-linux/
 
-> For other OSs your can find tutorials: https://docs.flutter.dev/get-started/install
+> For other OSs you can find tutorials: https://docs.flutter.dev/get-started/install
 
 ## Screenshots
 
