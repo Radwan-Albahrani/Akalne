@@ -1,7 +1,9 @@
 import 'package:akalne/core/common/error.text.dart';
 import 'package:akalne/core/common/loader.dart';
+import 'package:akalne/core/models/order_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/orders/screens/widgets/order_item_card.dart';
+import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,6 +18,12 @@ class _OrdersPageState extends ConsumerState<OrdersPage> {
   @override
   Widget build(BuildContext context) {
     return ref.watch(ordersProvider).when(data: (data) {
+      Color color;
+      if (data.isEmpty) {
+        return const Center(
+          child: Text("No orders yet"),
+        );
+      }
       return Scaffold(
         body: SafeArea(
           child: Column(
@@ -44,9 +52,22 @@ class _OrdersPageState extends ConsumerState<OrdersPage> {
                 child: ListView.builder(
                   itemCount: data.length,
                   itemBuilder: (context, index) {
+                    OrderModel currentOrder = data[index];
+                    if (currentOrder.status == "Sent to Restaurant") {
+                      color = Colors.yellow.shade700;
+                    } else if (currentOrder.status == "Accepted") {
+                      color = AppColors.light["primary"];
+                    } else if (currentOrder.status == "Rejected") {
+                      color = AppColors.light["secondary"];
+                    } else {
+                      color = Colors.grey;
+                    }
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: OrderItemCard(orderModel: data[index]),
+                      child: OrderItemCard(
+                        orderModel: data[index],
+                        color: color,
+                      ),
                     );
                   },
                 ),

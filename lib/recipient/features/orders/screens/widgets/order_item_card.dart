@@ -1,17 +1,26 @@
 import 'package:akalne/core/models/order_model.dart';
+import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../theme/app_colors.dart';
 
-class OrderItemCard extends StatelessWidget {
+class OrderItemCard extends ConsumerStatefulWidget {
   const OrderItemCard({
     super.key,
     required this.orderModel,
+    required this.color,
   });
 
   final OrderModel orderModel;
+  final Color color;
 
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _OrderItemCardState();
+}
+
+class _OrderItemCardState extends ConsumerState<OrderItemCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -59,7 +68,7 @@ class OrderItemCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
-                      image: NetworkImage(orderModel.meal.image),
+                      image: NetworkImage(widget.orderModel.meal.image),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -71,7 +80,7 @@ class OrderItemCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          orderModel.meal.name,
+                          widget.orderModel.meal.name,
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -91,7 +100,7 @@ class OrderItemCard extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              "#${orderModel.id.toString()}",
+                              "#${widget.orderModel.id.toString()}",
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
@@ -115,7 +124,7 @@ class OrderItemCard extends StatelessWidget {
                           child: Center(
                             child: Text(
                               () {
-                                final date = orderModel.dateCreated;
+                                final date = widget.orderModel.dateCreated;
                                 final now = DateTime.now();
                                 final parsedDate = DateTime.parse(date);
                                 final difference = now.difference(parsedDate);
@@ -145,10 +154,11 @@ class OrderItemCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Container(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
               width: double.infinity,
               decoration: BoxDecoration(
-                color: AppColors.light["primary"],
+                color: widget.color,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20),
@@ -163,7 +173,7 @@ class OrderItemCard extends StatelessWidget {
                     size: 30.sp,
                   ),
                   Text(
-                    "Status: Sent to Restaurant",
+                    "Status: ${widget.orderModel.status}",
                     style: TextStyle(
                       fontSize: 16.sp,
                       color: Colors.white,
