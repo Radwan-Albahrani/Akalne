@@ -13,8 +13,9 @@ class MenuItem extends ConsumerWidget {
 
   void showDialogHandler(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (BuildContext context) => const AddPublishedMealDialog());
+      context: context,
+      builder: (BuildContext context) => AddPublishedMealDialog(menuItemModel),
+    );
   }
 
   void deleteProduct(WidgetRef ref, BuildContext context) {

@@ -1,11 +1,16 @@
+import 'package:akalne/core/common/loader.dart';
+import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../theme/app_colors.dart';
+import '../../../food/controller/food_controller.dart';
 
 class AddPublishedMealDialog extends ConsumerStatefulWidget {
-  const AddPublishedMealDialog({super.key});
+  final MenuItemModel menuItemModel;
+  const AddPublishedMealDialog(this.menuItemModel, {Key? key})
+      : super(key: key);
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _AddPublishedMealDialogState();
@@ -15,8 +20,22 @@ class _AddPublishedMealDialogState
     extends ConsumerState<AddPublishedMealDialog> {
   int count = 1;
 
+  void discard() {
+    count = 0;
+    Navigator.pop(context);
+  }
+
+  void addPublishedMeal() {
+    ref.read(foodControllerProvider.notifier).addPublishedMeal(
+          menuItem: widget.menuItemModel,
+          quantity: count,
+          context: context,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(foodControllerProvider);
     return Dialog(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(30.0))),
@@ -116,14 +135,12 @@ class _AddPublishedMealDialogState
             SizedBox(
               height: 30.h,
             ),
-            Row(
+            isLoading ? const Loader() : Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 FilledButton(
-                  onPressed: () {
-                    // TODO: Implement `add meal` and close dialog and keyboard.
-                  },
+                  onPressed: addPublishedMeal,
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           AppColors.light["primary"])),
@@ -136,9 +153,7 @@ class _AddPublishedMealDialogState
                   ),
                 ),
                 FilledButton(
-                    onPressed: () {
-                      // TODO: Clean data and close dialog and keyboard.
-                    },
+                    onPressed: discard,
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                             AppColors.light["secondary"])),
