@@ -20,6 +20,23 @@ void showSnackBar(BuildContext context, String message) {
     ..hideCurrentSnackBar()
     ..showSnackBar(snackBar);
 }
+void showSuccesSnackBar(BuildContext context, String message) {
+  final snackBar = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'Success',
+      message: message,
+      contentType: ContentType.success,
+    ),
+  );
+
+  // hide then show
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(snackBar);
+}
 
 Future<FilePickerResult?> pickImage() async {
   final image = await FilePicker.platform.pickFiles(

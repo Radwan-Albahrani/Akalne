@@ -51,7 +51,7 @@ class FoodController extends StateNotifier<bool> {
     res.fold(
         (l) => showSnackBar(context, l.message),
         (r) => {
-              showSnackBar(context, "Meal added successfully"),
+              showSuccesSnackBar(context, "Meal added successfully"),
               Navigator.pop(context),
             });
   }
