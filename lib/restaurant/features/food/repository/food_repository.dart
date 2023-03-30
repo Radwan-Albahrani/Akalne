@@ -41,6 +41,26 @@ class FoodRepository {
     }
   }
 
+  FutureVoid updatePublishedMeal(PublishedMealModel meal, int quantity) async {
+    try {
+      await _publishedMeals.doc(meal.id).update({
+        'quantity': quantity,
+      });
+
+      return Right(await _restaurants
+          .doc(meal.menuItem.restaurant.id)
+          .collection(FirebaseConstants.publishedMealsCollection)
+          .doc(meal.id)
+          .update({
+        'quantity': quantity,
+      }));
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
   Stream<List<PublishedMealModel>> getPublishedMealsByRestaurantID(String id) {
     return _restaurants
         .doc(id)

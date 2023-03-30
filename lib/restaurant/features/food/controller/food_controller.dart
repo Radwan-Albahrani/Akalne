@@ -60,4 +60,20 @@ class FoodController extends StateNotifier<bool> {
     final id = _ref.read(restaurantProvider)!.id ?? "";
     return _foodRepository.getPublishedMealsByRestaurantID(id);
   }
+
+  void updatePublishedMeal(
+      {required PublishedMealModel meal,
+      required int quantity,
+      required BuildContext context}) async {
+    state = true;
+    final res = await _foodRepository.updatePublishedMeal(meal, quantity);
+    state = false;
+
+    res.fold(
+        (l) => showSnackBar(context, l.message),
+        (r) => {
+              showSuccesSnackBar(context, "Meal updated successfully"),
+              Navigator.pop(context),
+            });
+  }
 }
