@@ -1,12 +1,14 @@
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/utils.dart';
 import '../../../../../theme/app_colors.dart';
 
 class PublishedMeal extends StatelessWidget {
-  const PublishedMeal({
-    super.key,
-  });
+  PublishedMealModel meal;
+
+  PublishedMeal({super.key, required this.meal});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +40,8 @@ class PublishedMeal extends StatelessWidget {
               height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/food.png'),
+                image: DecorationImage(
+                  image: NetworkImage(meal.menuItem.image),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -49,8 +51,8 @@ class PublishedMeal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Spicy Chicken",
+                Text(
+                  meal.menuItem.name,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -66,7 +68,7 @@ class PublishedMeal extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "Available: 6",
+                      "Available: ${meal.quantity}",
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
@@ -85,7 +87,7 @@ class PublishedMeal extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      "10 Minutes Ago",
+                      timeAgoSinceDate(meal.createdAt),
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.bold,

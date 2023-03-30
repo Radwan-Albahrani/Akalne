@@ -1,3 +1,5 @@
+import 'package:akalne/core/common/error.text.dart';
+import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/restaurant/features/food/screens/widgets/published_meal.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../recipient/features/homeMenu/screens/widgets/rounded_search_field.dart';
+import '../controller/food_controller.dart';
 
 class PublishedMealsScreen extends ConsumerStatefulWidget {
   const PublishedMealsScreen({super.key});
@@ -134,8 +137,23 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
             const SizedBox(
               height: 20,
             ),
-            const PublishedMeal(),
-            const PublishedMeal(),
+            ref.watch(publishedMealsProvider).when(
+                data: (data) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return PublishedMeal(
+                          meal: data[index],
+                        );
+                      },
+                    ),
+                  );
+                },
+                error: (error, stackTrace) => ErrorText(
+                      error: error.toString(),
+                    ),
+                loading: () => const Loader()),
           ],
         ),
       ),
