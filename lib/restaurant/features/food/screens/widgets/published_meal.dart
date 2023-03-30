@@ -4,11 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils.dart';
 import '../../../../../theme/app_colors.dart';
+import '../../../menu/screens/widgets/add_published_meal_dialog.dart';
 
 class PublishedMeal extends StatelessWidget {
   final PublishedMealModel meal;
 
   const PublishedMeal({super.key, required this.meal});
+
+  void publishedMealDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AddPublishedMealDialog(
+          menuItemModel: meal.menuItem,
+          type: "Update",
+          mealCount: meal.quantity,
+          publishedMealModel: meal),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +122,7 @@ class PublishedMeal extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => publishedMealDialog(context),
                       icon: const Icon(
                         Icons.edit,
                         color: Colors.white,

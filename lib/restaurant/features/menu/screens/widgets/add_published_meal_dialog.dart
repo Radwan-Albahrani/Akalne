@@ -1,5 +1,6 @@
 import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,8 +10,16 @@ import '../../../food/controller/food_controller.dart';
 
 class AddPublishedMealDialog extends ConsumerStatefulWidget {
   final MenuItemModel menuItemModel;
-  const AddPublishedMealDialog(this.menuItemModel, {Key? key})
-      : super(key: key);
+  final String type;
+  final int mealCount;
+  final PublishedMealModel? publishedMealModel;
+  const AddPublishedMealDialog({
+    Key? key,
+    required this.menuItemModel,
+    this.type = "Add",
+    this.mealCount = 1,
+    this.publishedMealModel,
+  }) : super(key: key);
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _AddPublishedMealDialogState();
@@ -33,6 +42,20 @@ class _AddPublishedMealDialogState
         );
   }
 
+  void updatePublishedMeal() {
+    ref.read(foodControllerProvider.notifier).updatePublishedMeal(
+          meal: widget.publishedMealModel!,
+          quantity: count,
+          context: context,
+        );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    count = widget.mealCount;
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(foodControllerProvider);
@@ -50,7 +73,7 @@ class _AddPublishedMealDialogState
                     topRight: Radius.circular(30.0),
                     topLeft: Radius.circular(30.0)),
               ),
-              title: const Text("Add Available Meal"),
+              title: Text("${widget.type} Available Meal"),
               centerTitle: true,
             ),
             SizedBox(
@@ -135,37 +158,41 @@ class _AddPublishedMealDialogState
             SizedBox(
               height: 30.h,
             ),
-            isLoading ? const Loader() : Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FilledButton(
-                  onPressed: addPublishedMeal,
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          AppColors.light["primary"])),
-                  child: Text(
-                    "Add",
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: AppColors.light["white"],
-                    ),
-                  ),
-                ),
-                FilledButton(
-                    onPressed: discard,
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            AppColors.light["secondary"])),
-                    child: Text(
-                      "Discard",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: AppColors.light["white"],
+            isLoading
+                ? const Loader()
+                : Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FilledButton(
+                        onPressed: widget.type == "Update"
+                            ? updatePublishedMeal
+                            : addPublishedMeal,
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                AppColors.light["primary"])),
+                        child: Text(
+                          widget.type,
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: AppColors.light["white"],
+                          ),
+                        ),
                       ),
-                    )),
-              ],
-            ),
+                      FilledButton(
+                          onPressed: discard,
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.light["secondary"])),
+                          child: Text(
+                            "Discard",
+                            style: TextStyle(
+                              fontSize: 30,
+                              color: AppColors.light["white"],
+                            ),
+                          )),
+                    ],
+                  ),
             SizedBox(
               height: 30.h,
             ),
