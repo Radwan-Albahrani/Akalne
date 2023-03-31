@@ -294,18 +294,21 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                               ),
                               const SizedBox(width: 10),
                               Text(
-                                "Distance: ",
+                                "Address: ",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.light["primary"],
                                 ),
                               ),
-                              Text(
-                                widget.menuItemModel.restaurant.distance,
-                                style: TextStyle(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.bold,
+                              Flexible(
+                                child: Text(
+                                  widget.menuItemModel.restaurant.address
+                                      as String,
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],

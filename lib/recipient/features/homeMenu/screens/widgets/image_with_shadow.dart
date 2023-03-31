@@ -82,12 +82,22 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                         color: Colors.white,
                         size: 20.sp,
                       ),
-                      Text(
-                        widget.restaurantDetails.distance,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        width: 270.w,
+                        constraints: BoxConstraints(
+                          maxWidth: 270.w,
+                          minHeight: 20.h,
+                          maxHeight: 40.h,
+                        ),
+                        child: Flexible(
+                          child: Text(
+                            widget.restaurantDetails.address as String,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ],
