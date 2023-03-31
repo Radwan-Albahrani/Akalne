@@ -141,7 +141,7 @@ class _AddDialogState extends ConsumerState<AddDialog> {
                                     child: Icon(
                                       Icons.image_search,
                                       color: AppColors.light["black"],
-                                      size: 70,
+                                      size: 70.sp,
                                     ),
                                   ),
                           ),
@@ -190,24 +190,26 @@ class _AddDialogState extends ConsumerState<AddDialog> {
                                 child: Text(
                                   "Save",
                                   style: TextStyle(
-                                    fontSize: 30,
+                                    fontSize: 20.sp,
                                     color: AppColors.light["white"],
                                   ),
                                 ),
                               ),
                               FilledButton(
-                                  onPressed: discard,
-                                  style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              AppColors.light["secondary"])),
-                                  child: Text(
-                                    "Discard",
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      color: AppColors.light["white"],
-                                    ),
-                                  ))
+                                onPressed: discard,
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                    AppColors.light["secondary"],
+                                  ),
+                                ),
+                                child: Text(
+                                  "Discard",
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: AppColors.light["white"],
+                                  ),
+                                ),
+                              )
                             ],
                           )
                   ],

@@ -49,8 +49,8 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                   Align(
                       alignment: Alignment.topLeft,
                       child: Text('Hey ${restaurantModel!.name}')),
-                  const SizedBox(
-                    height: 10,
+                   SizedBox(
+                    height: 10.h,
                   ),
                   RoundedSearchField(
                     hintText: "Search",
@@ -63,8 +63,8 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                       return null;
                     },
                   ),
-                  const SizedBox(
-                    height: 20,
+                   SizedBox(
+                    height: 20.h,
                   ),
                   const Align(
                     alignment: Alignment.topLeft,
@@ -76,8 +76,8 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
+                   SizedBox(
+                    height: 10.h,
                   ),
                   Expanded(
                     child: Padding(

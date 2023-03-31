@@ -4,6 +4,7 @@ import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/recipient/features/Profile/screens/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_routes.dart';
 
@@ -42,29 +43,29 @@ class _RestaurantProfileScreenState
         width: double.infinity,
         child: Column(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               backgroundColor: Colors.transparent,
-              radius: 50,
-              backgroundImage: AssetImage(AppConstants.defaultProfile),
+              radius: 50.sp,
+              backgroundImage: const AssetImage(AppConstants.defaultProfile),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 10.h),
             Text(
               restaurantModel!.name as String,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Text(
               restaurantModel!.email as String,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 color: Theme.of(context).colorScheme.secondary,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 10.h),
             ProfileTile(
               title: "Profile Information",
               icon: Icons.person,
-              onTap: () => navigateToEditProfile(context),
+              onTap: () {},
             ),
             ProfileTile(
               title: "Notifications",

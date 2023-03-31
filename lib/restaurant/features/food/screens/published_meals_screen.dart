@@ -45,8 +45,8 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Text('Hey ${restaurantModel!.name}')),
-            const SizedBox(
-              height: 10,
+             SizedBox(
+              height: 10.h,
             ),
             RoundedSearchField(
               hintText: "Search",
@@ -59,8 +59,8 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
                 return null;
               },
             ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: 20.h,
             ),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -92,8 +92,8 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: 20.h,
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
@@ -134,8 +134,8 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: 10.h,
             ),
             ref.watch(publishedMealsProvider).when(
                 data: (data) {

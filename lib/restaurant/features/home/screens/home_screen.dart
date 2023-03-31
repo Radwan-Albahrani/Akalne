@@ -61,22 +61,22 @@ class _HomeScreenState extends ConsumerState<RestaurantHomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             duration: const Duration(milliseconds: 800),
             tabBackgroundColor: AppColors.light['primaryTransparent'],
-            tabs: const [
+            tabs: [
               GButton(
                 icon: Icons.home_outlined,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
               GButton(
                 icon: Icons.restaurant_menu_sharp,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
               GButton(
                 icon: Icons.shopping_basket_outlined,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
               GButton(
                 icon: Icons.person_outline,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
             ],
             selectedIndex: 0,

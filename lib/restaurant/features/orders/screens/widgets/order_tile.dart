@@ -61,7 +61,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
         vertical: 5.h,
       ),
       width: double.infinity,
-      height: 160.h,
+      height: 150.h,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -77,19 +77,19 @@ class _OrderTileState extends ConsumerState<OrderTile> {
       child: Column(
         children: [
           Container(
-            height: 110.h,
+            height: 100.h,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: 80.w,
+                  height: 80.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/food.png'),
+                    image: DecorationImage(
+                      image: NetworkImage(widget.order.meal.image),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -99,14 +99,14 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                     Text(
                       widget.order.meal.name,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                     Container(
                       width: 150.w,
-                      height: 20,
+                      height: 15.h,
                       decoration: BoxDecoration(
                         color: AppColors.light["primaryTransparent"],
                         borderRadius: BorderRadius.circular(5),
@@ -122,10 +122,10 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10.h),
                     Container(
                       width: 150.w,
-                      height: 20,
+                      height: 15.h,
                       decoration: BoxDecoration(
                         color: AppColors.light["secondaryTransparent"],
                         borderRadius: BorderRadius.circular(5),
@@ -143,42 +143,43 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                     ),
                   ],
                 ),
-               widget.order.status != "Sent to Restaurant" ? const SizedBox() :Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.light["primary"],
-                        borderRadius: BorderRadius.circular(10),
+                widget.order.status != "Sent to Restaurant"
+                    ? const SizedBox()
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 35.w,
+                            height: 35.h,
+                            decoration: BoxDecoration(
+                              color: AppColors.light["primary"],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: IconButton(
+                              onPressed: () => changeOrderStatus("Accepted"),
+                              icon: const Icon(
+                                Icons.check,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 35.w,
+                            height: 35.h,
+                            decoration: BoxDecoration(
+                              color: AppColors.light["secondary"],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: IconButton(
+                              onPressed: () => changeOrderStatus("Rejected"),
+                              icon: const Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      child: IconButton(
-                        onPressed: () => changeOrderStatus("Accepted"),
-                        icon: const Icon(
-                          Icons.check,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.light["secondary"],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        onPressed: () => changeOrderStatus("Rejected"),
-                        icon: const Icon(
-                          Icons.close,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),

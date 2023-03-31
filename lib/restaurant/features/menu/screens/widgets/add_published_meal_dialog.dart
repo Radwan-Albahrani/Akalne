@@ -61,7 +61,10 @@ class _AddPublishedMealDialogState
     final isLoading = ref.watch(foodControllerProvider);
     return Dialog(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        borderRadius: BorderRadius.all(
+          Radius.circular(30.0),
+        ),
+      ),
       backgroundColor: AppColors.light["background"],
       child: SingleChildScrollView(
         child: Column(
@@ -122,11 +125,11 @@ class _AddPublishedMealDialogState
                     color: AppColors.light["primary"],
                   ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10.w),
                 Text(
                   count.toString(),
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: TextStyle(
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -174,7 +177,7 @@ class _AddPublishedMealDialogState
                         child: Text(
                           widget.type,
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 30.sp,
                             color: AppColors.light["white"],
                           ),
                         ),
@@ -187,7 +190,7 @@ class _AddPublishedMealDialogState
                           child: Text(
                             "Discard",
                             style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 30.sp,
                               color: AppColors.light["white"],
                             ),
                           )),

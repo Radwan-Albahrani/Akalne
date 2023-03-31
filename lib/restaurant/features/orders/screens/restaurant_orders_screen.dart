@@ -5,6 +5,7 @@ import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controll
 import 'package:akalne/restaurant/features/orders/screens/widgets/order_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/common/error.text.dart';
 import '../../../../recipient/features/homeMenu/screens/widgets/rounded_search_field.dart';
@@ -44,8 +45,8 @@ class _RestaurantOrdersScreenState
             Align(
                 alignment: Alignment.topLeft,
                 child: Text('Hey ${_restaurant!.name}')),
-            const SizedBox(
-              height: 10,
+             SizedBox(
+              height: 10.h,
             ),
             RoundedSearchField(
               hintText: "Search",
@@ -58,21 +59,21 @@ class _RestaurantOrdersScreenState
                 return null;
               },
             ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: 20.h,
             ),
-            const Align(
+             Align(
               alignment: Alignment.topLeft,
               child: Text(
                 'Orders',
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   color: Colors.grey,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+             SizedBox(
+              height: 10.h,
             ),
             ref.watch(restaurantOrdersProvider).when(
                   data: (data) => data.isEmpty
