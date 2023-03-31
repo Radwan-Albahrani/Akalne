@@ -79,7 +79,7 @@ class PublishedMeal extends ConsumerWidget {
                     meal.menuItem.name,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 18.sp,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
