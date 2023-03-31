@@ -19,7 +19,7 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120.h,
+      height: 140.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -62,7 +62,7 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
                     widget.restaurantDetails.name as String,
-                    style:  TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
@@ -77,14 +77,14 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     children: [
-                       Icon(
+                      Icon(
                         Icons.location_on,
                         color: Colors.white,
                         size: 20.sp,
                       ),
                       Text(
                         widget.restaurantDetails.distance,
-                        style:  TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                 ),
               ],
             ),
-             SizedBox(height: 20.h)
+            SizedBox(height: 20.h)
           ],
         ),
       ),

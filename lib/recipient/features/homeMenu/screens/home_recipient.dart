@@ -38,8 +38,8 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 32, right: 32, bottom: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 10),
                       child: Column(
                         children: [
                           Row(
@@ -51,7 +51,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                               ),
                             ],
                           ),
-                           SizedBox(height: 20.h),
+                          SizedBox(height: 20.h),
                           RoundedSearchField(
                             hintText: "Search",
                             obscureText: false,
@@ -63,19 +63,19 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                               return null;
                             },
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 20.h,
                           ),
                           Row(
-                            children:  [
+                            children: [
                               Text(
                                 "Available Meals",
-                                style:
-                                    TextStyle(fontSize: 12.sp, color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 12.sp, color: Colors.grey),
                               ),
                             ],
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10.h,
                           ),
                           ToggleSwitch(

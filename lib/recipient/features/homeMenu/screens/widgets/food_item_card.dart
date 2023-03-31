@@ -117,7 +117,7 @@ class FoodItemCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                       SizedBox(height: 10.h),
+                      SizedBox(height: 10.h),
                     ],
                   ),
                   const Spacer(),
@@ -125,7 +125,7 @@ class FoodItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        width: 40.w,
+                        width: 35.w,
                         height: 20.h,
                         decoration: BoxDecoration(
                           color: AppColors.light["primaryTransparent"],

@@ -69,7 +69,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                       Text(
                         widget.menuItemModel.name,
                         style: TextStyle(
-                          fontSize: 25.sp,
+                          fontSize: 30.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -197,7 +197,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                       SizedBox(height: 10.h),
                       Container(
                         width: double.infinity,
-                        height: 30.h,
+                        height: 40.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
@@ -241,7 +241,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                       SizedBox(height: 10.h),
                       Container(
                         width: double.infinity,
-                        height: 30.h,
+                        height: 40.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
@@ -278,7 +278,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                       SizedBox(height: 10.h),
                       Container(
                         width: double.infinity,
-                        height: 30.h,
+                        height: 40.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
@@ -315,7 +315,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                       SizedBox(height: 10.h),
                       SizedBox(
                         width: double.infinity,
-                        height: 30.h,
+                        height: 40.h,
                         child: ElevatedButton(
                           onPressed: isLoading ? null : addMeal,
                           style: ElevatedButton.styleFrom(
@@ -326,7 +326,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ),
                           child: isLoading
                               ? const Loader()
-                              :  Text(
+                              : Text(
                                   "Reserve",
                                   style: TextStyle(
                                       fontSize: 16.sp,
@@ -335,7 +335,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 ),
                         ),
                       ),
-                       SizedBox(height: 10.h),
+                      SizedBox(height: 10.h),
                     ],
                   ),
                 ),
