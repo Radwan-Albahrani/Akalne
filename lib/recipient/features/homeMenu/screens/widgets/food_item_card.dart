@@ -82,11 +82,18 @@ class FoodItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        menuItemModel.name,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 150.w,
+                          minWidth: 100.w,
+                        ),
+                        child: Text(
+                          menuItemModel.name,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       SizedBox(height: 8.h),
