@@ -40,7 +40,11 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
   Widget build(BuildContext context) {
     return ref.watch(menuItemsProvider).when(
         data: (data) {
-          print(data);
+          if (data.isEmpty) {
+            return const Center(
+              child: Text('No menu items added yet'),
+            );
+          }
           return SafeArea(
             child: Padding(
               padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -49,7 +53,7 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                   Align(
                       alignment: Alignment.topLeft,
                       child: Text('Hey ${restaurantModel!.name}')),
-                   SizedBox(
+                  SizedBox(
                     height: 10.h,
                   ),
                   RoundedSearchField(
@@ -63,7 +67,7 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                       return null;
                     },
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 20.h,
                   ),
                   const Align(
@@ -76,7 +80,7 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                       ),
                     ),
                   ),
-                   SizedBox(
+                  SizedBox(
                     height: 10.h,
                   ),
                   Expanded(
@@ -95,9 +99,12 @@ class _RestaurantMenuScreenState extends ConsumerState<RestaurantMenuScreen> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return SizedBox(
-                              width: 120.w,
-                              height: 152.h,
-                              child: MenuItem(menuItemModel: data[index]));
+                            width: 120.w,
+                            height: 152.h,
+                            child: MenuItem(
+                              menuItemModel: data[index],
+                            ),
+                          );
                         },
                       ),
                     ),

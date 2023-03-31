@@ -139,6 +139,11 @@ class _PublishedMealsScreenState extends ConsumerState<PublishedMealsScreen> {
             ),
             ref.watch(publishedMealsProvider).when(
                 data: (data) {
+                  if (data.isEmpty) {
+                    return const Center(
+                      child: Text('No published meals added yet'),
+                    );
+                  }
                   return Expanded(
                     child: ListView.builder(
                       itemCount: data.length,
