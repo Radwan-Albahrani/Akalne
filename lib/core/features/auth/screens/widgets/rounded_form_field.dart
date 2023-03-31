@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class RoundedFormField extends StatelessWidget {
-  const RoundedFormField({
-    super.key,
-    required this.controller,
-    this.isSecret = false,
-    this.keyboardType = TextInputType.text,
-    required this.hintText,
-    this.label,
-    this.validator,
-    this.maxLines,
-  });
+  const RoundedFormField(
+      {super.key,
+      required this.controller,
+      this.isSecret = false,
+      this.keyboardType = TextInputType.text,
+      required this.hintText,
+      this.label,
+      this.validator,
+      this.maxLines,
+      this.enabled = true});
 
   final TextEditingController controller;
   final bool isSecret;
@@ -19,11 +19,13 @@ class RoundedFormField extends StatelessWidget {
   final String? label;
   final String? Function(String?)? validator;
   final int? maxLines;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
         controller: controller,
+        enabled: enabled,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

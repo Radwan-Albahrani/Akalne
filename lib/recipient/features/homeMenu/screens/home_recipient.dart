@@ -88,7 +88,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                       ),
                     ),
                     data.isEmpty
-                        ? const ErrorText(error: "No data")
+                        ? const ErrorText(error: "No Published Meals yet")
                         : Expanded(
                             child: ListView.builder(
                               itemCount: data.length,
