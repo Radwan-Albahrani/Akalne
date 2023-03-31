@@ -71,11 +71,17 @@ class PublishedMeal extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  meal.menuItem.name,
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  constraints: BoxConstraints(
+                    maxWidth: 150.w,
+                  ),
+                  child: Text(
+                    meal.menuItem.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10.h),
