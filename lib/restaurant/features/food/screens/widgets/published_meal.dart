@@ -73,7 +73,7 @@ class PublishedMeal extends ConsumerWidget {
               children: [
                 Container(
                   constraints: BoxConstraints(
-                    maxWidth: 130.w,
+                    maxWidth: 140.w,
                   ),
                   child: Text(
                     meal.menuItem.name,
