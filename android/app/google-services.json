@@ -29,6 +29,13 @@
             {
               "client_id": "811203125195-1qghn0slhmubsa7o7o58ve1v846lfip8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "811203125195-tlkec7ijg2r4nii6n1qjeu36jp0sol17.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.akalne"
+              }
             }
           ]
         }
