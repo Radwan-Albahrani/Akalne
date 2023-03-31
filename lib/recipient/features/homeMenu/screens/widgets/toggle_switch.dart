@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:switch_up/switch_up.dart';
 
 import '../../../../../theme/app_colors.dart';
@@ -15,9 +16,9 @@ class ToggleSwitch extends StatefulWidget {
 class _ToggleSwitchState extends State<ToggleSwitch> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+     return Container(
       width: double.infinity,
-      height: 55,
+      height: 50.h,
       decoration: BoxDecoration(
         color: AppColors.light['background'],
         borderRadius: BorderRadius.circular(50),
@@ -28,8 +29,8 @@ class _ToggleSwitchState extends State<ToggleSwitch> {
       child: SwitchUp(
         backgroundColor: Colors.transparent,
         color: AppColors.light['primary'],
-        radius: 50,
-        height: 50,
+        radius: 50.sp,
+        height: 45.h,
         curves: Curves.easeInOutBack,
         items: widget.items,
         onChanged: widget.onChanged,

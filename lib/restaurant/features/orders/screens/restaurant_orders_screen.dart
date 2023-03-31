@@ -45,7 +45,7 @@ class _RestaurantOrdersScreenState
             Align(
                 alignment: Alignment.topLeft,
                 child: Text('Hey ${_restaurant!.name}')),
-             SizedBox(
+            SizedBox(
               height: 10.h,
             ),
             RoundedSearchField(
@@ -59,20 +59,20 @@ class _RestaurantOrdersScreenState
                 return null;
               },
             ),
-             SizedBox(
+            SizedBox(
               height: 20.h,
             ),
-             Align(
+            Align(
               alignment: Alignment.topLeft,
               child: Text(
                 'Orders',
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   color: Colors.grey,
                 ),
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 10.h,
             ),
             ref.watch(restaurantOrdersProvider).when(

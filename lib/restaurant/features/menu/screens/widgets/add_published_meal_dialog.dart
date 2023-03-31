@@ -89,7 +89,7 @@ class _AddPublishedMealDialogState
                 child: Text(
                   "Quantity: ",
                   style: TextStyle(
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                     color: Colors.grey,
                   ),
                 ),

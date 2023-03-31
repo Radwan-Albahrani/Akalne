@@ -7,6 +7,7 @@ import 'package:akalne/recipient/features/homeMenu/screens/widgets/food_item_car
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/image_with_shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RestaurantPage extends ConsumerStatefulWidget {
   const RestaurantPage({
@@ -58,17 +59,17 @@ class _RestaurantPageState extends ConsumerState<RestaurantPage> {
                     child: Column(
                       children: [
                         const CustomBackButton(),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         ImageWithShadow(
                           restaurantDetails: widget.restaurantDetails,
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                         Row(
-                          children: const [
+                          children:  [
                             Text(
                               "Available Meals",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

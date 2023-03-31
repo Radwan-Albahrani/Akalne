@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../theme/app_colors.dart';
 
@@ -10,8 +11,8 @@ class CustomBackButton extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
-        height: 50,
-        width: 50,
+        height: 40.h,
+        width: 40.w,
         child: ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),
           style: ElevatedButton.styleFrom(
@@ -27,7 +28,7 @@ class CustomBackButton extends StatelessWidget {
           child: Icon(
             Icons.arrow_back_ios,
             color: AppColors.light["primary"],
-            size: 25,
+            size: 25.sp,
           ),
         ),
       ),

@@ -1,6 +1,8 @@
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/utils.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../food_details.dart';
 
@@ -46,7 +48,7 @@ class FoodItemCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 10),
         child: Container(
             width: double.infinity,
-            height: 110,
+            height: 90.h,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -65,8 +67,8 @@ class FoodItemCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    width: 100,
-                    height: 100,
+                    width: 90.w,
+                    height: 90.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
@@ -75,62 +77,47 @@ class FoodItemCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: 10.w),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         menuItemModel.name,
-                        style: const TextStyle(
-                          fontSize: 18,
+                        style: TextStyle(
+                          fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 8.h),
                       Text(
                         menuItemModel.restaurant.name as String,
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey.shade400,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Container(
-                        width: 100,
-                        height: 20,
+                        width: 150.w,
+                        height: 15.h,
                         decoration: BoxDecoration(
                           color: AppColors.light["secondaryTransparent"],
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(5),
                         ),
                         child: Center(
                           child: Text(
-                            () {
-                              final date = createdAt;
-                              DateTime now = DateTime.now();
-                              DateTime dateAdded = DateTime.parse(date);
-                              final difference = now.difference(dateAdded);
-                              final minutes = difference.inMinutes;
-                              final hours = difference.inHours;
-                              final days = difference.inDays;
-                              if (minutes < 60) {
-                                return "$minutes minutes ago";
-                              } else if (hours < 24) {
-                                return "$hours hours ago";
-                              } else {
-                                return "$days days ago";
-                              }
-                            }.call(),
+                            timeAgoSinceDate(createdAt),
                             style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.light["secondary"],
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                       SizedBox(height: 10.h),
                     ],
                   ),
                   const Spacer(),
@@ -138,17 +125,17 @@ class FoodItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        width: 40,
-                        height: 20,
+                        width: 40.w,
+                        height: 20.h,
                         decoration: BoxDecoration(
                           color: AppColors.light["primaryTransparent"],
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(15),
                         ),
                         child: Center(
                           child: Text(
                             menuItemModel.restaurant.distance,
                             style: TextStyle(
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.bold,
                               color: AppColors.light["primary"],
                             ),

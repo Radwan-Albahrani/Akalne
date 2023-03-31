@@ -8,6 +8,7 @@ import 'package:akalne/recipient/features/homeMenu/screens/widgets/restaurant_lo
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 class FoodDetails extends ConsumerStatefulWidget {
@@ -52,7 +53,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const CustomBackButton(),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Column(
                 children: [
                   FoodImageFavorite(
@@ -60,19 +61,19 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                   ),
                 ],
               ),
-              const SizedBox(height: 5),
+              SizedBox(height: 5.h),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Text(
                         widget.menuItemModel.name,
-                        style: const TextStyle(
-                          fontSize: 28,
+                        style: TextStyle(
+                          fontSize: 25.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       GestureDetector(
                         onTap: () {
                           if (!widget.isReplace) {
@@ -101,20 +102,20 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             RestaurantLogo(
                               image: widget.menuItemModel.restaurant
                                   .restaurantLogo as String,
-                              radius: 15,
+                              radius: 15.sp,
                             ),
-                            const SizedBox(width: 10),
+                            SizedBox(width: 10.h),
                             Text(
                               widget.menuItemModel.restaurant.name as String,
-                              style: const TextStyle(
-                                fontSize: 14,
+                              style: TextStyle(
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -142,15 +143,15 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                               color: AppColors.light["primary"],
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: 10.w),
                           Text(
                             count.toString(),
-                            style: const TextStyle(
-                              fontSize: 18,
+                            style: TextStyle(
+                              fontSize: 18.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: 10.w),
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
@@ -177,7 +178,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Row(
                         children: [
                           Flexible(
@@ -185,18 +186,18 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                               widget.menuItemModel.description,
                               overflow: TextOverflow.visible,
                               textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                fontSize: 14,
+                              style: TextStyle(
+                                fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Container(
                         width: double.infinity,
-                        height: 50,
+                        height: 30.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
@@ -210,11 +211,11 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 Icons.calendar_today_outlined,
                                 color: AppColors.light["primary"],
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               Text(
                                 "Date Added: ",
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.light["primary"],
                                 ),
@@ -228,8 +229,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                       .format(dateAdded);
                                   return formattedDate;
                                 }.call(),
-                                style: const TextStyle(
-                                  fontSize: 14,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -237,10 +238,10 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Container(
                         width: double.infinity,
-                        height: 50,
+                        height: 30.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
@@ -254,19 +255,19 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 Icons.shopping_basket_outlined,
                                 color: AppColors.light["primary"],
                               ),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               Text(
                                 "Maximum Order: ",
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.light["primary"],
                                 ),
                               ),
                               Text(
                                 widget.menuItemModel.maximumOrder.toString(),
-                                style: const TextStyle(
-                                  fontSize: 14,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -274,10 +275,10 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       Container(
                         width: double.infinity,
-                        height: 50,
+                        height: 30.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.white,
@@ -295,15 +296,15 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                               Text(
                                 "Distance: ",
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.light["primary"],
                                 ),
                               ),
                               Text(
                                 widget.menuItemModel.restaurant.distance,
-                                style: const TextStyle(
-                                  fontSize: 14,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -311,10 +312,10 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       SizedBox(
                         width: double.infinity,
-                        height: 50,
+                        height: 30.h,
                         child: ElevatedButton(
                           onPressed: isLoading ? null : addMeal,
                           style: ElevatedButton.styleFrom(
@@ -325,16 +326,16 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ),
                           child: isLoading
                               ? const Loader()
-                              : const Text(
+                              :  Text(
                                   "Reserve",
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
                                 ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                       SizedBox(height: 10.h),
                     ],
                   ),
                 ),

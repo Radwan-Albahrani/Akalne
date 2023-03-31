@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loader extends StatelessWidget {
@@ -6,10 +7,10 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return  Center(
       child: SpinKitThreeInOut(
         color: Colors.white,
-        size: 50.0,
+        size: 40.sp,
       ),
     );
   }

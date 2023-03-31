@@ -4,6 +4,7 @@ import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/recipient/features/Profile/screens/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -25,8 +26,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     super.initState();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,25 +34,25 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         width: double.infinity,
         child: Column(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               backgroundColor: Colors.transparent,
-              radius: 50,
-              backgroundImage: AssetImage(AppConstants.defaultProfile),
+              radius: 50.sp,
+              backgroundImage: const AssetImage(AppConstants.defaultProfile),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 10.h),
             Text(
               userModel!.name,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 10.h),
             Text(
               userModel!.email,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 color: Theme.of(context).colorScheme.secondary,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 10.h),
             ProfileTile(
               title: "Profile Information",
               icon: Icons.person,

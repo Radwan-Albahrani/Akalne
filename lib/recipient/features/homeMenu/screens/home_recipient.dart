@@ -5,6 +5,7 @@ import 'package:akalne/recipient/features/homeMenu/screens/widgets/rounded_searc
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/toggle_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/common/error.text.dart';
 import '../../../../core/common/loader.dart';
@@ -41,19 +42,16 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                           left: 32, right: 32, bottom: 10),
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 25,
-                          ),
                           Row(
                             children: [
                               Text(
                                 "Hey ${userModel!.name}!",
-                                style: const TextStyle(
-                                    fontSize: 14, color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 12.sp, color: Colors.grey),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 20),
+                           SizedBox(height: 20.h),
                           RoundedSearchField(
                             hintText: "Search",
                             obscureText: false,
@@ -65,20 +63,20 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                               return null;
                             },
                           ),
-                          const SizedBox(
-                            height: 30,
+                           SizedBox(
+                            height: 20.h,
                           ),
                           Row(
-                            children: const [
+                            children:  [
                               Text(
                                 "Available Meals",
                                 style:
-                                    TextStyle(fontSize: 14, color: Colors.grey),
+                                    TextStyle(fontSize: 12.sp, color: Colors.grey),
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                            height: 10.h,
                           ),
                           ToggleSwitch(
                             items: const ["Near Me", "Recent"],

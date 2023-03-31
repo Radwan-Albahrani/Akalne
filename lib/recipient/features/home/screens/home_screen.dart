@@ -50,18 +50,18 @@ class _HomeScreenState extends ConsumerState<UserHomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             duration: const Duration(milliseconds: 800),
             tabBackgroundColor: AppColors.light['primaryTransparent'],
-            tabs: const [
+            tabs:  [
               GButton(
                 icon: Icons.home_outlined,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
               GButton(
                 icon: Icons.access_time_rounded,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
               GButton(
                 icon: Icons.person_outline,
-                iconSize: 35,
+                iconSize: 35.sp,
               ),
             ],
             selectedIndex: 0,

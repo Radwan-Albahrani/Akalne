@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/utils.dart';
 import '../../../../../theme/app_colors.dart';
 
 class OrderItemCard extends ConsumerStatefulWidget {
@@ -27,7 +28,8 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
       margin: EdgeInsets.symmetric(
         vertical: 5.h,
       ),
-      height: 160.h,
+      height: 150.h,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -40,31 +42,19 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
           ),
         ],
       ),
-      constraints: BoxConstraints(
-        minHeight: 160.h,
-        maxHeight: 160.h,
-        minWidth: MediaQuery.of(context).size.width,
-        maxWidth: MediaQuery.of(context).size.width,
-      ),
       child: Column(
         children: [
           Container(
-            height: 110.h,
+            height: 100.h,
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-            constraints: BoxConstraints(
-              minHeight: 110.h,
-              maxHeight: 110.h,
-              minWidth: MediaQuery.of(context).size.width,
-              maxWidth: MediaQuery.of(context).size.width,
-            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 100,
-                  height: 100,
+                  width: 90.h,
+                  height: 90.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
@@ -74,79 +64,51 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
                   ),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          widget.orderModel.meal.name,
-                          style: const TextStyle(
-                            fontSize: 18,
+                    Text(
+                      widget.orderModel.meal.name,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      width: 150.w,
+                      height: 15.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.light["primaryTransparent"],
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "#${widget.orderModel.id}",
+                          style: TextStyle(
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
+                            color: AppColors.light["primary"],
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        Container(
-                          width: 200.w,
-                          height: 20.h,
-                          decoration: BoxDecoration(
-                            color: AppColors.light["primaryTransparent"],
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "#${widget.orderModel.id.toString()}",
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.light["primary"],
-                              ),
-                            ),
+                    SizedBox(height: 10.h),
+                    Container(
+                      width: 150.w,
+                      height: 15.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.light["secondaryTransparent"],
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Center(
+                        child: Text(
+                          timeAgoSinceDate(widget.orderModel.dateCreated),
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.light["secondary"],
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Container(
-                          width: 200.w,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            color: AppColors.light["secondaryTransparent"],
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Center(
-                            child: Text(
-                              () {
-                                final date = widget.orderModel.dateCreated;
-                                final now = DateTime.now();
-                                final parsedDate = DateTime.parse(date);
-                                final difference = now.difference(parsedDate);
-                                if (difference.inDays > 0) {
-                                  return "${difference.inDays} Days Ago";
-                                } else if (difference.inHours > 0) {
-                                  return "${difference.inHours} Hours Ago";
-                                } else if (difference.inMinutes > 0) {
-                                  return "${difference.inMinutes} Minutes Ago";
-                                } else {
-                                  return "Just Now";
-                                }
-                              }.call(),
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.light["secondary"],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),

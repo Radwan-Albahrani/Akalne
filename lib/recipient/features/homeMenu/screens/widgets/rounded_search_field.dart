@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RoundedSearchField extends StatelessWidget {
   const RoundedSearchField({
@@ -19,7 +20,7 @@ class RoundedSearchField extends StatelessWidget {
     return TextFormField(
         controller: controller,
         decoration: InputDecoration(
-          constraints: const BoxConstraints(maxHeight: 50),
+          constraints:  BoxConstraints(maxHeight: 40.sp),
           prefixIcon: const Icon(Icons.search),
           filled: true,
           fillColor: Colors.white,

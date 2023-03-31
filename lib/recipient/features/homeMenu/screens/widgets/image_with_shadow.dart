@@ -1,6 +1,7 @@
 import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/restaurant_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageWithShadow extends StatefulWidget {
   const ImageWithShadow({
@@ -18,7 +19,7 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 120.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -50,7 +51,7 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                   padding: const EdgeInsets.only(left: 10),
                   child: RestaurantLogo(
                     image: widget.restaurantDetails.restaurantLogo as String,
-                    radius: 30,
+                    radius: 30.sp,
                   ),
                 ),
               ],
@@ -61,9 +62,9 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
                     widget.restaurantDetails.name as String,
-                    style: const TextStyle(
+                    style:  TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -76,16 +77,16 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     children: [
-                      const Icon(
+                       Icon(
                         Icons.location_on,
                         color: Colors.white,
-                        size: 20,
+                        size: 20.sp,
                       ),
                       Text(
                         widget.restaurantDetails.distance,
-                        style: const TextStyle(
+                        style:  TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -94,7 +95,7 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                 ),
               ],
             ),
-            const SizedBox(height: 20)
+             SizedBox(height: 20.h)
           ],
         ),
       ),
