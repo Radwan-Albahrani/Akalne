@@ -47,6 +47,6 @@ flutter run --device-id <device id>
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/65136727/229250723-15482903-f420-4087-bd69-9ca34b8464c7.png" height="200">
-<img src="https://user-images.githubusercontent.com/65136727/229250728-a34ce62c-3f88-478e-8fa5-5ebf9015d2a7.png" height="200">
-<img src="https://user-images.githubusercontent.com/65136727/229250731-c6f6acd1-f7f7-40ef-b56f-a47a96cf049d.png" height="200">
+<img src="https://user-images.githubusercontent.com/65136727/229250723-15482903-f420-4087-bd69-9ca34b8464c7.png" height="400">
+<img src="https://user-images.githubusercontent.com/65136727/229250728-a34ce62c-3f88-478e-8fa5-5ebf9015d2a7.png" height="400">
+<img src="https://user-images.githubusercontent.com/65136727/229250731-c6f6acd1-f7f7-40ef-b56f-a47a96cf049d.png" height="400">
