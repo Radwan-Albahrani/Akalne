@@ -157,9 +157,19 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                if (count <
-                                    widget.publishedMealModel.quantity) {
-                                  count++;
+                                if (widget.publishedMealModel.quantity >
+                                    widget.publishedMealModel.menuItem
+                                        .maximumOrder) {
+                                  if (count <
+                                      widget.publishedMealModel.menuItem
+                                          .maximumOrder) {
+                                    count++;
+                                  }
+                                } else {
+                                  if (count <
+                                      widget.publishedMealModel.quantity) {
+                                    count++;
+                                  }
                                 }
                               });
                             },
@@ -268,7 +278,14 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.publishedMealModel.quantity.toString(),
+                                widget.publishedMealModel.quantity >
+                                        widget.publishedMealModel.menuItem
+                                            .maximumOrder
+                                    ? widget.publishedMealModel.menuItem
+                                        .maximumOrder
+                                        .toString()
+                                    : widget.publishedMealModel.quantity
+                                        .toString(),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
