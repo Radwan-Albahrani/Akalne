@@ -61,7 +61,7 @@ class HomeMenuController extends StateNotifier<bool> {
 
   // Method to reserve a meal
   void reserveMeal(
-      MenuItemModel meal, int quantity, BuildContext context) async {
+      PublishedMealModel meal, int quantity, BuildContext context) async {
     // Set state to true
     state = true;
 
@@ -120,8 +120,8 @@ class HomeMenuController extends StateNotifier<bool> {
       dateCreated: DateTime.now().toString(),
       quantity: quantity,
       meal: meal,
-      restaurantID: meal.restaurant.id as String,
-      user: user as UserModel,
+      restaurantID: meal.menuItem.restaurant.id as String,
+      user: user,
     );
 
     // Reserve the meal

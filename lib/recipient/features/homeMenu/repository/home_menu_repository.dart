@@ -25,13 +25,16 @@ class HomeMenuRepository {
       _firestore.collection(FirebaseConstants.restaurantsCollection);
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
-
   CollectionReference get _orderCount =>
       _firestore.collection(FirebaseConstants.orderCountCollection);
 
   Stream<List<PublishedMealModel>> getMenuItems() {
-    return _menu.orderBy("createdAt", descending: true).snapshots().map(
-        (event) => event.docs
+    return _menu
+        .where("quantity", isGreaterThan: 0)
+        .orderBy("quantity", descending: true)
+        .orderBy("createdAt", descending: true)
+        .snapshots()
+        .map((event) => event.docs
             .map((e) =>
                 PublishedMealModel.fromJson(e.data() as Map<String, dynamic>))
             .toList());
@@ -41,6 +44,8 @@ class HomeMenuRepository {
     return _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
+        .where("quantity", isGreaterThan: 0)
+        .orderBy("quantity", descending: true)
         .orderBy("createdAt", descending: true)
         .get()
         .then((value) => value.docs
@@ -94,6 +99,19 @@ class HomeMenuRepository {
           .collection(FirebaseConstants.ordersCollection)
           .doc(order.id.toString())
           .set(order.toJson());
+
+      // 3. Update meal quantity
+      await _menu
+          .doc(order.meal.id)
+          .update({"quantity": order.meal.quantity - order.quantity});
+
+      // 4. Update meal quantity in restaurant's published meals collection
+      await _restaurants
+          .doc(order.restaurantID)
+          .collection(FirebaseConstants.publishedMealsCollection)
+          .doc(order.meal.id)
+          .update({"quantity": order.meal.quantity - order.quantity});
+
       return const Right(null);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
