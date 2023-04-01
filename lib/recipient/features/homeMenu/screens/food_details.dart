@@ -158,8 +158,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             onPressed: () {
                               setState(() {
                                 if (count <
-                                    widget.publishedMealModel.menuItem
-                                        .maximumOrder) {
+                                    widget.publishedMealModel.quantity) {
                                   count++;
                                 }
                               });
@@ -212,12 +211,12 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Icon(
-                                Icons.numbers_outlined,
+                                Icons.calendar_today_outlined,
                                 color: AppColors.light["primary"],
                               ),
                               SizedBox(width: 10.w),
                               Text(
-                                "Available: ",
+                                "Date Added: ",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
@@ -225,7 +224,14 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.publishedMealModel.quantity.toString(),
+                                () {
+                                  final date = widget.dateCreated;
+                                  DateTime dateAdded = DateTime.parse(date);
+                                  final formattedDate = DateFormat.yMEd()
+                                      .add_jms()
+                                      .format(dateAdded);
+                                  return formattedDate;
+                                }.call(),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
@@ -262,8 +268,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.publishedMealModel.menuItem.maximumOrder
-                                    .toString(),
+                                widget.publishedMealModel.quantity.toString(),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
