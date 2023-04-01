@@ -212,12 +212,12 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Icon(
-                                Icons.calendar_today_outlined,
+                                Icons.numbers_outlined,
                                 color: AppColors.light["primary"],
                               ),
                               SizedBox(width: 10.w),
                               Text(
-                                "Date Added: ",
+                                "Available: ",
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
@@ -225,14 +225,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                () {
-                                  final date = widget.dateCreated;
-                                  DateTime dateAdded = DateTime.parse(date);
-                                  final formattedDate = DateFormat.yMEd()
-                                      .add_jms()
-                                      .format(dateAdded);
-                                  return formattedDate;
-                                }.call(),
+                                widget.publishedMealModel.quantity.toString(),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,

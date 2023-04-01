@@ -96,7 +96,7 @@ class HomeMenuRepository {
       final meal =
           PublishedMealModel.fromJson(doc.data() as Map<String, dynamic>);
       if (meal.quantity < order.quantity) {
-        return Left(Failure("Not enough quantity"));
+        return Left(Failure("Not enough available"));
       }
       // 1. Add order to user's orders collection
       await _users
