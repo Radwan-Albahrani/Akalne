@@ -29,28 +29,32 @@ class HomeMenuRepository {
       _firestore.collection(FirebaseConstants.orderCountCollection);
 
   Stream<List<PublishedMealModel>> getMenuItems() {
-    return _menu
-        .where("quantity", isGreaterThan: 0)
-        .orderBy("quantity", descending: true)
-        .orderBy("createdAt", descending: true)
-        .snapshots()
-        .map((event) => event.docs
+    final list = _menu.where("quantity", isGreaterThan: 0).snapshots().map(
+        (event) => event.docs
             .map((e) =>
                 PublishedMealModel.fromJson(e.data() as Map<String, dynamic>))
             .toList());
+    final orderedList = list.map((event) {
+      event.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return event;
+    });
+    return orderedList;
   }
 
   Future<List<PublishedMealModel>> getMenuItemsByID(String id) async {
-    return _restaurants
+    final list = _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
         .where("quantity", isGreaterThan: 0)
-        .orderBy("quantity", descending: true)
-        .orderBy("createdAt", descending: true)
         .get()
         .then((value) => value.docs
             .map((e) => PublishedMealModel.fromJson(e.data()))
             .toList());
+    final orderedList = list.then((value) {
+      value.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return value;
+    });
+    return orderedList;
   }
 
   Stream<List<OrderModel>> getOrders(String id) {
