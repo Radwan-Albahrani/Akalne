@@ -24,7 +24,7 @@ mixin _$OrderModel {
   String get status => throw _privateConstructorUsedError;
   String get dateCreated => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
-  MenuItemModel get meal => throw _privateConstructorUsedError;
+  PublishedMealModel get meal => throw _privateConstructorUsedError;
   String get restaurantID => throw _privateConstructorUsedError;
   UserModel get user => throw _privateConstructorUsedError;
 
@@ -45,11 +45,11 @@ abstract class $OrderModelCopyWith<$Res> {
       String status,
       String dateCreated,
       int quantity,
-      MenuItemModel meal,
+      PublishedMealModel meal,
       String restaurantID,
       UserModel user});
 
-  $MenuItemModelCopyWith<$Res> get meal;
+  $PublishedMealModelCopyWith<$Res> get meal;
   $UserModelCopyWith<$Res> get user;
 }
 
@@ -94,7 +94,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       meal: null == meal
           ? _value.meal
           : meal // ignore: cast_nullable_to_non_nullable
-              as MenuItemModel,
+              as PublishedMealModel,
       restaurantID: null == restaurantID
           ? _value.restaurantID
           : restaurantID // ignore: cast_nullable_to_non_nullable
@@ -108,8 +108,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $MenuItemModelCopyWith<$Res> get meal {
-    return $MenuItemModelCopyWith<$Res>(_value.meal, (value) {
+  $PublishedMealModelCopyWith<$Res> get meal {
+    return $PublishedMealModelCopyWith<$Res>(_value.meal, (value) {
       return _then(_value.copyWith(meal: value) as $Val);
     });
   }
@@ -136,12 +136,12 @@ abstract class _$$_OrderModelCopyWith<$Res>
       String status,
       String dateCreated,
       int quantity,
-      MenuItemModel meal,
+      PublishedMealModel meal,
       String restaurantID,
       UserModel user});
 
   @override
-  $MenuItemModelCopyWith<$Res> get meal;
+  $PublishedMealModelCopyWith<$Res> get meal;
   @override
   $UserModelCopyWith<$Res> get user;
 }
@@ -185,7 +185,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
       meal: null == meal
           ? _value.meal
           : meal // ignore: cast_nullable_to_non_nullable
-              as MenuItemModel,
+              as PublishedMealModel,
       restaurantID: null == restaurantID
           ? _value.restaurantID
           : restaurantID // ignore: cast_nullable_to_non_nullable
@@ -223,7 +223,7 @@ class _$_OrderModel implements _OrderModel {
   @override
   final int quantity;
   @override
-  final MenuItemModel meal;
+  final PublishedMealModel meal;
   @override
   final String restaurantID;
   @override
@@ -276,7 +276,7 @@ abstract class _OrderModel implements OrderModel {
       required final String status,
       required final String dateCreated,
       required final int quantity,
-      required final MenuItemModel meal,
+      required final PublishedMealModel meal,
       required final String restaurantID,
       required final UserModel user}) = _$_OrderModel;
 
@@ -292,7 +292,7 @@ abstract class _OrderModel implements OrderModel {
   @override
   int get quantity;
   @override
-  MenuItemModel get meal;
+  PublishedMealModel get meal;
   @override
   String get restaurantID;
   @override

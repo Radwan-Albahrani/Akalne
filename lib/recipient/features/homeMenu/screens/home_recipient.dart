@@ -94,7 +94,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                               itemCount: data.length,
                               itemBuilder: (context, index) {
                                 return FoodItemCard(
-                                  menuItemModel: data[index].menuItem,
+                                  publishedMealModel: data[index],
                                   createdAt: data[index].createdAt,
                                 );
                               },
@@ -106,7 +106,10 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
             );
           },
           loading: () => const Loader(),
-          error: (error, stack) => ErrorText(error: error.toString()),
+          error: (error, stack) {
+            print(error.toString());
+            return ErrorText(error: error.toString());
+          },
         );
   }
 }

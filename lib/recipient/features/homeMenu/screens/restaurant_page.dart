@@ -65,7 +65,7 @@ class _RestaurantPageState extends ConsumerState<RestaurantPage> {
                         ),
                         SizedBox(height: 10.h),
                         Row(
-                          children:  [
+                          children: [
                             Text(
                               "Available Meals",
                               style: TextStyle(
@@ -83,7 +83,7 @@ class _RestaurantPageState extends ConsumerState<RestaurantPage> {
                       itemCount: _menuItems.length,
                       itemBuilder: (context, index) {
                         return FoodItemCard(
-                          menuItemModel: _menuItems[index].menuItem,
+                          publishedMealModel: _menuItems[index],
                           createdAt: _menuItems[index].createdAt,
                           isReplace: true,
                         );

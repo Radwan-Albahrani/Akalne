@@ -1,5 +1,6 @@
 import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/widgets/back_button.dart';
@@ -14,13 +15,13 @@ import 'package:intl/intl.dart';
 class FoodDetails extends ConsumerStatefulWidget {
   const FoodDetails({
     super.key,
-    required this.menuItemModel,
+    required this.publishedMealModel,
     required this.dateCreated,
     this.isFavorite = false,
     this.isReplace = false,
   });
 
-  final MenuItemModel menuItemModel;
+  final PublishedMealModel publishedMealModel;
   final bool isFavorite;
   final bool isReplace;
   final String dateCreated;
@@ -38,7 +39,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
   void addMeal() {
     ref
         .read(homeMenuControllerProvider.notifier)
-        .reserveMeal(widget.menuItemModel, count, context);
+        .reserveMeal(widget.publishedMealModel, count, context);
   }
 
   int count = 1;
@@ -57,7 +58,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
               Column(
                 children: [
                   FoodImageFavorite(
-                    foodImage: widget.menuItemModel.image,
+                    foodImage: widget.publishedMealModel.menuItem.image,
                   ),
                 ],
               ),
@@ -67,7 +68,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                   child: Column(
                     children: [
                       Text(
-                        widget.menuItemModel.name,
+                        widget.publishedMealModel.menuItem.name,
                         style: TextStyle(
                           fontSize: 30.sp,
                           fontWeight: FontWeight.bold,
@@ -80,8 +81,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => RestaurantPage(
-                                  restaurantDetails:
-                                      widget.menuItemModel.restaurant,
+                                  restaurantDetails: widget
+                                      .publishedMealModel.menuItem.restaurant,
                                 ),
                               ),
                             );
@@ -89,8 +90,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => RestaurantPage(
-                                  restaurantDetails:
-                                      widget.menuItemModel.restaurant,
+                                  restaurantDetails: widget
+                                      .publishedMealModel.menuItem.restaurant,
                                 ),
                               ),
                             );
@@ -100,13 +101,14 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RestaurantLogo(
-                              image: widget.menuItemModel.restaurant
-                                  .restaurantLogo as String,
+                              image: widget.publishedMealModel.menuItem
+                                  .restaurant.restaurantLogo as String,
                               radius: 15.sp,
                             ),
                             SizedBox(width: 10.h),
                             Text(
-                              widget.menuItemModel.restaurant.name as String,
+                              widget.publishedMealModel.menuItem.restaurant.name
+                                  as String,
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
@@ -155,7 +157,9 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                if (count < widget.menuItemModel.maximumOrder) {
+                                if (count <
+                                    widget.publishedMealModel.menuItem
+                                        .maximumOrder) {
                                   count++;
                                 }
                               });
@@ -183,7 +187,7 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                         children: [
                           Flexible(
                             child: Text(
-                              widget.menuItemModel.description,
+                              widget.publishedMealModel.menuItem.description,
                               overflow: TextOverflow.visible,
                               textAlign: TextAlign.left,
                               style: TextStyle(
@@ -265,7 +269,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                                 ),
                               ),
                               Text(
-                                widget.menuItemModel.maximumOrder.toString(),
+                                widget.publishedMealModel.menuItem.maximumOrder
+                                    .toString(),
                                 style: TextStyle(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
@@ -303,8 +308,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                               ),
                               Flexible(
                                 child: Text(
-                                  widget.menuItemModel.restaurant.address
-                                      as String,
+                                  widget.publishedMealModel.menuItem.restaurant
+                                      .address as String,
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.bold,

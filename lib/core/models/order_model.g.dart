@@ -12,7 +12,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       dateCreated: json['dateCreated'] as String,
       quantity: json['quantity'] as int,
-      meal: MenuItemModel.fromJson(json['meal'] as Map<String, dynamic>),
+      meal: PublishedMealModel.fromJson(json['meal'] as Map<String, dynamic>),
       restaurantID: json['restaurantID'] as String,
       user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );

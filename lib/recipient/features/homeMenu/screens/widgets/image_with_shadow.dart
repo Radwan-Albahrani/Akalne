@@ -89,14 +89,12 @@ class _ImageWithShadowState extends State<ImageWithShadow> {
                           minHeight: 20.h,
                           maxHeight: 40.h,
                         ),
-                        child: Flexible(
-                          child: Text(
-                            widget.restaurantDetails.address as String,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        child: Text(
+                          widget.restaurantDetails.address as String,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),

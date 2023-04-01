@@ -1,4 +1,5 @@
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/utils.dart';
 import 'package:akalne/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +10,12 @@ import '../food_details.dart';
 class FoodItemCard extends StatelessWidget {
   const FoodItemCard({
     super.key,
-    required this.menuItemModel,
+    required this.publishedMealModel,
     required this.createdAt,
     this.isReplace = false,
   });
 
-  final MenuItemModel menuItemModel;
+  final PublishedMealModel publishedMealModel;
   final bool isReplace;
   final String createdAt;
 
@@ -26,7 +27,7 @@ class FoodItemCard extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => FoodDetails(
-                menuItemModel: menuItemModel,
+                publishedMealModel: publishedMealModel,
                 dateCreated: createdAt,
                 isReplace: isReplace,
               ),
@@ -36,7 +37,7 @@ class FoodItemCard extends StatelessWidget {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (context) => FoodDetails(
-                menuItemModel: menuItemModel,
+                publishedMealModel: publishedMealModel,
                 dateCreated: createdAt,
                 isReplace: isReplace,
               ),
@@ -72,7 +73,7 @@ class FoodItemCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: NetworkImage(menuItemModel.image),
+                        image: NetworkImage(publishedMealModel.menuItem.image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -88,7 +89,7 @@ class FoodItemCard extends StatelessWidget {
                           minWidth: 100.w,
                         ),
                         child: Text(
-                          menuItemModel.name,
+                          publishedMealModel.menuItem.name,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 16.sp,
@@ -98,7 +99,7 @@ class FoodItemCard extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       Text(
-                        menuItemModel.restaurant.name as String,
+                        publishedMealModel.menuItem.restaurant.name as String,
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
@@ -140,7 +141,7 @@ class FoodItemCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            menuItemModel.restaurant.distance,
+                            publishedMealModel.menuItem.restaurant.distance,
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,

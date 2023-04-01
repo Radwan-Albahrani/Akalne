@@ -31,7 +31,7 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
         context,
         MaterialPageRoute(
           builder: (context) => RestaurantPage(
-            restaurantDetails: widget.orderModel.meal.restaurant,
+            restaurantDetails: widget.orderModel.meal.menuItem.restaurant,
           ),
         ),
       ),
@@ -69,7 +69,8 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: NetworkImage(widget.orderModel.meal.image),
+                        image:
+                            NetworkImage(widget.orderModel.meal.menuItem.image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -77,7 +78,7 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
                   Column(
                     children: [
                       Text(
-                        widget.orderModel.meal.name,
+                        widget.orderModel.meal.menuItem.name,
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,
@@ -130,13 +131,13 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RestaurantLogo(
-                  image: widget.orderModel.meal.restaurant.restaurantLogo
-                      as String,
+                  image: widget.orderModel.meal.menuItem.restaurant
+                      .restaurantLogo as String,
                   radius: 15.sp,
                 ),
                 SizedBox(width: 10.h),
                 Text(
-                  widget.orderModel.meal.restaurant.name as String,
+                  widget.orderModel.meal.menuItem.restaurant.name as String,
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold,

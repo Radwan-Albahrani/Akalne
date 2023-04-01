@@ -98,7 +98,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: NetworkImage(widget.order.meal.image),
+                        image: NetworkImage(widget.order.meal.menuItem.image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -106,7 +106,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                   Column(
                     children: [
                       Text(
-                        widget.order.meal.name,
+                        widget.order.meal.menuItem.name,
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.bold,

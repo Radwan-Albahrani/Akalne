@@ -1,4 +1,5 @@
 import 'package:akalne/core/models/menu_item_model.dart';
+import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/models/user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +14,7 @@ class OrderModel with _$OrderModel {
     required String status,
     required String dateCreated,
     required int quantity,
-    required MenuItemModel meal,
+    required PublishedMealModel meal,
     required String restaurantID,
     required UserModel user,
   }) = _OrderModel;
