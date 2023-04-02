@@ -40,22 +40,22 @@ class RestaurantProfileRepository {
           "name": restaurantName,
           "address": restaurantAddress,
           "phone": restaurantPhone,
-          "image": restaurantImage,
+          "restaurantImage": restaurantImage,
         });
       } else if (restaurantImage == "") {
         await _restaurants.doc(restaurantId).update({
           "name": restaurantName,
           "address": restaurantAddress,
           "phone": restaurantPhone,
-          "logo": restaurantLogo,
+          "restaurantLogo": restaurantLogo,
         });
       } else {
         await _restaurants.doc(restaurantId).update({
           "name": restaurantName,
           "address": restaurantAddress,
           "phone": restaurantPhone,
-          "logo": restaurantLogo,
-          "image": restaurantImage,
+          "restaurantLogo": restaurantLogo,
+          "restaurantImage": restaurantImage,
         });
       }
       return const Right(null);
