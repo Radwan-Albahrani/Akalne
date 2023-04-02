@@ -25,7 +25,21 @@ class OrderItemCard extends ConsumerStatefulWidget {
 
 class _OrderItemCardState extends ConsumerState<OrderItemCard> {
   void showReason() {
-    // TODO: Show reason if exists
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Reason"),
+        content: Text(widget.orderModel.reason!),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text("OK"),
+          ),
+        ],
+      ),
+    );
   }
 
   void goToRestaurantPage() {
@@ -159,7 +173,10 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
           ),
         ),
         GestureDetector(
-          onTap: widget.orderModel.reason != null ? showReason : null,
+          onTap:
+              widget.orderModel.reason != null || widget.orderModel.reason != ""
+                  ? showReason
+                  : null,
           child: Container(
             height: 50.h,
             width: double.infinity,
