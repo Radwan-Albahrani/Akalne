@@ -46,12 +46,12 @@ class MenuController extends StateNotifier<bool> {
     state = true;
     String imagePath = "";
     const uuid = Uuid();
-
+    final productId = uuid.v4();
     if (productImage.path.isNotEmpty) {
       final res = await _storageRepository.storeFile(
         file: productImage,
         path: "restaurants/menu",
-        id: uuid.v4(),
+        id: productId,
       );
 
       res.fold(
@@ -62,7 +62,7 @@ class MenuController extends StateNotifier<bool> {
     RestaurantModel model = _ref.read(restaurantProvider)!;
 
     MenuItemModel menuItemModel = MenuItemModel(
-      id: uuid.v4(),
+      id: productId,
       name: productName,
       maximumOrder: int.parse(productMaxQuantity),
       description: description,
