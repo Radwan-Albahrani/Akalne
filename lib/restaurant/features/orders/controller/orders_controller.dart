@@ -34,19 +34,26 @@ class OrdersController extends StateNotifier<bool> {
     return _orderRepository.getOrdersByResturantId(id);
   }
 
-  void changeOrderStatus(
-      {required OrderModel order,
-      required String status,
-      required BuildContext context}) async {
+  void changeOrderStatus({
+    required OrderModel order,
+    required String status,
+    required BuildContext context,
+    String? reason,
+  }) async {
     state = true;
-    final res = await _orderRepository.changeOrderStatus(order, status);
+    final res =
+        await _orderRepository.changeOrderStatus(order, status, reason ?? "");
     state = false;
 
     res.fold(
       (l) {
         showSnackBar(context, l.message);
       },
-      (r) {},
+      (r) {
+        if (reason != null) {
+          Navigator.of(context).pop();
+        }
+      },
     );
   }
 }

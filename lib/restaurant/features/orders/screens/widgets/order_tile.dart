@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:akalne/core/utils.dart';
+import 'package:akalne/restaurant/features/orders/screens/widgets/add_note_dialog.dart';
 import 'package:akalne/restaurant/features/orders/screens/widgets/view_user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,6 +35,22 @@ class _OrderTileState extends ConsumerState<OrderTile> {
     } else if (widget.order.status == "Rejected") {
       color = AppColors.light["secondary"];
     }
+  }
+
+  void showDialogHandler() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AddNoteDialog(
+        order: widget.order,
+        onTap: changeColor,
+      ),
+    );
+  }
+
+  void changeColor() {
+    setState(() {
+      color = AppColors.light["secondary"];
+    });
   }
 
   void changeOrderStatus(String status) {
@@ -180,7 +197,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: IconButton(
-                                onPressed: () => changeOrderStatus("Rejected"),
+                                onPressed: showDialogHandler,
                                 icon: const Icon(
                                   Icons.close,
                                   color: Colors.white,

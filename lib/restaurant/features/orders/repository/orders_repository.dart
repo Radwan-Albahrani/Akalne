@@ -40,14 +40,15 @@ class OrderRepository {
         );
   }
 
-  FutureVoid changeOrderStatus(OrderModel order, String status) async {
+  FutureVoid changeOrderStatus(
+      OrderModel order, String status, String reason) async {
     try {
       await _restaurants
           .doc(order.restaurantID)
           .collection(FirebaseConstants.ordersCollection)
           .doc(order.id.toString())
           .update(
-        {"status": status},
+        {"status": status, "reason": reason},
       );
 
       await _users
@@ -55,7 +56,7 @@ class OrderRepository {
           .collection(FirebaseConstants.ordersCollection)
           .doc(order.id.toString())
           .update(
-        {"status": status},
+        {"status": status, "reason": reason},
       );
       return const Right(null);
     } on FirebaseException catch (e) {
