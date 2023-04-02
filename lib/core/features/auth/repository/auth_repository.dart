@@ -72,7 +72,6 @@ class AuthRepository {
         return Left(Failure("Failed to create user"));
       }
 
-      print(userModel);
       Future.delayed(const Duration(seconds: 1));
       return Right(userModel);
     } on FirebaseException catch (e) {
@@ -93,7 +92,7 @@ class AuthRepository {
       RestaurantModel? restaurantModel;
       UserModel? userModel;
       userInfo.fold(
-          (l) => print(l),
+          (l) => throw l,
           (userData) => userData.fold((user) => userModel = user,
               (restaurant) => restaurantModel = restaurant));
       if (userModel != null) {
@@ -111,12 +110,9 @@ class AuthRepository {
   FutureEither<Either<UserModel, RestaurantModel>> getUserData(
       String uid) async {
     try {
-      print("here");
       var type = await getUserType(uid);
-      print(type);
       if (type == "user") {
         var event = await _users.doc(uid).get();
-        print(event.data());
         return Right(
             Left(UserModel.fromJson(event.data() as Map<String, dynamic>)));
       } else {

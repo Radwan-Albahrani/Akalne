@@ -1,6 +1,5 @@
 import 'package:akalne/core/constants/firebase_constants.dart';
 import 'package:akalne/core/failure.dart';
-import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/order_model.dart';
 import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/models/restaurant_model.dart';

@@ -27,14 +27,12 @@ final authStateChangeProvider = StreamProvider((ref) {
 class AuthController extends StateNotifier<bool> {
   final AuthRepository _authRepository;
   final Ref _ref;
-  final StorageRepository _storageRepository;
   AuthController(
       {required AuthRepository authRepository,
       required Ref ref,
       required StorageRepository storageRepository})
       : _authRepository = authRepository,
         _ref = ref,
-        _storageRepository = storageRepository,
         super(false);
 
   Stream<User?> get authStateChange => _authRepository.authStateChange;
@@ -42,7 +40,10 @@ class AuthController extends StateNotifier<bool> {
   Future<void> getUserData(String uid, BuildContext context) async {
     var data = await _authRepository.getUserData(uid);
     data.fold(
-      (l) => print(l.message),
+      (l) => showSnackBar(
+        context,
+        l.message,
+      ),
       (r) => r.fold(
         (user) {
           _ref.read(userProvider.notifier).update((state) => user);
@@ -72,7 +73,6 @@ class AuthController extends StateNotifier<bool> {
               l.message,
             ), (userModel) {
       _ref.read(userProvider.notifier).update((state) => userModel);
-      print(userModel);
       Navigator.pop(context);
     });
   }

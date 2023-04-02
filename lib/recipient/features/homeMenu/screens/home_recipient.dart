@@ -98,7 +98,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
                                 ToggleSwitch(
                                   items: const ["Near Me", "Recent"],
                                   onChanged: (value) {
-                                    print('switched to: $value');
+                                    // TODO: implement
                                   },
                                 ),
                               ],
@@ -129,7 +129,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
           },
           loading: () => const Loader(),
           error: (error, stack) {
-            print(error.toString());
+            debugPrint(error.toString());
             return ErrorText(error: error.toString());
           },
         );

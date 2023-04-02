@@ -22,11 +22,10 @@ class _RestaurantProfileScreenState
     ref.read(authControllerProvider.notifier).logout();
   }
 
-  
-
-  void navigateToEditProfile(BuildContext context , RestaurantModel restaurantModel) {
+  void navigateToEditProfile(
+      BuildContext context, RestaurantModel restaurantModel) {
     Navigator.of(context)
-        .pushNamed(AppRoutes.editResturantScreen, arguments: restaurantModel);
+        .pushNamed(AppRoutes.editRestaurantScreen, arguments: restaurantModel);
   }
 
   @override
@@ -42,7 +41,7 @@ class _RestaurantProfileScreenState
             CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 50.sp,
-              backgroundImage:  NetworkImage(restaurant.restaurantLogo!),
+              backgroundImage: NetworkImage(restaurant.restaurantLogo!),
             ),
             SizedBox(height: 10.h),
             Text(
@@ -61,7 +60,7 @@ class _RestaurantProfileScreenState
             ProfileTile(
               title: "Profile Information",
               icon: Icons.person,
-              onTap: () => navigateToEditProfile(context , restaurant),
+              onTap: () => navigateToEditProfile(context, restaurant),
             ),
             ProfileTile(
               title: "Notifications",

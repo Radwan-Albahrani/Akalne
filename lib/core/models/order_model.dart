@@ -1,4 +1,3 @@
-import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/models/user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

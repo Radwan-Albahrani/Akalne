@@ -1,5 +1,4 @@
 import 'package:akalne/core/common/loader.dart';
-import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/homeMenu/screens/restaurant_page.dart';
