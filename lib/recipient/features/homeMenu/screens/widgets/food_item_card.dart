@@ -116,7 +116,7 @@ class FoodItemCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            timeAgoSinceDate(createdAt),
+                            timeAgoSinceDate(createdAt, numericDates: false),
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,

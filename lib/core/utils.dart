@@ -55,7 +55,7 @@ String timeAgoSinceDate(String dateString, {bool numericDates = true}) {
     return DateFormat('dd MMM yyyy').format(notificationDate);
   } else if (difference.inDays > 2) {
     return '${difference.inDays} days ago';
-  } else if (difference.inDays > 1) {
+  } else if (difference.inDays >= 1) {
     return numericDates ? '1 day ago' : 'Yesterday';
   } else if (difference.inHours > 1) {
     return '${difference.inHours} hrs ago';

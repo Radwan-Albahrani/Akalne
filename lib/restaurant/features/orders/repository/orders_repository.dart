@@ -28,6 +28,7 @@ class OrderRepository {
     return _restaurants
         .doc(Id)
         .collection(FirebaseConstants.ordersCollection)
+        .orderBy("dateCreated", descending: true)
         .snapshots()
         .map(
           (event) => event.docs

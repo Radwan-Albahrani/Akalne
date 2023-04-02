@@ -29,32 +29,22 @@ class HomeMenuRepository {
       _firestore.collection(FirebaseConstants.orderCountCollection);
 
   Stream<List<PublishedMealModel>> getMenuItems() {
-    final list = _menu.where("quantity", isGreaterThan: 0).snapshots().map(
+    return _menu.orderBy("createdAt", descending: true).snapshots().map(
         (event) => event.docs
             .map((e) =>
                 PublishedMealModel.fromJson(e.data() as Map<String, dynamic>))
             .toList());
-    final orderedList = list.map((event) {
-      event.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-      return event;
-    });
-    return orderedList;
   }
 
   Future<List<PublishedMealModel>> getMenuItemsByID(String id) async {
-    final list = _restaurants
+    return _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
-        .where("quantity", isGreaterThan: 0)
+        .orderBy("createdAt", descending: true)
         .get()
         .then((value) => value.docs
             .map((e) => PublishedMealModel.fromJson(e.data()))
             .toList());
-    final orderedList = list.then((value) {
-      value.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-      return value;
-    });
-    return orderedList;
   }
 
   Stream<List<OrderModel>> getOrders(String id) {
@@ -111,18 +101,28 @@ class HomeMenuRepository {
           .doc(order.id.toString())
           .set(order.toJson());
 
-      // 3. Update meal quantity
-      await _menu
-          .doc(order.meal.id)
-          .update({"quantity": order.meal.quantity - order.quantity});
+      if (order.meal.quantity - order.quantity <= 0) {
+        // 3. Delete meal from menu
+        await _menu.doc(order.meal.id).delete();
+        // 4. Delete meal from restaurant's published meals collection
+        await _restaurants
+            .doc(order.restaurantID)
+            .collection(FirebaseConstants.publishedMealsCollection)
+            .doc(order.meal.id)
+            .delete();
+      } else {
+        // 3. Update meal quantity
+        await _menu
+            .doc(order.meal.id)
+            .update({"quantity": order.meal.quantity - order.quantity});
 
-      // 4. Update meal quantity in restaurant's published meals collection
-      await _restaurants
-          .doc(order.restaurantID)
-          .collection(FirebaseConstants.publishedMealsCollection)
-          .doc(order.meal.id)
-          .update({"quantity": order.meal.quantity - order.quantity});
-
+        // 4. Update meal quantity in restaurant's published meals collection
+        await _restaurants
+            .doc(order.restaurantID)
+            .collection(FirebaseConstants.publishedMealsCollection)
+            .doc(order.meal.id)
+            .update({"quantity": order.meal.quantity - order.quantity});
+      }
       return const Right(null);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
