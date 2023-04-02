@@ -1,6 +1,8 @@
 import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
+import 'package:akalne/core/models/order_model.dart';
 import 'package:akalne/core/models/restaurant_model.dart';
+import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/restaurant/features/orders/screens/widgets/order_tile.dart';
 import 'package:flutter/material.dart';
@@ -35,69 +37,84 @@ class _RestaurantOrdersScreenState
     _searchController.dispose();
   }
 
+  Future<void> getUserInformation(List<OrderModel> data) async {
+    var controller = ref.read(ordersControllerProvider.notifier);
+    UserModel? user = await controller.getUser(data[0].userId, context);
+    if (user != null) {
+      for (var element in data) {
+        element.user = user;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-        child: Column(
-          children: [
-            Align(
-                alignment: Alignment.topLeft,
-                child: Text('Hey ${_restaurant!.name}')),
-            SizedBox(
-              height: 10.h,
-            ),
-            RoundedSearchField(
-              hintText: "Search",
-              obscureText: false,
-              controller: _searchController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              },
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Orders',
-                style: TextStyle(
-                  fontSize: 12.sp,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            ref.watch(restaurantOrdersProvider).when(
-                  data: (data) => data.isEmpty
-                      ? const Center(
-                          child: Text('No orders yet'),
-                        )
-                      : Expanded(
-                          child: ListView.builder(
-                            itemCount: data.length,
-                            itemBuilder: (context, index) {
-                              return OrderTile(
-                                order: data[index],
-                              );
-                            },
+    return ref.watch(restaurantOrdersProvider).when(
+          data: (data) => FutureBuilder(
+            future: getUserInformation(data),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                    child: Column(children: [
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text('Hey ${_restaurant!.name}')),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      RoundedSearchField(
+                        hintText: "Search",
+                        obscureText: false,
+                        controller: _searchController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Orders',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.grey,
                           ),
                         ),
-                  loading: () => const Loader(),
-                  error: (error, stack) => ErrorText(
-                    error: error.toString(),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      data.isEmpty
+                          ? const Text('No orders yet')
+                          : Expanded(
+                              child: ListView.builder(
+                                itemCount: data.length,
+                                itemBuilder: (context, index) {
+                                  return OrderTile(
+                                    order: data[index],
+                                  );
+                                },
+                              ),
+                            )
+                    ]),
                   ),
-                ),
-          ],
-        ),
-      ),
-    );
+                );
+              } else {
+                return const Loader();
+              }
+            },
+          ),
+          loading: () => const Loader(),
+          error: (error, stack) => ErrorText(
+            error: error.toString(),
+          ),
+        );
   }
 }

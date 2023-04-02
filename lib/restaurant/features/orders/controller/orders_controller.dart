@@ -1,3 +1,4 @@
+import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/core/utils.dart';
 import 'package:akalne/restaurant/features/orders/repository/orders_repository.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ final ordersControllerProvider = StateNotifierProvider<OrdersController, bool>(
 
 final restaurantOrdersProvider = StreamProvider((ref) {
   final controller = ref.watch(ordersControllerProvider.notifier);
-  return controller.getOrdersByRestaurantId();
+  return controller.getOrdersByResturantId();
 });
 
 class OrdersController extends StateNotifier<bool> {
@@ -29,9 +30,9 @@ class OrdersController extends StateNotifier<bool> {
         _ref = ref,
         super(false);
 
-  Stream<List<OrderModel>> getOrdersByRestaurantId() {
+  Stream<List<OrderModel>> getOrdersByResturantId() {
     final id = _ref.read(restaurantProvider)!.id ?? "";
-    return _orderRepository.getOrdersByRestaurantId(id);
+    return _orderRepository.getOrdersByResturantId(id);
   }
 
   void changeOrderStatus({
@@ -53,6 +54,19 @@ class OrdersController extends StateNotifier<bool> {
         if (reason != null) {
           Navigator.of(context).pop();
         }
+      },
+    );
+  }
+
+  Future<UserModel?> getUser(String id, BuildContext context) async {
+    final res = await _orderRepository.getUser(id);
+    return res.fold(
+      (l) {
+        showSnackBar(context, l.message);
+        return null;
+      },
+      (r) {
+        return r;
       },
     );
   }

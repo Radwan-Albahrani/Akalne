@@ -25,8 +25,8 @@ class OrderRepository {
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
 
-  Stream<List<OrderModel>> getOrdersByRestaurantId(String Id) {
-    Stream<List<OrderModel>> stream = _restaurants
+  Stream<List<OrderModel>> getOrdersByResturantId(String Id) {
+    return _restaurants
         .doc(Id)
         .collection(FirebaseConstants.ordersCollection)
         .orderBy("dateCreated", descending: true)
@@ -40,20 +40,6 @@ class OrderRepository {
               )
               .toList(),
         );
-
-    var userId = stream.first.then((value) => value.first.userId);
-    var userModel = _users.doc(userId.toString()).get().then(
-          (value) => UserModel.fromJson(
-            value.data() as Map<String, dynamic>,
-          ),
-        );
-
-    stream.forEach((element) {
-      for (var element in element) {
-        userModel.then((value) => element.user = value);
-      }
-    });
-    return stream;
   }
 
   FutureVoid changeOrderStatus(
@@ -75,6 +61,21 @@ class OrderRepository {
         {"status": status, "reason": reason},
       );
       return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  FutureEither<UserModel> getUser(String id) async {
+    try {
+      UserModel user = await _users.doc(id).get().then(
+            (value) => UserModel.fromJson(
+              value.data() as Map<String, dynamic>,
+            ),
+          );
+      return Right(user);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
     } catch (e) {
