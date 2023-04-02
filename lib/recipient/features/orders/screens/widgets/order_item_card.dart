@@ -158,23 +158,23 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
             ),
           ),
         ),
-        Container(
-          height: 50.h,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: const Offset(0, 2), // changes position of shadow
-              ),
-            ],
-          ),
-          child: GestureDetector(
-            onTap: widget.orderModel.reason != null ? showReason : null,
+        GestureDetector(
+          onTap: widget.orderModel.reason != null ? showReason : null,
+          child: Container(
+            height: 50.h,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(0, 2), // changes position of shadow
+                ),
+              ],
+            ),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 500),
               width: double.infinity,
