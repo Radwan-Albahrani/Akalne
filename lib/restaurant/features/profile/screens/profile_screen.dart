@@ -22,21 +22,17 @@ class _RestaurantProfileScreenState
     ref.read(authControllerProvider.notifier).logout();
   }
 
-  late final RestaurantModel? restaurantModel;
+  
 
-  @override
-  void initState() {
-    restaurantModel = ref.read(restaurantProvider);
-    super.initState();
-  }
-
-  void navigateToEditProfile(BuildContext context) {
+  void navigateToEditProfile(BuildContext context , RestaurantModel restaurantModel) {
     Navigator.of(context)
         .pushNamed(AppRoutes.editResturantScreen, arguments: restaurantModel);
   }
 
   @override
   Widget build(BuildContext context) {
+    final restaurant = ref.watch(restaurantProvider)!;
+
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(12),
@@ -46,16 +42,16 @@ class _RestaurantProfileScreenState
             CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 50.sp,
-              backgroundImage: const AssetImage(AppConstants.defaultProfile),
+              backgroundImage:  NetworkImage(restaurant.restaurantLogo!),
             ),
             SizedBox(height: 10.h),
             Text(
-              restaurantModel!.name as String,
+              restaurant.name as String,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 12.h),
             Text(
-              restaurantModel!.email as String,
+              restaurant.email as String,
               style: TextStyle(
                 fontSize: 16.sp,
                 color: Theme.of(context).colorScheme.secondary,
@@ -65,7 +61,7 @@ class _RestaurantProfileScreenState
             ProfileTile(
               title: "Profile Information",
               icon: Icons.person,
-              onTap: () {},
+              onTap: () => navigateToEditProfile(context , restaurant),
             ),
             ProfileTile(
               title: "Notifications",

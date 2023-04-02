@@ -4,6 +4,7 @@ import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/recipient/features/home/screens/home_screen.dart';
 import 'package:akalne/restaurant/features/home/screens/home_screen.dart';
 import 'package:akalne/restaurant/features/orders/screens/widgets/view_user_profile.dart';
+import 'package:akalne/restaurant/features/profile/screens/edit_restaurant_profile.dart';
 import 'package:akalne/theme/palette.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -80,6 +81,11 @@ class _MyAppState extends ConsumerState<MyApp> {
             routes: {
               AppRoutes.loginScreen: (context) => const LoginScreen(),
               AppRoutes.signUpScreen: (context) => const SignUpScreen(),
+              AppRoutes.editResturantScreen: (context) =>
+                  EditRestaurantProfileScreen(
+                    restaurantModel: ModalRoute.of(context)?.settings.arguments
+                        as RestaurantModel,
+                  ),
             });
       },
     );
