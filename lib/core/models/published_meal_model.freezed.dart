@@ -21,9 +21,16 @@ PublishedMealModel _$PublishedMealModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PublishedMealModel {
   String get createdAt => throw _privateConstructorUsedError;
+  set createdAt(String value) => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  set quantity(int value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   MenuItemModel get menuItem => throw _privateConstructorUsedError;
+  set menuItem(MenuItemModel value) => throw _privateConstructorUsedError;
+  RestaurantModel? get restaurantInfo => throw _privateConstructorUsedError;
+  set restaurantInfo(RestaurantModel? value) =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,9 +45,14 @@ abstract class $PublishedMealModelCopyWith<$Res> {
       _$PublishedMealModelCopyWithImpl<$Res, PublishedMealModel>;
   @useResult
   $Res call(
-      {String createdAt, int quantity, String id, MenuItemModel menuItem});
+      {String createdAt,
+      int quantity,
+      String id,
+      MenuItemModel menuItem,
+      RestaurantModel? restaurantInfo});
 
   $MenuItemModelCopyWith<$Res> get menuItem;
+  $RestaurantModelCopyWith<$Res>? get restaurantInfo;
 }
 
 /// @nodoc
@@ -60,6 +72,7 @@ class _$PublishedMealModelCopyWithImpl<$Res, $Val extends PublishedMealModel>
     Object? quantity = null,
     Object? id = null,
     Object? menuItem = null,
+    Object? restaurantInfo = freezed,
   }) {
     return _then(_value.copyWith(
       createdAt: null == createdAt
@@ -78,6 +91,10 @@ class _$PublishedMealModelCopyWithImpl<$Res, $Val extends PublishedMealModel>
           ? _value.menuItem
           : menuItem // ignore: cast_nullable_to_non_nullable
               as MenuItemModel,
+      restaurantInfo: freezed == restaurantInfo
+          ? _value.restaurantInfo
+          : restaurantInfo // ignore: cast_nullable_to_non_nullable
+              as RestaurantModel?,
     ) as $Val);
   }
 
@@ -86,6 +103,18 @@ class _$PublishedMealModelCopyWithImpl<$Res, $Val extends PublishedMealModel>
   $MenuItemModelCopyWith<$Res> get menuItem {
     return $MenuItemModelCopyWith<$Res>(_value.menuItem, (value) {
       return _then(_value.copyWith(menuItem: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RestaurantModelCopyWith<$Res>? get restaurantInfo {
+    if (_value.restaurantInfo == null) {
+      return null;
+    }
+
+    return $RestaurantModelCopyWith<$Res>(_value.restaurantInfo!, (value) {
+      return _then(_value.copyWith(restaurantInfo: value) as $Val);
     });
   }
 }
@@ -99,10 +128,16 @@ abstract class _$$_PublishedMealModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String createdAt, int quantity, String id, MenuItemModel menuItem});
+      {String createdAt,
+      int quantity,
+      String id,
+      MenuItemModel menuItem,
+      RestaurantModel? restaurantInfo});
 
   @override
   $MenuItemModelCopyWith<$Res> get menuItem;
+  @override
+  $RestaurantModelCopyWith<$Res>? get restaurantInfo;
 }
 
 /// @nodoc
@@ -120,6 +155,7 @@ class __$$_PublishedMealModelCopyWithImpl<$Res>
     Object? quantity = null,
     Object? id = null,
     Object? menuItem = null,
+    Object? restaurantInfo = freezed,
   }) {
     return _then(_$_PublishedMealModel(
       createdAt: null == createdAt
@@ -138,6 +174,10 @@ class __$$_PublishedMealModelCopyWithImpl<$Res>
           ? _value.menuItem
           : menuItem // ignore: cast_nullable_to_non_nullable
               as MenuItemModel,
+      restaurantInfo: freezed == restaurantInfo
+          ? _value.restaurantInfo
+          : restaurantInfo // ignore: cast_nullable_to_non_nullable
+              as RestaurantModel?,
     ));
   }
 }
@@ -150,43 +190,27 @@ class _$_PublishedMealModel implements _PublishedMealModel {
       {required this.createdAt,
       required this.quantity,
       required this.id,
-      required this.menuItem});
+      required this.menuItem,
+      this.restaurantInfo});
 
   factory _$_PublishedMealModel.fromJson(Map<String, dynamic> json) =>
       _$$_PublishedMealModelFromJson(json);
 
   @override
-  final String createdAt;
+  String createdAt;
   @override
-  final int quantity;
+  int quantity;
   @override
-  final String id;
+  String id;
   @override
-  final MenuItemModel menuItem;
+  MenuItemModel menuItem;
+  @override
+  RestaurantModel? restaurantInfo;
 
   @override
   String toString() {
-    return 'PublishedMealModel(createdAt: $createdAt, quantity: $quantity, id: $id, menuItem: $menuItem)';
+    return 'PublishedMealModel(createdAt: $createdAt, quantity: $quantity, id: $id, menuItem: $menuItem, restaurantInfo: $restaurantInfo)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_PublishedMealModel &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.menuItem, menuItem) ||
-                other.menuItem == menuItem));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, createdAt, quantity, id, menuItem);
 
   @JsonKey(ignore: true)
   @override
@@ -205,22 +229,30 @@ class _$_PublishedMealModel implements _PublishedMealModel {
 
 abstract class _PublishedMealModel implements PublishedMealModel {
   factory _PublishedMealModel(
-      {required final String createdAt,
-      required final int quantity,
-      required final String id,
-      required final MenuItemModel menuItem}) = _$_PublishedMealModel;
+      {required String createdAt,
+      required int quantity,
+      required String id,
+      required MenuItemModel menuItem,
+      RestaurantModel? restaurantInfo}) = _$_PublishedMealModel;
 
   factory _PublishedMealModel.fromJson(Map<String, dynamic> json) =
       _$_PublishedMealModel.fromJson;
 
   @override
   String get createdAt;
+  set createdAt(String value);
   @override
   int get quantity;
+  set quantity(int value);
   @override
   String get id;
+  set id(String value);
   @override
   MenuItemModel get menuItem;
+  set menuItem(MenuItemModel value);
+  @override
+  RestaurantModel? get restaurantInfo;
+  set restaurantInfo(RestaurantModel? value);
   @override
   @JsonKey(ignore: true)
   _$$_PublishedMealModelCopyWith<_$_PublishedMealModel> get copyWith =>

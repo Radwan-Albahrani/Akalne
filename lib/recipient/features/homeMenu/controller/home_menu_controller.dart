@@ -2,6 +2,7 @@ import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/order_model.dart';
 import 'package:akalne/core/models/published_meal_model.dart';
+import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/core/type_defs.dart';
 import 'package:akalne/core/utils.dart';
@@ -121,7 +122,7 @@ class HomeMenuController extends StateNotifier<bool> {
       quantity: quantity,
       meal: meal,
       restaurantID: meal.menuItem.restaurant.id as String,
-      user: user,
+      userId: userID,
     );
 
     // Reserve the meal
@@ -134,5 +135,15 @@ class HomeMenuController extends StateNotifier<bool> {
         _homeMenuRepository.increaseOrderCount(id);
       },
     );
+  }
+
+  Future<RestaurantModel?> getRestaurant(
+      String id, BuildContext context) async {
+    var results = await _homeMenuRepository.getRestaurant(id);
+    RestaurantModel? restaurantModel;
+    results.fold((l) {
+      showSnackBar(context, l.message);
+    }, (r) => restaurantModel = r);
+    return restaurantModel;
   }
 }

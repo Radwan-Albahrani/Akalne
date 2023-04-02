@@ -32,11 +32,10 @@ class _RestaurantPageState extends ConsumerState<RestaurantPage> {
     getData();
   }
 
-  void getData() async {
+  Future<void> getData() async {
     setState(() {
       isLoading = true;
     });
-
     _menuItems = await _controller
         .getMenuItemsByID(widget.restaurantDetails.id as String);
 

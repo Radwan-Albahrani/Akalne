@@ -77,7 +77,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => ViewUserScreen(
-            user: widget.order.user,
+            user: widget.order.user!,
           ),
         ),
       ),
@@ -228,7 +228,7 @@ class _OrderTileState extends ConsumerState<OrderTile> {
                       color: Colors.white,
                       size: 30.sp,
                     ),
-                    Text(widget.order.user.name,
+                    Text(widget.order.user!.name,
                         style: TextStyle(
                           fontSize: 16.sp,
                           color: Colors.white,

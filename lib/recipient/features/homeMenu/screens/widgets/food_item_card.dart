@@ -99,7 +99,7 @@ class FoodItemCard extends StatelessWidget {
                       ),
                       SizedBox(height: 8.h),
                       Text(
-                        publishedMealModel.menuItem.restaurant.name as String,
+                        publishedMealModel.restaurantInfo!.name as String,
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
@@ -141,7 +141,7 @@ class FoodItemCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            publishedMealModel.menuItem.restaurant.distance,
+                            publishedMealModel.restaurantInfo!.distance,
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.bold,

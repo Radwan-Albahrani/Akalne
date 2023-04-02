@@ -1,4 +1,5 @@
 import 'package:akalne/core/models/order_model.dart';
+import 'package:akalne/core/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
@@ -24,8 +25,8 @@ class OrderRepository {
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
 
-  Stream<List<OrderModel>> getOrdersByResturantId(String Id) {
-    return _restaurants
+  Stream<List<OrderModel>> getOrdersByRestaurantId(String Id) {
+    Stream<List<OrderModel>> stream = _restaurants
         .doc(Id)
         .collection(FirebaseConstants.ordersCollection)
         .orderBy("dateCreated", descending: true)
@@ -39,6 +40,20 @@ class OrderRepository {
               )
               .toList(),
         );
+
+    var userId = stream.first.then((value) => value.first.userId);
+    var userModel = _users.doc(userId.toString()).get().then(
+          (value) => UserModel.fromJson(
+            value.data() as Map<String, dynamic>,
+          ),
+        );
+
+    stream.forEach((element) {
+      for (var element in element) {
+        userModel.then((value) => element.user = value);
+      }
+    });
+    return stream;
   }
 
   FutureVoid changeOrderStatus(
@@ -53,7 +68,7 @@ class OrderRepository {
       );
 
       await _users
-          .doc(order.user.id)
+          .doc(order.userId)
           .collection(FirebaseConstants.ordersCollection)
           .doc(order.id.toString())
           .update(

@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'order_model.freezed.dart';
 part 'order_model.g.dart';
 
-@freezed
+@unfreezed
 class OrderModel with _$OrderModel {
   @JsonSerializable(explicitToJson: true)
   factory OrderModel({
@@ -16,7 +16,8 @@ class OrderModel with _$OrderModel {
     required int quantity,
     required PublishedMealModel meal,
     required String restaurantID,
-    required UserModel user,
+    required String userId,
+    UserModel? user,
     String? reason,
   }) = _OrderModel;
 

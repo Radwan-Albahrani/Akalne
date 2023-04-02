@@ -14,6 +14,10 @@ _$_PublishedMealModel _$$_PublishedMealModelFromJson(
       id: json['id'] as String,
       menuItem:
           MenuItemModel.fromJson(json['menuItem'] as Map<String, dynamic>),
+      restaurantInfo: json['restaurantInfo'] == null
+          ? null
+          : RestaurantModel.fromJson(
+              json['restaurantInfo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PublishedMealModelToJson(
@@ -23,4 +27,5 @@ Map<String, dynamic> _$$_PublishedMealModelToJson(
       'quantity': instance.quantity,
       'id': instance.id,
       'menuItem': instance.menuItem.toJson(),
+      'restaurantInfo': instance.restaurantInfo?.toJson(),
     };

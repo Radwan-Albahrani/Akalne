@@ -15,7 +15,7 @@ final ordersControllerProvider = StateNotifierProvider<OrdersController, bool>(
 
 final restaurantOrdersProvider = StreamProvider((ref) {
   final controller = ref.watch(ordersControllerProvider.notifier);
-  return controller.getOrdersByResturantId();
+  return controller.getOrdersByRestaurantId();
 });
 
 class OrdersController extends StateNotifier<bool> {
@@ -29,9 +29,9 @@ class OrdersController extends StateNotifier<bool> {
         _ref = ref,
         super(false);
 
-  Stream<List<OrderModel>> getOrdersByResturantId() {
+  Stream<List<OrderModel>> getOrdersByRestaurantId() {
     final id = _ref.read(restaurantProvider)!.id ?? "";
-    return _orderRepository.getOrdersByResturantId(id);
+    return _orderRepository.getOrdersByRestaurantId(id);
   }
 
   void changeOrderStatus({

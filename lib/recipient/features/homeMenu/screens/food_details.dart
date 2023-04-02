@@ -81,8 +81,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => RestaurantPage(
-                                  restaurantDetails: widget
-                                      .publishedMealModel.menuItem.restaurant,
+                                  restaurantDetails:
+                                      widget.publishedMealModel.restaurantInfo!,
                                 ),
                               ),
                             );
@@ -90,8 +90,8 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => RestaurantPage(
-                                  restaurantDetails: widget
-                                      .publishedMealModel.menuItem.restaurant,
+                                  restaurantDetails:
+                                      widget.publishedMealModel.restaurantInfo!,
                                 ),
                               ),
                             );
@@ -101,13 +101,13 @@ class _FoodDetailsState extends ConsumerState<FoodDetails> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RestaurantLogo(
-                              image: widget.publishedMealModel.menuItem
-                                  .restaurant.restaurantLogo as String,
+                              image: widget.publishedMealModel.restaurantInfo!
+                                  .restaurantLogo as String,
                               radius: 15.sp,
                             ),
                             SizedBox(width: 10.h),
                             Text(
-                              widget.publishedMealModel.menuItem.restaurant.name
+                              widget.publishedMealModel.restaurantInfo!.name
                                   as String,
                               style: TextStyle(
                                 fontSize: 12.sp,

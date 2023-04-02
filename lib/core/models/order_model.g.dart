@@ -14,7 +14,10 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       quantity: json['quantity'] as int,
       meal: PublishedMealModel.fromJson(json['meal'] as Map<String, dynamic>),
       restaurantID: json['restaurantID'] as String,
-      user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      userId: json['userId'] as String,
+      user: json['user'] == null
+          ? null
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
       reason: json['reason'] as String?,
     );
 
@@ -26,6 +29,7 @@ Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
       'quantity': instance.quantity,
       'meal': instance.meal.toJson(),
       'restaurantID': instance.restaurantID,
-      'user': instance.user.toJson(),
+      'userId': instance.userId,
+      'user': instance.user?.toJson(),
       'reason': instance.reason,
     };

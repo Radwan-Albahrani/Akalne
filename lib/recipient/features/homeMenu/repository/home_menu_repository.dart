@@ -3,6 +3,7 @@ import 'package:akalne/core/failure.dart';
 import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/order_model.dart';
 import 'package:akalne/core/models/published_meal_model.dart';
+import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/core/providers/firebase_providers.dart';
 import 'package:akalne/core/type_defs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -37,7 +38,7 @@ class HomeMenuRepository {
   }
 
   Future<List<PublishedMealModel>> getMenuItemsByID(String id) async {
-    return _restaurants
+    List<PublishedMealModel> meals = await _restaurants
         .doc(id)
         .collection(FirebaseConstants.publishedMealsCollection)
         .orderBy("createdAt", descending: true)
@@ -45,6 +46,15 @@ class HomeMenuRepository {
         .then((value) => value.docs
             .map((e) => PublishedMealModel.fromJson(e.data()))
             .toList());
+
+    RestaurantModel restaurant = await _restaurants.doc(id).get().then(
+        (value) =>
+            RestaurantModel.fromJson(value.data() as Map<String, dynamic>));
+
+    for (var element in meals) {
+      element.restaurantInfo = restaurant;
+    }
+    return meals;
   }
 
   Stream<List<OrderModel>> getOrders(String id) {
@@ -90,7 +100,7 @@ class HomeMenuRepository {
       }
       // 1. Add order to user's orders collection
       await _users
-          .doc(order.user.id)
+          .doc(order.userId)
           .collection(FirebaseConstants.ordersCollection)
           .doc(order.id.toString())
           .set(order.toJson());
@@ -124,6 +134,19 @@ class HomeMenuRepository {
             .update({"quantity": order.meal.quantity - order.quantity});
       }
       return const Right(null);
+    } on FirebaseException catch (e) {
+      return Left(Failure(e.toString()));
+    } catch (e) {
+      return Left(Failure(e.toString()));
+    }
+  }
+
+  FutureEither<RestaurantModel> getRestaurant(String id) async {
+    try {
+      final doc = await _restaurants.doc(id).get();
+      final restaurant =
+          RestaurantModel.fromJson(doc.data() as Map<String, dynamic>);
+      return Right(restaurant);
     } on FirebaseException catch (e) {
       return Left(Failure(e.toString()));
     } catch (e) {

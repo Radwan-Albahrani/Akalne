@@ -47,7 +47,7 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
       context,
       MaterialPageRoute(
         builder: (context) => RestaurantPage(
-            restaurantDetails: widget.orderModel.meal.menuItem.restaurant),
+            restaurantDetails: widget.orderModel.meal.restaurantInfo!),
       ),
     );
   }
@@ -154,13 +154,13 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RestaurantLogo(
-                      image: widget.orderModel.meal.menuItem.restaurant
+                      image: widget.orderModel.meal.restaurantInfo!
                           .restaurantLogo as String,
                       radius: 15.sp,
                     ),
                     SizedBox(width: 10.h),
                     Text(
-                      widget.orderModel.meal.menuItem.restaurant.name as String,
+                      widget.orderModel.meal.restaurantInfo!.name as String,
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.bold,

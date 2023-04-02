@@ -1,6 +1,7 @@
 import 'package:akalne/core/common/error.text.dart';
 import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/models/order_model.dart';
+import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/recipient/features/homeMenu/controller/home_menu_controller.dart';
 import 'package:akalne/recipient/features/orders/screens/widgets/order_item_card.dart';
 import 'package:akalne/theme/app_colors.dart';
@@ -15,79 +16,101 @@ class OrdersPage extends ConsumerStatefulWidget {
 }
 
 class _OrdersPageState extends ConsumerState<OrdersPage> {
+  Future<void> getRestaurantInformation(List<OrderModel> data) async {
+    var controller = ref.read(homeMenuControllerProvider.notifier);
+    RestaurantModel? restaurant = await controller.getRestaurant(
+        data[0].meal.menuItem.restaurant.id as String, context);
+    if (restaurant != null) {
+      for (var element in data) {
+        element.meal.restaurantInfo = restaurant;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ref.watch(ordersProvider).when(data: (data) {
       Color color;
-      return Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 32, right: 32, bottom: 10, top: 32),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: const [
-                        Text(
-                          "My Orders",
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              data.isEmpty
-                  ? Column(
-                      children: const [
-                        SizedBox(
-                          height: 100,
-                        ),
-                        Center(
-                          child: Text(
-                            "No Orders yet",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+      return FutureBuilder(
+          future: getRestaurantInformation(data),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Scaffold(
+                body: SafeArea(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 32, right: 32, bottom: 10, top: 32),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: const [
+                                Text(
+                                  "My Orders",
+                                  style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    )
-                  : Expanded(
-                      child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (context, index) {
-                          OrderModel currentOrder = data[index];
-                          if (currentOrder.status == "Sent to Restaurant") {
-                            color = Colors.yellow.shade700;
-                          } else if (currentOrder.status == "Accepted") {
-                            color = AppColors.light["primary"];
-                          } else if (currentOrder.status == "Rejected") {
-                            color = AppColors.light["secondary"];
-                          } else {
-                            color = Colors.grey;
-                          }
-                          return Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: OrderItemCard(
-                              orderModel: data[index],
-                              color: color,
-                            ),
-                          );
-                        },
                       ),
-                    ),
-            ],
-          ),
-        ),
-      );
+                      data.isEmpty
+                          ? Column(
+                              children: const [
+                                SizedBox(
+                                  height: 100,
+                                ),
+                                Center(
+                                  child: Text(
+                                    "No Orders yet",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Expanded(
+                              child: ListView.builder(
+                                itemCount: data.length,
+                                itemBuilder: (context, index) {
+                                  OrderModel currentOrder = data[index];
+                                  if (currentOrder.status ==
+                                      "Sent to Restaurant") {
+                                    color = Colors.yellow.shade700;
+                                  } else if (currentOrder.status ==
+                                      "Accepted") {
+                                    color = AppColors.light["primary"];
+                                  } else if (currentOrder.status ==
+                                      "Rejected") {
+                                    color = AppColors.light["secondary"];
+                                  } else {
+                                    color = Colors.grey;
+                                  }
+                                  return Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: OrderItemCard(
+                                      orderModel: data[index],
+                                      color: color,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return const Loader();
+            }
+          });
     }, loading: () {
       return const Loader();
     }, error: (error, stack) {
