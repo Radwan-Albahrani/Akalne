@@ -8,6 +8,15 @@ import '../../../../core/providers/storage_repository_provider.dart';
 import '../../../../core/utils.dart';
 import '../repository/user_profile_repository.dart';
 
+final userProfileControllerProvider =
+    StateNotifierProvider<UserProfileController, bool>((ref) {
+  return UserProfileController(
+    userProfileRepository: ref.watch(userProfileRepositoryProvider),
+    ref: ref,
+    storageRepository: ref.watch(storageRepositoryProvider),
+  );
+});
+
 class UserProfileController extends StateNotifier<bool> {
   final UserProfileRepository _userProfileRepository;
   final Ref _ref;
@@ -24,14 +33,14 @@ class UserProfileController extends StateNotifier<bool> {
   void updateUserProfile({
     required String userName,
     required String userPhone,
-    required File userImage,
+    required File? userImage,
     required BuildContext context,
   }) async {
     state = true;
     String imagePath = "";
     final user = _ref.read(userProvider)!;
 
-    if (userImage.path.isNotEmpty) {
+    if (userImage != null) {
       final res = await _storageRepository.storeFile(
         file: userImage,
         path: "users/images",
@@ -47,7 +56,7 @@ class UserProfileController extends StateNotifier<bool> {
     final res = await _userProfileRepository.updateUserProfile(
       userName: userName,
       userPhone: userPhone,
-      userImage: imagePath,
+      userImage: imagePath == "" ? user.profilePictureUrl! : imagePath,
       userId: user.id,
     );
 
@@ -58,11 +67,13 @@ class UserProfileController extends StateNotifier<bool> {
         showSnackBar(context, l.message);
       },
       (r) {
-        showSnackBar(context, "Profile updated successfully");
+        getUserProfile(userId: user.id, context: context);
+        showSuccessSnackBar(context, "Profile updated successfully");
         Navigator.of(context).pop();
       },
     );
   }
+
   void getUserProfile({
     required String userId,
     required BuildContext context,

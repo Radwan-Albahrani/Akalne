@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/constants/app_routes.dart';
+
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
 
@@ -18,16 +20,17 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     ref.read(authControllerProvider.notifier).logout();
   }
 
-  late final UserModel? userModel;
-
-  @override
-  void initState() {
-    userModel = ref.read(userProvider);
-    super.initState();
+  void navigateToEditProfile(BuildContext context, UserModel user) {
+    Navigator.of(context).pushNamed(
+      AppRoutes.editUserScreen,
+      arguments: user,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final userModel = ref.watch(userProvider)!;
+    print(userModel);
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(12),
@@ -37,16 +40,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 50.sp,
-              backgroundImage: const AssetImage(AppConstants.defaultProfile),
+              backgroundImage:
+                  userModel.profilePictureUrl! == AppConstants.defaultProfile
+                      ? const AssetImage(AppConstants.defaultProfile)
+                          as ImageProvider
+                      : NetworkImage(userModel.profilePictureUrl!),
             ),
             SizedBox(height: 10.h),
             Text(
-              userModel!.name,
+              userModel.name,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 10.h),
             Text(
-              userModel!.email,
+              userModel.email,
               style: TextStyle(
                 fontSize: 16.sp,
                 color: Theme.of(context).colorScheme.secondary,
@@ -54,10 +61,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             SizedBox(height: 10.h),
             ProfileTile(
-              title: "Profile Information",
-              icon: Icons.person,
-              onTap: () {},
-            ),
+                title: "Profile Information",
+                icon: Icons.person,
+                onTap: () => navigateToEditProfile(context, userModel)),
             ProfileTile(
               title: "Notifications",
               icon: Icons.notifications,

@@ -1,6 +1,7 @@
 import 'package:akalne/core/common/splash_screen.dart';
 import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/core/models/user_model.dart';
+import 'package:akalne/recipient/features/Profile/screens/edit_profile_screen.dart';
 import 'package:akalne/recipient/features/home/screens/home_screen.dart';
 import 'package:akalne/restaurant/features/home/screens/home_screen.dart';
 import 'package:akalne/restaurant/features/profile/screens/edit_restaurant_profile.dart';
@@ -84,6 +85,10 @@ class _MyAppState extends ConsumerState<MyApp> {
                   EditRestaurantProfileScreen(
                     restaurantModel: ModalRoute.of(context)?.settings.arguments
                         as RestaurantModel,
+                  ),
+              AppRoutes.editUserScreen: (context) => EditProfileScreen(
+                    userModel:
+                        ModalRoute.of(context)?.settings.arguments as UserModel,
                   ),
             });
       },
