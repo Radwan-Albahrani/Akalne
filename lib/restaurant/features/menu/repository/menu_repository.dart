@@ -18,9 +18,6 @@ class MenuRepository {
     required FirebaseFirestore firestore,
   }) : _firestore = firestore;
 
-  CollectionReference get _menu =>
-      _firestore.collection(FirebaseConstants.menuCollection);
-
   CollectionReference get _menuItems =>
       _firestore.collection(FirebaseConstants.menuItemsCollection);
 

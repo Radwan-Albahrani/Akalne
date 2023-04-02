@@ -242,6 +242,5 @@ class _OrderTileState extends ConsumerState<OrderTile> {
         ),
       ),
     );
-    ;
   }
 }

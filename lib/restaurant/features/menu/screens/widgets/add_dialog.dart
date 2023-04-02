@@ -70,7 +70,6 @@ class _AddDialogState extends ConsumerState<AddDialog> {
       showSnackBar(context, "Product image is required");
       return;
     }
-    print("add product");
     ref.read(menuControllerProvider.notifier).addProduct(
         productName: addProductProductName.text.trim(),
         productMaxQuantity: addProductProductMaxQuantity.text.trim(),
@@ -151,7 +150,7 @@ class _AddDialogState extends ConsumerState<AddDialog> {
                     ),
                     RoundedFormField(
                       controller: addProductProductName,
-                      hintText: "Spacy fresh crab",
+                      hintText: "Spicy fresh crab",
                       label: "Product name",
                     ),
                     SizedBox(
@@ -159,7 +158,7 @@ class _AddDialogState extends ConsumerState<AddDialog> {
                     ),
                     RoundedFormField(
                       controller: addProductProductDescription,
-                      hintText: "Spacy fresh crab",
+                      hintText: "Spicy fresh crab",
                       label: "Product Description",
                       keyboardType: TextInputType.multiline,
                       maxLines: 3,

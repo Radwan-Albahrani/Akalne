@@ -9,11 +9,10 @@ import 'package:akalne/restaurant/features/orders/controller/orders_controller.d
 import '../../../../../core/common/loader.dart';
 import '../../../../../core/features/auth/screens/widgets/rounded_form_field.dart';
 import '../../../../../theme/app_colors.dart';
-import '../../../menu/controller/menu_controller.dart';
 
 class AddNoteDialog extends ConsumerStatefulWidget {
   OrderModel order;
-  // ontap
+  // onTap
   void Function() onTap;
 
   AddNoteDialog({

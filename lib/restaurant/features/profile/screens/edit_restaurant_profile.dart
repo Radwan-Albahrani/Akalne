@@ -44,7 +44,7 @@ class _EditRestaurantProfileScreenState
 
     if (_formKey.currentState!.validate()) {
       ref
-          .read(restaurnatProfileControllerProvider.notifier)
+          .read(restaurantProfileControllerProvider.notifier)
           .updateRestaurantProfile(
             restaurantName: _nameController.text.trim(),
             restaurantAddress: _addressController.text.trim(),
@@ -87,7 +87,7 @@ class _EditRestaurantProfileScreenState
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(restaurnatProfileControllerProvider);
+    final isLoading = ref.watch(restaurantProfileControllerProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -148,8 +148,8 @@ class _EditRestaurantProfileScreenState
                               child: CircleAvatar(
                                 backgroundImage: profileFile != null
                                     ? Image.file(profileFile!).image
-                                    : NetworkImage(widget
-                                        .restaurantModel.restaurantLogo!),
+                                    : NetworkImage(
+                                        widget.restaurantModel.restaurantLogo!),
                                 radius: 32,
                               )),
                         ),

@@ -1,4 +1,3 @@
-import 'package:akalne/core/constants/app_constants.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
 import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/recipient/features/Profile/screens/widgets/profile_tile.dart';

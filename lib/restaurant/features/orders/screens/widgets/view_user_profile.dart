@@ -1,13 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:akalne/core/constants/app_constants.dart';
 import 'package:akalne/core/models/user_model.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:akalne/core/features/auth/controller/auth_controller.dart';
-import 'package:akalne/core/models/restaurant_model.dart';
 
 import '../../../../../core/features/auth/screens/widgets/rounded_form_field.dart';
 import '../../../../../recipient/features/homeMenu/screens/widgets/back_button.dart';

@@ -8,13 +8,13 @@ import '../../../../core/models/restaurant_model.dart';
 import '../../../../core/providers/firebase_providers.dart';
 import '../../../../core/type_defs.dart';
 
-final restaurnatProfileRepositoryProvider = Provider((ref) {
-  return RestaurnatProfileRepository(firestore: ref.watch(firestoreProvider));
+final restaurantProfileRepositoryProvider = Provider((ref) {
+  return RestaurantProfileRepository(firestore: ref.watch(firestoreProvider));
 });
 
-class RestaurnatProfileRepository {
+class RestaurantProfileRepository {
   final FirebaseFirestore _firestore;
-  RestaurnatProfileRepository({
+  RestaurantProfileRepository({
     required FirebaseFirestore firestore,
   }) : _firestore = firestore;
 

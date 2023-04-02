@@ -25,9 +25,9 @@ class OrderRepository {
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
 
-  Stream<List<OrderModel>> getOrdersByResturantId(String Id) {
+  Stream<List<OrderModel>> getOrdersByRestaurantId(String id) {
     return _restaurants
-        .doc(Id)
+        .doc(id)
         .collection(FirebaseConstants.ordersCollection)
         .orderBy("dateCreated", descending: true)
         .snapshots()

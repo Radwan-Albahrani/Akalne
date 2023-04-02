@@ -1,35 +1,33 @@
 import 'dart:io';
 
 import 'package:akalne/restaurant/features/profile/repository/restaurant_profile_repository.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/features/auth/controller/auth_controller.dart';
-import '../../../../core/providers/firebase_providers.dart';
 import '../../../../core/providers/storage_repository_provider.dart';
 import '../../../../core/utils.dart';
 
-final restaurnatProfileControllerProvider =
-    StateNotifierProvider<RestaurnatProfileController, bool>((ref) {
-  return RestaurnatProfileController(
-    restaurnatProfileRepository: ref.watch(
-      restaurnatProfileRepositoryProvider,
+final restaurantProfileControllerProvider =
+    StateNotifierProvider<RestaurantProfileController, bool>((ref) {
+  return RestaurantProfileController(
+    restaurantProfileRepository: ref.watch(
+      restaurantProfileRepositoryProvider,
     ),
     ref: ref,
     storageRepository: ref.watch(storageRepositoryProvider),
   );
 });
 
-class RestaurnatProfileController extends StateNotifier<bool> {
-  final RestaurnatProfileRepository _restaurnatProfileRepository;
+class RestaurantProfileController extends StateNotifier<bool> {
+  final RestaurantProfileRepository _restaurantProfileRepository;
   final Ref _ref;
   final StorageRepository _storageRepository;
-  RestaurnatProfileController(
-      {required RestaurnatProfileRepository restaurnatProfileRepository,
+  RestaurantProfileController(
+      {required RestaurantProfileRepository restaurantProfileRepository,
       required Ref ref,
       required StorageRepository storageRepository})
-      : _restaurnatProfileRepository = restaurnatProfileRepository,
+      : _restaurantProfileRepository = restaurantProfileRepository,
         _ref = ref,
         _storageRepository = storageRepository,
         super(false);
@@ -73,7 +71,7 @@ class RestaurnatProfileController extends StateNotifier<bool> {
       );
     }
 
-    final res = await _restaurnatProfileRepository.updateRestaurantProfile(
+    final res = await _restaurantProfileRepository.updateRestaurantProfile(
       restaurantName: restaurantName,
       restaurantAddress: restaurantAddress,
       restaurantPhone: restaurantPhone,
@@ -98,7 +96,7 @@ class RestaurnatProfileController extends StateNotifier<bool> {
 
   void getRestaurantProfile(String id) async {
     state = true;
-    final res = await _restaurnatProfileRepository.getRestaurantProfile(id);
+    final res = await _restaurantProfileRepository.getRestaurantProfile(id);
     state = false;
 
     res.fold(
