@@ -113,109 +113,111 @@ class _EditRestaurantProfileScreenState
           ? const Loader()
           : Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 200,
-                    child: Stack(
-                      children: [
-                        GestureDetector(
-                          onTap: selectBannerImage,
-                          child: DottedBorder(
-                            borderType: BorderType.RRect,
-                            radius: const Radius.circular(10),
-                            dashPattern: const [10, 4],
-                            strokeCap: StrokeCap.round,
-                            color: Colors.grey,
-                            child: Container(
-                              width: double.infinity,
-                              height: 150,
-                              decoration: BoxDecoration(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 200,
+                      child: Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: selectBannerImage,
+                            child: DottedBorder(
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(10),
+                              dashPattern: const [10, 4],
+                              strokeCap: StrokeCap.round,
+                              color: Colors.grey,
+                              child: Container(
+                                width: double.infinity,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: bannerFile != null
+                                    ? Image.file(bannerFile!)
+                                    : Image.network(widget
+                                        .restaurantModel.restaurantImage!),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 20,
+                            left: 20,
+                            child: GestureDetector(
+                                onTap: selectProfileImage,
+                                child: CircleAvatar(
+                                  backgroundImage: profileFile != null
+                                      ? Image.file(profileFile!).image
+                                      : NetworkImage(widget
+                                          .restaurantModel.restaurantLogo!),
+                                  radius: 32,
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              labelText: 'Restaurant Name',
+                              hintText: 'Restaurant Name',
+                              border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: bannerFile != null
-                                  ? Image.file(bannerFile!)
-                                  : Image.network(
-                                      widget.restaurantModel.restaurantImage!),
                             ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter restaurant name';
+                              }
+                              return null;
+                            },
                           ),
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          left: 20,
-                          child: GestureDetector(
-                              onTap: selectProfileImage,
-                              child: CircleAvatar(
-                                backgroundImage: profileFile != null
-                                    ? Image.file(profileFile!).image
-                                    : NetworkImage(
-                                        widget.restaurantModel.restaurantLogo!),
-                                radius: 32,
-                              )),
-                        ),
-                      ],
+                          SizedBox(height: 20.h),
+                          TextFormField(
+                            controller: _addressController,
+                            decoration: InputDecoration(
+                              labelText: 'Address',
+                              hintText: 'Address',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter address';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 20.h),
+                          TextFormField(
+                            controller: _phoneNumberController,
+                            decoration: InputDecoration(
+                              labelText: 'Phone Number',
+                              hintText: 'Phone Number',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter phone number';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: 20.h),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          controller: _nameController,
-                          decoration: InputDecoration(
-                            labelText: 'Restaurant Name',
-                            hintText: 'Restaurant Name',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter restaurant name';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 20.h),
-                        TextFormField(
-                          controller: _addressController,
-                          decoration: InputDecoration(
-                            labelText: 'Address',
-                            hintText: 'Address',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter address';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 20.h),
-                        TextFormField(
-                          controller: _phoneNumberController,
-                          decoration: InputDecoration(
-                            labelText: 'Phone Number',
-                            hintText: 'Phone Number',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Please enter phone number';
-                            }
-                            return null;
-                          },
-                        ),
-                        SizedBox(height: 20.h),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
     );
