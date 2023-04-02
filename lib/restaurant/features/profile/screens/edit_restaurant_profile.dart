@@ -32,15 +32,15 @@ class _EditRestaurantProfileScreenState
   final _formKey = GlobalKey<FormState>();
 
   void save() {
-    if (bannerFile == null) {
-      showSnackBar(context, 'Please select banner image');
-      return;
-    }
+    // if (bannerFile == null) {
+    //   showSnackBar(context, 'Please select banner image');
+    //   return;
+    // }
 
-    if (profileFile == null) {
-      showSnackBar(context, 'Please select profile image');
-      return;
-    }
+    // if (profileFile == null) {
+    //   showSnackBar(context, 'Please select profile image');
+    //   return;
+    // }
 
     if (_formKey.currentState!.validate()) {
       ref
@@ -49,8 +49,8 @@ class _EditRestaurantProfileScreenState
             restaurantName: _nameController.text.trim(),
             restaurantAddress: _addressController.text.trim(),
             restaurantPhone: _phoneNumberController.text,
-            restaurantLogo: profileFile!,
-            restaurantImage: bannerFile!,
+            restaurantLogo: profileFile,
+            restaurantImage: bannerFile,
             context: context,
           );
     }

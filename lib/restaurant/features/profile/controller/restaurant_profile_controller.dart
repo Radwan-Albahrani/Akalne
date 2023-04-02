@@ -36,8 +36,8 @@ class RestaurantProfileController extends StateNotifier<bool> {
     required String restaurantName,
     required String restaurantAddress,
     required String restaurantPhone,
-    required File restaurantLogo,
-    required File restaurantImage,
+    required File? restaurantLogo,
+    required File? restaurantImage,
     required BuildContext context,
   }) async {
     state = true;
@@ -45,30 +45,33 @@ class RestaurantProfileController extends StateNotifier<bool> {
     String logoPath = "";
     final restaurant = _ref.read(restaurantProvider)!;
 
-    if (restaurantImage.path.isNotEmpty) {
-      final res = await _storageRepository.storeFile(
-        file: restaurantImage,
-        path: "restaurants/images",
-        id: restaurant.id!,
-      );
+    if (restaurantImage != null) {
+      if (restaurantImage.path.isNotEmpty) {
+        final res = await _storageRepository.storeFile(
+          file: restaurantImage,
+          path: "restaurants/images",
+          id: restaurant.id!,
+        );
 
-      res.fold(
-        (l) => showSnackBar(context, l.message),
-        (r) => imagePath = r,
-      );
+        res.fold(
+          (l) => showSnackBar(context, l.message),
+          (r) => imagePath = r,
+        );
+      }
     }
+    if (restaurantLogo != null) {
+      if (restaurantLogo.path.isNotEmpty) {
+        final res = await _storageRepository.storeFile(
+          file: restaurantLogo,
+          path: "restaurants/logos",
+          id: restaurant.id!,
+        );
 
-    if (restaurantLogo.path.isNotEmpty) {
-      final res = await _storageRepository.storeFile(
-        file: restaurantLogo,
-        path: "restaurants/logos",
-        id: restaurant.id!,
-      );
-
-      res.fold(
-        (l) => showSnackBar(context, l.message),
-        (r) => logoPath = r,
-      );
+        res.fold(
+          (l) => showSnackBar(context, l.message),
+          (r) => logoPath = r,
+        );
+      }
     }
 
     final res = await _restaurantProfileRepository.updateRestaurantProfile(

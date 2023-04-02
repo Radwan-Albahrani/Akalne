@@ -29,13 +29,35 @@ class RestaurantProfileRepository {
       required String restaurantImage,
       required String restaurantId}) async {
     try {
-      await _restaurants.doc(restaurantId).update({
-        "name": restaurantName,
-        "address": restaurantAddress,
-        "phone": restaurantPhone,
-        "restaurantLogo": restaurantLogo,
-        "restaurantImage": restaurantImage,
-      });
+      if (restaurantLogo == "" && restaurantImage == "") {
+        await _restaurants.doc(restaurantId).update({
+          "name": restaurantName,
+          "address": restaurantAddress,
+          "phone": restaurantPhone,
+        });
+      } else if (restaurantLogo == "") {
+        await _restaurants.doc(restaurantId).update({
+          "name": restaurantName,
+          "address": restaurantAddress,
+          "phone": restaurantPhone,
+          "image": restaurantImage,
+        });
+      } else if (restaurantImage == "") {
+        await _restaurants.doc(restaurantId).update({
+          "name": restaurantName,
+          "address": restaurantAddress,
+          "phone": restaurantPhone,
+          "logo": restaurantLogo,
+        });
+      } else {
+        await _restaurants.doc(restaurantId).update({
+          "name": restaurantName,
+          "address": restaurantAddress,
+          "phone": restaurantPhone,
+          "logo": restaurantLogo,
+          "image": restaurantImage,
+        });
+      }
       return const Right(null);
     } on FirebaseException catch (e) {
       return Left(Failure(e.message ?? "Something went wrong"));
