@@ -33,7 +33,6 @@ class MenuRepository {
 
   FutureVoid addProduct(MenuItemModel menuItem) async {
     try {
-      print(menuItem.id);
       return Right(await _restaurants
           .doc(menuItem.restaurant.id)
           .collection(FirebaseConstants.menuCollection)
