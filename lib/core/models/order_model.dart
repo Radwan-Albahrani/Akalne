@@ -17,6 +17,7 @@ class OrderModel with _$OrderModel {
     required PublishedMealModel meal,
     required String restaurantID,
     required UserModel user,
+    String? reason,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

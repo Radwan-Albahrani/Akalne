@@ -27,6 +27,7 @@ mixin _$OrderModel {
   PublishedMealModel get meal => throw _privateConstructorUsedError;
   String get restaurantID => throw _privateConstructorUsedError;
   UserModel get user => throw _privateConstructorUsedError;
+  String? get reason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $OrderModelCopyWith<$Res> {
       int quantity,
       PublishedMealModel meal,
       String restaurantID,
-      UserModel user});
+      UserModel user,
+      String? reason});
 
   $PublishedMealModelCopyWith<$Res> get meal;
   $UserModelCopyWith<$Res> get user;
@@ -73,6 +75,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? meal = null,
     Object? restaurantID = null,
     Object? user = null,
+    Object? reason = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -103,6 +106,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -138,7 +145,8 @@ abstract class _$$_OrderModelCopyWith<$Res>
       int quantity,
       PublishedMealModel meal,
       String restaurantID,
-      UserModel user});
+      UserModel user,
+      String? reason});
 
   @override
   $PublishedMealModelCopyWith<$Res> get meal;
@@ -164,6 +172,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? meal = null,
     Object? restaurantID = null,
     Object? user = null,
+    Object? reason = freezed,
   }) {
     return _then(_$_OrderModel(
       id: null == id
@@ -194,6 +203,10 @@ class __$$_OrderModelCopyWithImpl<$Res>
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -209,7 +222,8 @@ class _$_OrderModel implements _OrderModel {
       required this.quantity,
       required this.meal,
       required this.restaurantID,
-      required this.user});
+      required this.user,
+      this.reason});
 
   factory _$_OrderModel.fromJson(Map<String, dynamic> json) =>
       _$$_OrderModelFromJson(json);
@@ -228,10 +242,12 @@ class _$_OrderModel implements _OrderModel {
   final String restaurantID;
   @override
   final UserModel user;
+  @override
+  final String? reason;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, status: $status, dateCreated: $dateCreated, quantity: $quantity, meal: $meal, restaurantID: $restaurantID, user: $user)';
+    return 'OrderModel(id: $id, status: $status, dateCreated: $dateCreated, quantity: $quantity, meal: $meal, restaurantID: $restaurantID, user: $user, reason: $reason)';
   }
 
   @override
@@ -248,13 +264,14 @@ class _$_OrderModel implements _OrderModel {
             (identical(other.meal, meal) || other.meal == meal) &&
             (identical(other.restaurantID, restaurantID) ||
                 other.restaurantID == restaurantID) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.reason, reason) || other.reason == reason));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, status, dateCreated, quantity, meal, restaurantID, user);
+  int get hashCode => Object.hash(runtimeType, id, status, dateCreated,
+      quantity, meal, restaurantID, user, reason);
 
   @JsonKey(ignore: true)
   @override
@@ -278,7 +295,8 @@ abstract class _OrderModel implements OrderModel {
       required final int quantity,
       required final PublishedMealModel meal,
       required final String restaurantID,
-      required final UserModel user}) = _$_OrderModel;
+      required final UserModel user,
+      final String? reason}) = _$_OrderModel;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
       _$_OrderModel.fromJson;
@@ -297,6 +315,8 @@ abstract class _OrderModel implements OrderModel {
   String get restaurantID;
   @override
   UserModel get user;
+  @override
+  String? get reason;
   @override
   @JsonKey(ignore: true)
   _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>
