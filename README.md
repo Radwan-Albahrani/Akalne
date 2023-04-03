@@ -42,10 +42,13 @@ flutter run --device-id <device id>
 ```
 
 > For more detailed tutorial for ArchLinux CLI usage: <https://www.rockyourcode.com/how-to-get-flutter-and-android-working-on-arch-linux/>
+>
 > For other OSs you can find tutorials: <https://docs.flutter.dev/get-started/install>
 
 ## Screenshots
-## Login
+
+### Login
+
 <img src="https://user-images.githubusercontent.com/40364775/229407491-3372c6e6-b8a8-4c84-b199-23d9058c2295.png" height="400">
 
 ### Restaurant Interface
@@ -84,11 +87,3 @@ flutter run --device-id <device id>
   <img src="https://user-images.githubusercontent.com/40364775/229410976-f80b9ccc-5c6a-4874-aec6-21d0e4cb670c.png" height="400">
   <img src="https://user-images.githubusercontent.com/40364775/229411036-6cc64b64-4d23-498d-a9b0-37f399d59a8c.png" height="400">
 </div>
-
-
-
-
-
-
-
-
