@@ -38,9 +38,16 @@ class _RestaurantOrdersScreenState
 
   Future<void> getUserInformation(List<OrderModel> data) async {
     var controller = ref.read(ordersControllerProvider.notifier);
+    Map<String, UserModel> userInfo = {};
     for (var element in data) {
-      UserModel? user = await controller.getUser(element.userId, context);
+      String userId = element.userId;
+      if (userInfo.containsKey(userId)) {
+        element.user = userInfo[userId];
+        continue;
+      }
+      UserModel? user = await controller.getUser(userId, context);
       if (user != null) {
+        userInfo[userId] = user;
         element.user = user;
       }
     }

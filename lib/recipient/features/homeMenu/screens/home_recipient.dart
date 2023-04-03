@@ -33,14 +33,17 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
 
   Future<void> getRestaurantInformation(List<PublishedMealModel> data) async {
     var controller = ref.read(homeMenuControllerProvider.notifier);
-    List<String> restaurantIds = [];
+    Map<String, RestaurantModel> restaurantInfo = {};
     for (var element in data) {
       String restaurantId = element.menuItem.restaurant.id as String;
-      if (restaurantIds.contains(restaurantId)) continue;
+      if (restaurantInfo.containsKey(restaurantId)) {
+        element.restaurantInfo = restaurantInfo[restaurantId];
+        continue;
+      }
       RestaurantModel? restaurant =
           await controller.getRestaurant(restaurantId, context);
       if (restaurant != null) {
-        restaurantIds.add(restaurant.id as String);
+        restaurantInfo[restaurantId] = restaurant;
         element.restaurantInfo = restaurant;
       }
     }
