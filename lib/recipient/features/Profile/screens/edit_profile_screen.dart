@@ -54,7 +54,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
     _nameController.dispose();
     _phoneNumberController.dispose();
@@ -71,12 +71,13 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(userProfileControllerProvider);
-    final isDefaultImage = widget.userModel.profilePictureUrl! == AppConstants.defaultProfile;
+    final isDefaultImage =
+        widget.userModel.profilePictureUrl! == AppConstants.defaultProfile;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Edit Restaurant Profile',
+          'Edit User Profile',
         ),
         centerTitle: false,
         actions: [
@@ -106,10 +107,12 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                         onTap: selectProfileImage,
                         child: CircleAvatar(
                           backgroundColor: Colors.transparent,
-                          backgroundImage: isDefaultImage && profileFile == null? const AssetImage(AppConstants.defaultProfile) :  profileFile != null
-                              ? Image.file(profileFile!).image
-                              : NetworkImage(
-                                  widget.userModel.profilePictureUrl!),
+                          backgroundImage: isDefaultImage && profileFile == null
+                              ? const AssetImage(AppConstants.defaultProfile)
+                              : profileFile != null
+                                  ? Image.file(profileFile!).image
+                                  : NetworkImage(
+                                      widget.userModel.profilePictureUrl!),
                           radius: 75,
                         ),
                       ),
