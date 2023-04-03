@@ -54,6 +54,13 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   }
 
   @override
+  void dispose(){
+    super.dispose();
+    _nameController.dispose();
+    _phoneNumberController.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     final res = ref.read(userProvider);

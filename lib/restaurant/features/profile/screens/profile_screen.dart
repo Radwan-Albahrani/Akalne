@@ -22,14 +22,14 @@ class _RestaurantProfileScreenState
   }
 
   void navigateToEditProfile(
-      BuildContext context, RestaurantModel restaurantModel) {
+      BuildContext context, RestaurantModel? restaurantModel) {
     Navigator.of(context)
         .pushNamed(AppRoutes.editRestaurantScreen, arguments: restaurantModel);
   }
 
   @override
   Widget build(BuildContext context) {
-    final restaurant = ref.watch(restaurantProvider)!;
+    final restaurant = ref.watch(restaurantProvider);
 
     return SafeArea(
       child: Container(
@@ -40,16 +40,16 @@ class _RestaurantProfileScreenState
             CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 50.sp,
-              backgroundImage: NetworkImage(restaurant.restaurantLogo!),
+              backgroundImage: NetworkImage(restaurant?.restaurantLogo ?? ""),
             ),
             SizedBox(height: 10.h),
             Text(
-              restaurant.name as String,
+              restaurant?.name ?? "",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 12.h),
             Text(
-              restaurant.email as String,
+              restaurant?.email ?? "",
               style: TextStyle(
                 fontSize: 16.sp,
                 color: Theme.of(context).colorScheme.secondary,

@@ -20,7 +20,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     ref.read(authControllerProvider.notifier).logout();
   }
 
-  void navigateToEditProfile(BuildContext context, UserModel user) {
+  void navigateToEditProfile(BuildContext context, UserModel? user) {
     Navigator.of(context).pushNamed(
       AppRoutes.editUserScreen,
       arguments: user,
@@ -29,7 +29,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userModel = ref.watch(userProvider)!;
+    final userModel = ref.watch(userProvider);
     print(userModel);
     return SafeArea(
       child: Container(
@@ -41,19 +41,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               backgroundColor: Colors.transparent,
               radius: 50.sp,
               backgroundImage:
-                  userModel.profilePictureUrl! == AppConstants.defaultProfile
+                  userModel?.profilePictureUrl == AppConstants.defaultProfile
                       ? const AssetImage(AppConstants.defaultProfile)
                           as ImageProvider
-                      : NetworkImage(userModel.profilePictureUrl!),
+                      : NetworkImage(userModel?.profilePictureUrl ?? ""),
             ),
             SizedBox(height: 10.h),
             Text(
-              userModel.name,
+              userModel?.name ?? "",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             SizedBox(height: 10.h),
             Text(
-              userModel.email,
+              userModel?.email ?? "",
               style: TextStyle(
                 fontSize: 16.sp,
                 color: Theme.of(context).colorScheme.secondary,
