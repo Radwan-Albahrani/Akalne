@@ -16,9 +16,9 @@ class OrdersPage extends ConsumerStatefulWidget {
 }
 
 class _OrdersPageState extends ConsumerState<OrdersPage> {
+  Map<String, RestaurantModel> restaurantInfo = {};
   Future<void> getRestaurantInformation(List<OrderModel> data) async {
     var controller = ref.read(homeMenuControllerProvider.notifier);
-    Map<String, RestaurantModel> restaurantInfo = {};
     for (var element in data) {
       String restaurantId = element.meal.menuItem.restaurant.id as String;
       if (restaurantInfo.containsKey(restaurantId)) {

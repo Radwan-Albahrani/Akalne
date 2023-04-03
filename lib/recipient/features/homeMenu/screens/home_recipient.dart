@@ -30,10 +30,10 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
   }
 
   final _searchController = TextEditingController();
-
+  Map<String, RestaurantModel> restaurantInfo = {};
   Future<void> getRestaurantInformation(List<PublishedMealModel> data) async {
     var controller = ref.read(homeMenuControllerProvider.notifier);
-    Map<String, RestaurantModel> restaurantInfo = {};
+
     for (var element in data) {
       String restaurantId = element.menuItem.restaurant.id as String;
       if (restaurantInfo.containsKey(restaurantId)) {
@@ -42,6 +42,7 @@ class _HomeRecipientState extends ConsumerState<HomeRecipient> {
       }
       RestaurantModel? restaurant =
           await controller.getRestaurant(restaurantId, context);
+      print("fetched");
       if (restaurant != null) {
         restaurantInfo[restaurantId] = restaurant;
         element.restaurantInfo = restaurant;

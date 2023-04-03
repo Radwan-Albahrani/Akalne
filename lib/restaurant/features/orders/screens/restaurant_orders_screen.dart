@@ -36,9 +36,9 @@ class _RestaurantOrdersScreenState
     _searchController.dispose();
   }
 
+  Map<String, UserModel> userInfo = {};
   Future<void> getUserInformation(List<OrderModel> data) async {
     var controller = ref.read(ordersControllerProvider.notifier);
-    Map<String, UserModel> userInfo = {};
     for (var element in data) {
       String userId = element.userId;
       if (userInfo.containsKey(userId)) {
