@@ -38,7 +38,7 @@ class _EditUserScreenState extends ConsumerState<ViewUserScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Container(
-          margin: const EdgeInsets.only(left: 10),
+          margin: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
           child: const CustomBackButton(),
         ),
         centerTitle: true,
@@ -49,61 +49,68 @@ class _EditUserScreenState extends ConsumerState<ViewUserScreen> {
         ),
       ),
       body: SafeArea(
-          child: Container(
-        padding: const EdgeInsets.all(10),
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Profile",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12.sp,
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Profile",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 12.sp,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            const CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 75,
-              backgroundImage: AssetImage(AppConstants.defaultProfile),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            RoundedFormField(
-              controller: nameController,
-              enabled: false,
-              hintText: "Recipient name",
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            RoundedFormField(
-              controller: addressController,
-              hintText: "Recipient Email",
-              enabled: false,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            RoundedFormField(
-              controller: phoneNumberController,
-              hintText: "Recipient phone number",
-              enabled: false,
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-          ],
+              SizedBox(
+                height: 10.h,
+              ),
+              CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 75,
+                  backgroundImage: () {
+                    if (widget.user.profilePictureUrl!.contains("default")) {
+                      return const AssetImage(AppConstants.defaultProfile);
+                    }
+                    return NetworkImage(widget.user.profilePictureUrl!);
+                  }.call() as ImageProvider),
+              SizedBox(
+                height: 10.h,
+              ),
+              RoundedFormField(
+                controller: nameController,
+                enabled: false,
+                hintText: "Recipient name",
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              RoundedFormField(
+                controller: addressController,
+                hintText: "Recipient Email",
+                enabled: false,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              RoundedFormField(
+                controller: phoneNumberController,
+                hintText: "Recipient phone number",
+                enabled: false,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+            ],
+          ),
         ),
       )),
     );
