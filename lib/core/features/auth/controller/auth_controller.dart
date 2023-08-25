@@ -93,10 +93,10 @@ class AuthController extends StateNotifier<bool> {
       ),
       (userModel) {
         userModel.fold(
-          (restaurant) =>
-              _ref.read(userProvider.notifier).update((state) => restaurant),
           (user) =>
-              _ref.read(restaurantProvider.notifier).update((state) => user),
+              _ref.read(userProvider.notifier).update((state) => user),
+          (restaurant) =>
+              _ref.read(restaurantProvider.notifier).update((state) => restaurant),
         );
       },
     );
