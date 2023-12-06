@@ -1,4 +1,3 @@
-import 'package:akalne/core/models/menu_item_model.dart';
 import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/utils.dart';
 import 'package:akalne/theme/app_colors.dart';
@@ -49,7 +48,7 @@ class FoodItemCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 10),
         child: Container(
             width: double.infinity,
-            height: 90.h,
+            height: 100.h,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -85,7 +84,7 @@ class FoodItemCard extends StatelessWidget {
                     children: [
                       Container(
                         constraints: BoxConstraints(
-                          maxWidth: 150.w,
+                          maxWidth: 170.w,
                           minWidth: 100.w,
                         ),
                         child: Text(

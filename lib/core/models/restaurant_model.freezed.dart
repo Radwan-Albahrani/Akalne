@@ -119,11 +119,11 @@ class _$RestaurantModelCopyWithImpl<$Res, $Val extends RestaurantModel>
 }
 
 /// @nodoc
-abstract class _$$_RestaurantModelCopyWith<$Res>
+abstract class _$$RestaurantModelImplCopyWith<$Res>
     implements $RestaurantModelCopyWith<$Res> {
-  factory _$$_RestaurantModelCopyWith(
-          _$_RestaurantModel value, $Res Function(_$_RestaurantModel) then) =
-      __$$_RestaurantModelCopyWithImpl<$Res>;
+  factory _$$RestaurantModelImplCopyWith(_$RestaurantModelImpl value,
+          $Res Function(_$RestaurantModelImpl) then) =
+      __$$RestaurantModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -139,11 +139,11 @@ abstract class _$$_RestaurantModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RestaurantModelCopyWithImpl<$Res>
-    extends _$RestaurantModelCopyWithImpl<$Res, _$_RestaurantModel>
-    implements _$$_RestaurantModelCopyWith<$Res> {
-  __$$_RestaurantModelCopyWithImpl(
-      _$_RestaurantModel _value, $Res Function(_$_RestaurantModel) _then)
+class __$$RestaurantModelImplCopyWithImpl<$Res>
+    extends _$RestaurantModelCopyWithImpl<$Res, _$RestaurantModelImpl>
+    implements _$$RestaurantModelImplCopyWith<$Res> {
+  __$$RestaurantModelImplCopyWithImpl(
+      _$RestaurantModelImpl _value, $Res Function(_$RestaurantModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -159,7 +159,7 @@ class __$$_RestaurantModelCopyWithImpl<$Res>
     Object? firstTimeLogin = null,
     Object? distance = null,
   }) {
-    return _then(_$_RestaurantModel(
+    return _then(_$RestaurantModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -202,8 +202,8 @@ class __$$_RestaurantModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RestaurantModel implements _RestaurantModel {
-  _$_RestaurantModel(
+class _$RestaurantModelImpl implements _RestaurantModel {
+  _$RestaurantModelImpl(
       {required this.id,
       required this.name,
       required this.address,
@@ -214,8 +214,8 @@ class _$_RestaurantModel implements _RestaurantModel {
       required this.firstTimeLogin,
       required this.distance});
 
-  factory _$_RestaurantModel.fromJson(Map<String, dynamic> json) =>
-      _$$_RestaurantModelFromJson(json);
+  factory _$RestaurantModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RestaurantModelImplFromJson(json);
 
   @override
   final String? id;
@@ -245,7 +245,7 @@ class _$_RestaurantModel implements _RestaurantModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RestaurantModel &&
+            other is _$RestaurantModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.address, address) || other.address == address) &&
@@ -270,12 +270,13 @@ class _$_RestaurantModel implements _RestaurantModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RestaurantModelCopyWith<_$_RestaurantModel> get copyWith =>
-      __$$_RestaurantModelCopyWithImpl<_$_RestaurantModel>(this, _$identity);
+  _$$RestaurantModelImplCopyWith<_$RestaurantModelImpl> get copyWith =>
+      __$$RestaurantModelImplCopyWithImpl<_$RestaurantModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RestaurantModelToJson(
+    return _$$RestaurantModelImplToJson(
       this,
     );
   }
@@ -291,10 +292,10 @@ abstract class _RestaurantModel implements RestaurantModel {
       required final String? restaurantLogo,
       required final String? email,
       required final bool firstTimeLogin,
-      required final String distance}) = _$_RestaurantModel;
+      required final String distance}) = _$RestaurantModelImpl;
 
   factory _RestaurantModel.fromJson(Map<String, dynamic> json) =
-      _$_RestaurantModel.fromJson;
+      _$RestaurantModelImpl.fromJson;
 
   @override
   String? get id;
@@ -316,6 +317,6 @@ abstract class _RestaurantModel implements RestaurantModel {
   String get distance;
   @override
   @JsonKey(ignore: true)
-  _$$_RestaurantModelCopyWith<_$_RestaurantModel> get copyWith =>
+  _$$RestaurantModelImplCopyWith<_$RestaurantModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

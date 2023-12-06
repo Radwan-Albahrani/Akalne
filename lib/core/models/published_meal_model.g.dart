@@ -6,9 +6,9 @@ part of 'published_meal_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PublishedMealModel _$$_PublishedMealModelFromJson(
+_$PublishedMealModelImpl _$$PublishedMealModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_PublishedMealModel(
+    _$PublishedMealModelImpl(
       createdAt: json['createdAt'] as String,
       quantity: json['quantity'] as int,
       id: json['id'] as String,
@@ -20,8 +20,8 @@ _$_PublishedMealModel _$$_PublishedMealModelFromJson(
               json['restaurantInfo'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_PublishedMealModelToJson(
-        _$_PublishedMealModel instance) =>
+Map<String, dynamic> _$$PublishedMealModelImplToJson(
+        _$PublishedMealModelImpl instance) =>
     <String, dynamic>{
       'createdAt': instance.createdAt,
       'quantity': instance.quantity,

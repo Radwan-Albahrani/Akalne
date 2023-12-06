@@ -115,11 +115,11 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
 }
 
 /// @nodoc
-abstract class _$$_MenuItemModelCopyWith<$Res>
+abstract class _$$MenuItemModelImplCopyWith<$Res>
     implements $MenuItemModelCopyWith<$Res> {
-  factory _$$_MenuItemModelCopyWith(
-          _$_MenuItemModel value, $Res Function(_$_MenuItemModel) then) =
-      __$$_MenuItemModelCopyWithImpl<$Res>;
+  factory _$$MenuItemModelImplCopyWith(
+          _$MenuItemModelImpl value, $Res Function(_$MenuItemModelImpl) then) =
+      __$$MenuItemModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -136,11 +136,11 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MenuItemModelCopyWithImpl<$Res>
-    extends _$MenuItemModelCopyWithImpl<$Res, _$_MenuItemModel>
-    implements _$$_MenuItemModelCopyWith<$Res> {
-  __$$_MenuItemModelCopyWithImpl(
-      _$_MenuItemModel _value, $Res Function(_$_MenuItemModel) _then)
+class __$$MenuItemModelImplCopyWithImpl<$Res>
+    extends _$MenuItemModelCopyWithImpl<$Res, _$MenuItemModelImpl>
+    implements _$$MenuItemModelImplCopyWith<$Res> {
+  __$$MenuItemModelImplCopyWithImpl(
+      _$MenuItemModelImpl _value, $Res Function(_$MenuItemModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -154,7 +154,7 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
     Object? maximumOrder = null,
     Object? restaurant = null,
   }) {
-    return _then(_$_MenuItemModel(
+    return _then(_$MenuItemModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -190,8 +190,8 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_MenuItemModel implements _MenuItemModel {
-  _$_MenuItemModel(
+class _$MenuItemModelImpl implements _MenuItemModel {
+  _$MenuItemModelImpl(
       {required this.id,
       required this.name,
       required this.description,
@@ -200,8 +200,8 @@ class _$_MenuItemModel implements _MenuItemModel {
       required this.maximumOrder,
       required this.restaurant});
 
-  factory _$_MenuItemModel.fromJson(Map<String, dynamic> json) =>
-      _$$_MenuItemModelFromJson(json);
+  factory _$MenuItemModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MenuItemModelImplFromJson(json);
 
   @override
   final String id;
@@ -227,7 +227,7 @@ class _$_MenuItemModel implements _MenuItemModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MenuItemModel &&
+            other is _$MenuItemModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -249,12 +249,12 @@ class _$_MenuItemModel implements _MenuItemModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>
-      __$$_MenuItemModelCopyWithImpl<_$_MenuItemModel>(this, _$identity);
+  _$$MenuItemModelImplCopyWith<_$MenuItemModelImpl> get copyWith =>
+      __$$MenuItemModelImplCopyWithImpl<_$MenuItemModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MenuItemModelToJson(
+    return _$$MenuItemModelImplToJson(
       this,
     );
   }
@@ -268,10 +268,10 @@ abstract class _MenuItemModel implements MenuItemModel {
       required final String image,
       required final String dateAdded,
       required final int maximumOrder,
-      required final RestaurantModel restaurant}) = _$_MenuItemModel;
+      required final RestaurantModel restaurant}) = _$MenuItemModelImpl;
 
   factory _MenuItemModel.fromJson(Map<String, dynamic> json) =
-      _$_MenuItemModel.fromJson;
+      _$MenuItemModelImpl.fromJson;
 
   @override
   String get id;
@@ -289,6 +289,6 @@ abstract class _MenuItemModel implements MenuItemModel {
   RestaurantModel get restaurant;
   @override
   @JsonKey(ignore: true)
-  _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>
+  _$$MenuItemModelImplCopyWith<_$MenuItemModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

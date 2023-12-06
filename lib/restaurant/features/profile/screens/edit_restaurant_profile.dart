@@ -12,8 +12,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EditRestaurantProfileScreen extends ConsumerStatefulWidget {
-  RestaurantModel restaurantModel;
-  EditRestaurantProfileScreen({
+  final RestaurantModel restaurantModel;
+  const EditRestaurantProfileScreen({
     Key? key,
     required this.restaurantModel,
   }) : super(key: key);

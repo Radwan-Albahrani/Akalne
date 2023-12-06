@@ -6,8 +6,8 @@ part of 'menu_item_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MenuItemModel _$$_MenuItemModelFromJson(Map<String, dynamic> json) =>
-    _$_MenuItemModel(
+_$MenuItemModelImpl _$$MenuItemModelImplFromJson(Map<String, dynamic> json) =>
+    _$MenuItemModelImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -18,7 +18,7 @@ _$_MenuItemModel _$$_MenuItemModelFromJson(Map<String, dynamic> json) =>
           RestaurantModel.fromJson(json['restaurant'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_MenuItemModelToJson(_$_MenuItemModel instance) =>
+Map<String, dynamic> _$$MenuItemModelImplToJson(_$MenuItemModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

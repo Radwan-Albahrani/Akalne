@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:akalne/core/models/published_meal_model.dart';
 import 'package:akalne/core/models/user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

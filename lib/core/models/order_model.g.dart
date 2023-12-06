@@ -6,8 +6,8 @@ part of 'order_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
-    _$_OrderModel(
+_$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
+    _$OrderModelImpl(
       id: json['id'] as int,
       status: json['status'] as String,
       dateCreated: json['dateCreated'] as String,
@@ -21,7 +21,7 @@ _$_OrderModel _$$_OrderModelFromJson(Map<String, dynamic> json) =>
       reason: json['reason'] as String?,
     );
 
-Map<String, dynamic> _$$_OrderModelToJson(_$_OrderModel instance) =>
+Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'status': instance.status,

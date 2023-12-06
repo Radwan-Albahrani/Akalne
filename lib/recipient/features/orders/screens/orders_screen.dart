@@ -46,14 +46,14 @@ class _OrdersPageState extends ConsumerState<OrdersPage> {
                 body: SafeArea(
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      const Padding(
+                        padding: EdgeInsets.only(
                             left: 32, right: 32, bottom: 10, top: 32),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              children: const [
+                              children: [
                                 Text(
                                   "My Orders",
                                   style: TextStyle(
@@ -67,8 +67,8 @@ class _OrdersPageState extends ConsumerState<OrdersPage> {
                         ),
                       ),
                       data.isEmpty
-                          ? Column(
-                              children: const [
+                          ? const Column(
+                              children: [
                                 SizedBox(
                                   height: 100,
                                 ),

@@ -6,8 +6,9 @@ part of 'restaurant_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_RestaurantModel _$$_RestaurantModelFromJson(Map<String, dynamic> json) =>
-    _$_RestaurantModel(
+_$RestaurantModelImpl _$$RestaurantModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RestaurantModelImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       address: json['address'] as String?,
@@ -19,7 +20,8 @@ _$_RestaurantModel _$$_RestaurantModelFromJson(Map<String, dynamic> json) =>
       distance: json['distance'] as String,
     );
 
-Map<String, dynamic> _$$_RestaurantModelToJson(_$_RestaurantModel instance) =>
+Map<String, dynamic> _$$RestaurantModelImplToJson(
+        _$RestaurantModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

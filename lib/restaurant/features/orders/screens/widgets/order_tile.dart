@@ -12,8 +12,8 @@ import '../../../../../theme/app_colors.dart';
 import '../../controller/orders_controller.dart';
 
 class OrderTile extends ConsumerStatefulWidget {
-  OrderModel order;
-  OrderTile({
+  final OrderModel order;
+  const OrderTile({
     Key? key,
     required this.order,
   }) : super(key: key);

@@ -18,12 +18,10 @@ final menuRepositoryProvider = Provider((ref) {
 
 class MenuRepository {
   final FirebaseFirestore _firestore;
-  FirebaseStorage _storage;
   MenuRepository({
     required FirebaseStorage storage,
     required FirebaseFirestore firestore,
-  })  : _firestore = firestore,
-        _storage = storage;
+  }) : _firestore = firestore;
 
   CollectionReference get _menuItems =>
       _firestore.collection(FirebaseConstants.menuItemsCollection);

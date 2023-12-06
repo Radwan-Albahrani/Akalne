@@ -11,11 +11,11 @@ import '../../../../../core/features/auth/screens/widgets/rounded_form_field.dar
 import '../../../../../theme/app_colors.dart';
 
 class AddNoteDialog extends ConsumerStatefulWidget {
-  OrderModel order;
+  final OrderModel order;
   // onTap
-  void Function() onTap;
+  final void Function() onTap;
 
-  AddNoteDialog({
+  const AddNoteDialog({
     Key? key,
     required this.order,
     required this.onTap,

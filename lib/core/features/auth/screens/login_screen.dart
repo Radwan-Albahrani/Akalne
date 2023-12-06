@@ -118,18 +118,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         height: 40.h,
                         width: double.infinity,
                         child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                           onPressed: () => signInWithEmail(context),
                           child: isLoading
-                                ? const Loader()
-                                :  Text("Login",
-                              style: Theme.of(context).textTheme.labelLarge),
+                              ? const Loader()
+                              : Text("Login",
+                                  style:
+                                      Theme.of(context).textTheme.labelLarge),
                         ),
                       ),
                       Row(
@@ -142,10 +142,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           TextButton(
                             onPressed: () => navigateToSignUpScreen(context),
                             child: Text(
-                                    "Sign Up",
-                                    style:
-                                        Theme.of(context).textTheme.labelMedium,
-                                  ),
+                              "Sign Up",
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
                           ),
                         ],
                       ),

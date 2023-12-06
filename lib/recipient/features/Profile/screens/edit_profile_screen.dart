@@ -3,12 +3,9 @@ import 'dart:io';
 import 'package:akalne/core/common/loader.dart';
 import 'package:akalne/core/constants/app_constants.dart';
 import 'package:akalne/core/features/auth/controller/auth_controller.dart';
-import 'package:akalne/core/models/restaurant_model.dart';
 import 'package:akalne/core/models/user_model.dart';
 import 'package:akalne/core/utils.dart';
-import 'package:akalne/restaurant/features/profile/controller/restaurant_profile_controller.dart';
 import 'package:akalne/theme/app_colors.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,8 +13,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../controller/user_profile_controller.dart';
 
 class EditProfileScreen extends ConsumerStatefulWidget {
-  UserModel userModel;
-  EditProfileScreen({
+  final UserModel userModel;
+  const EditProfileScreen({
     Key? key,
     required this.userModel,
   }) : super(key: key);

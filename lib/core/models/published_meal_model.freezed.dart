@@ -120,11 +120,11 @@ class _$PublishedMealModelCopyWithImpl<$Res, $Val extends PublishedMealModel>
 }
 
 /// @nodoc
-abstract class _$$_PublishedMealModelCopyWith<$Res>
+abstract class _$$PublishedMealModelImplCopyWith<$Res>
     implements $PublishedMealModelCopyWith<$Res> {
-  factory _$$_PublishedMealModelCopyWith(_$_PublishedMealModel value,
-          $Res Function(_$_PublishedMealModel) then) =
-      __$$_PublishedMealModelCopyWithImpl<$Res>;
+  factory _$$PublishedMealModelImplCopyWith(_$PublishedMealModelImpl value,
+          $Res Function(_$PublishedMealModelImpl) then) =
+      __$$PublishedMealModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -141,11 +141,11 @@ abstract class _$$_PublishedMealModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PublishedMealModelCopyWithImpl<$Res>
-    extends _$PublishedMealModelCopyWithImpl<$Res, _$_PublishedMealModel>
-    implements _$$_PublishedMealModelCopyWith<$Res> {
-  __$$_PublishedMealModelCopyWithImpl(
-      _$_PublishedMealModel _value, $Res Function(_$_PublishedMealModel) _then)
+class __$$PublishedMealModelImplCopyWithImpl<$Res>
+    extends _$PublishedMealModelCopyWithImpl<$Res, _$PublishedMealModelImpl>
+    implements _$$PublishedMealModelImplCopyWith<$Res> {
+  __$$PublishedMealModelImplCopyWithImpl(_$PublishedMealModelImpl _value,
+      $Res Function(_$PublishedMealModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -157,7 +157,7 @@ class __$$_PublishedMealModelCopyWithImpl<$Res>
     Object? menuItem = null,
     Object? restaurantInfo = freezed,
   }) {
-    return _then(_$_PublishedMealModel(
+    return _then(_$PublishedMealModelImpl(
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -185,16 +185,16 @@ class __$$_PublishedMealModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PublishedMealModel implements _PublishedMealModel {
-  _$_PublishedMealModel(
+class _$PublishedMealModelImpl implements _PublishedMealModel {
+  _$PublishedMealModelImpl(
       {required this.createdAt,
       required this.quantity,
       required this.id,
       required this.menuItem,
       this.restaurantInfo});
 
-  factory _$_PublishedMealModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PublishedMealModelFromJson(json);
+  factory _$PublishedMealModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PublishedMealModelImplFromJson(json);
 
   @override
   String createdAt;
@@ -215,13 +215,13 @@ class _$_PublishedMealModel implements _PublishedMealModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PublishedMealModelCopyWith<_$_PublishedMealModel> get copyWith =>
-      __$$_PublishedMealModelCopyWithImpl<_$_PublishedMealModel>(
+  _$$PublishedMealModelImplCopyWith<_$PublishedMealModelImpl> get copyWith =>
+      __$$PublishedMealModelImplCopyWithImpl<_$PublishedMealModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PublishedMealModelToJson(
+    return _$$PublishedMealModelImplToJson(
       this,
     );
   }
@@ -233,10 +233,10 @@ abstract class _PublishedMealModel implements PublishedMealModel {
       required int quantity,
       required String id,
       required MenuItemModel menuItem,
-      RestaurantModel? restaurantInfo}) = _$_PublishedMealModel;
+      RestaurantModel? restaurantInfo}) = _$PublishedMealModelImpl;
 
   factory _PublishedMealModel.fromJson(Map<String, dynamic> json) =
-      _$_PublishedMealModel.fromJson;
+      _$PublishedMealModelImpl.fromJson;
 
   @override
   String get createdAt;
@@ -255,6 +255,6 @@ abstract class _PublishedMealModel implements PublishedMealModel {
   set restaurantInfo(RestaurantModel? value);
   @override
   @JsonKey(ignore: true)
-  _$$_PublishedMealModelCopyWith<_$_PublishedMealModel> get copyWith =>
+  _$$PublishedMealModelImplCopyWith<_$PublishedMealModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
