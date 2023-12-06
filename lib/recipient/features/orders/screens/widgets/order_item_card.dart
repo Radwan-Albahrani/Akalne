@@ -172,10 +172,10 @@ class _OrderItemCardState extends ConsumerState<OrderItemCard> {
           ),
         ),
         GestureDetector(
-          onTap:
-              widget.orderModel.reason != null || widget.orderModel.reason != ""
-                  ? showReason
-                  : null,
+          onTap: widget.orderModel.reason != null &&
+                  widget.orderModel.reason!.trim().isNotEmpty
+              ? showReason
+              : null,
           child: Container(
             height: 50.h,
             width: double.infinity,

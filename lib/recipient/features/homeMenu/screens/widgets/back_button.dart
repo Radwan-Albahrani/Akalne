@@ -9,13 +9,14 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.centerLeft,
       child: SizedBox(
         height: 40.h,
         width: 40.w,
         child: ElevatedButton(
           onPressed: () => Navigator.of(context).pop(),
           style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(horizontal: 13.w),
             backgroundColor: AppColors.light["primaryTransparent"],
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
