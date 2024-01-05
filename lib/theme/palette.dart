@@ -16,6 +16,14 @@ class Palette {
       secondary: AppColors.light['secondary'],
       onSecondary: AppColors.light['string2'],
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.light['primary'],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+      ),
+    ),
     textTheme: TextTheme(
       headlineLarge: TextStyle(
         color: AppColors.light['string1'],
